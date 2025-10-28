@@ -5,11 +5,7 @@ weight: 1
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
+---
 ### Mục tiêu tuần 2:
 
 * Kết nối, làm quen với các thành viên trong First Cloud Journey.
@@ -21,7 +17,7 @@ pre: " <b> 1.2. </b> "
 | 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 15/09/2025   | 15/09/2025      |
 | 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 16/09/2025   | 16/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 17/09/2025   | 17/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - **Tham dự event Vietnam Cloud Day 2025**               | 18/09/2025   | 18/09/2025      |  |
+| 5   | - **Tham dự event Vietnam Cloud Day 2025**               | 18/09/2025   | 18/09/2025      | **[Vietnam Cloud Day 2025](https://pages.awscloud.com/vietnam-cloud-day-hcmc-connect-edition.html#agenda?trk=6e54a9d8-6af6-4dc0-8faf-cb98945e2db5&sc_channel=em/)**|
 | 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 19/09/2025   | 19/09/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 

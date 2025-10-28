@@ -15,21 +15,21 @@
     <title>Blog 2 :: Báo cáo thực tập</title>
 
     
-    <link href="../../../css/nucleus.css?1761626635" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1761626635" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1761626635" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1761626635" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1761626635" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1761626635" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1761626635" rel="stylesheet">
-    <link href="../../../css/theme.css?1761626635" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1761626635" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1761635592" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1761635592" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1761635592" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1761635592" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1761635592" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1761635592" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1761635592" rel="stylesheet">
+    <link href="../../../css/theme.css?1761635592" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1761635592" rel="stylesheet">
     
-    <link href="../../../css/theme-workshop.css?1761626635" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1761635592" rel="stylesheet">
     
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1761626635"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1761635592"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1761626635"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1761626635"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1761635592"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1761635592"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1761626635"></script>
+<script type="text/javascript" src="../../../js/search.js?1761635592"></script>
  
   </div>
 
@@ -989,11 +989,11 @@
   <ul>
     <li><a href="#giới-thiệu">Giới thiệu</a></li>
     <li><a href="#tổng-quan">Tổng quan</a></li>
+    <li><a href="#điều-kiện-tiên-quyết">Điều kiện tiên quyết</a></li>
     <li><a href="#aws-direct-connect-sitelink">AWS Direct Connect SiteLink</a></li>
     <li><a href="#dấu-ấn-toàn-cầu-của-salesforce-business-technology">Dấu ấn toàn cầu của Salesforce Business Technology</a></li>
-    <li><a href="#giải-pháp-sitelink">Giải pháp SiteLink</a></li>
-    <li><a href="#lợi-ích">Lợi ích</a></li>
-    <li><a href="#trích-dẫn-từ-salesforce">Trích dẫn từ Salesforce</a></li>
+    <li><a href="#giải-pháp-sitelink">Giải pháp: SiteLink</a></li>
+    <li><a href="#lợi-ích-đạt-được">Lợi ích đạt được</a></li>
     <li><a href="#kết-luận">Kết luận</a></li>
     <li><a href="#giới-thiệu-về-các-tác-giả">Giới thiệu về các tác giả</a></li>
   </ul>
@@ -1021,98 +1021,161 @@
 
 
 
-	<h1 id="cách-salesforce-business-technology-sử-dụng-aws-direct-connect-sitelink-để-kết-nối-toàn-cầu-đáng-tin-cậy">Cách Salesforce Business Technology sử dụng AWS Direct Connect SiteLink để kết nối toàn cầu đáng tin cậy</h1>
-<p><em>Bởi Alexandra Huides và Corey Harris Jr — ngày 09 tháng 5 năm 2025</em></p>
-<blockquote>
-<p><em>Lưu ý: Bài đăng này được xuất bản với sự hợp tác của Georgi Stoev, Kiến trúc sư kỹ thuật cấp cao tại Salesforce và Ravi Patel, Giám đốc kỹ thuật cấp cao tại Salesforce.</em></p></blockquote>
+	<hr>
+<h1 id="cách-salesforce-business-technology-sử-dụng-aws-direct-connect-sitelink-để-kết-nối-toàn-cầu-đáng-tin-cậy">Cách Salesforce Business Technology sử dụng AWS Direct Connect SiteLink để kết nối toàn cầu đáng tin cậy</h1>
+<p><em>Bởi Alexandra Huides và Corey Harris Jr – ngày 09 tháng 5 năm 2025, trong chuyên mục AWS Direct Connect SiteLink.</em></p>
 <hr>
 <h2 id="giới-thiệu">Giới thiệu</h2>
-<p>Trong bài đăng này, chúng tôi xem xét cách <strong>Salesforce Business Technology</strong> sử dụng <strong>AWS Direct Connect SiteLink</strong> để xây dựng kiến trúc kết hợp linh hoạt, tạo điều kiện mở rộng toàn cầu và tăng tốc quá trình di chuyển lên <strong>AWS Cloud</strong>.<br>
-Bài viết cũng mô tả cách <strong>SiteLink</strong> giúp <strong>Salesforce</strong> thống nhất kiến trúc mạng trên <strong>bảy địa điểm toàn cầu</strong>, hiện đại hóa giao tiếp mạng để <strong>giảm chi phí</strong>, <strong>hợp lý hóa vận hành</strong>, và <strong>nâng cao hiệu suất</strong>.</p>
+<p><strong>Salesforce Business Technology</strong> đã sử dụng <strong>AWS Direct Connect SiteLink</strong> để xây dựng kiến trúc mạng lai toàn cầu, đảm bảo kết nối linh hoạt, hiệu suất cao và đáng tin cậy.<br>
+Giải pháp này giúp Salesforce mở rộng hạ tầng, giảm chi phí vận hành và tăng tốc độ đổi mới trong hành trình hiện đại hóa lên đám mây AWS.</p>
+<blockquote>
+<p><em>Bài viết được thực hiện với sự hợp tác của Georgi Stoev và Ravi Patel – các chuyên gia kỹ thuật cấp cao tại Salesforce.</em></p></blockquote>
 <hr>
 <h2 id="tổng-quan">Tổng quan</h2>
-<p><strong>Salesforce</strong> là Đối tác của <strong>AWS</strong> và là công ty hàng đầu thế giới trong lĩnh vực <strong>Customer Relationship Management (CRM)</strong>.<br>
-Nhóm <strong>Business Technology</strong> của Salesforce cung cấp các dịch vụ hỗ trợ xây dựng, vận hành và chuyển đổi ứng dụng doanh nghiệp, bao gồm tài chính, bảo mật, trung tâm cuộc gọi, và kho dữ liệu công ty.</p>
-<p>Để đáp ứng nhu cầu hoạt động toàn cầu, Salesforce cần một <strong>kiến trúc mạng linh hoạt, có khả năng mở rộng và đảm bảo dự phòng cao</strong>.<br>
-Các giải pháp mạng truyền thống dựa vào Internet công cộng thường không đáp ứng được yêu cầu nghiêm ngặt về hiệu suất và độ tin cậy.<br>
-<strong>AWS Direct Connect SiteLink</strong> giúp giải quyết các thách thức này bằng cách cung cấp <strong>kết nối riêng tư, chuyên dụng</strong>, bỏ qua Internet công cộng — đảm bảo <strong>độ trễ thấp</strong>, <strong>bảo mật cao hơn</strong>, và <strong>khả năng phục hồi tích hợp</strong>.</p>
+<p><strong>Salesforce</strong> là đối tác chiến lược của AWS và là công ty hàng đầu thế giới về quản lý quan hệ khách hàng (CRM).<br>
+Nhóm <strong>Business Technology</strong> chịu trách nhiệm xây dựng và vận hành các ứng dụng doanh nghiệp, hỗ trợ các mảng như tài chính, trung tâm dữ liệu, bảo mật, kho dữ liệu, và các máy ảo của Salesforce.</p>
+<p>Với quy mô toàn cầu, Salesforce cần một kiến trúc mạng:</p>
+<ul>
+<li><strong>Linh hoạt và có khả năng mở rộng cao.</strong></li>
+<li><strong>Giảm thiểu độ trễ và thời gian ngừng hoạt động.</strong></li>
+<li><strong>Đảm bảo tính bảo mật và độ tin cậy cao.</strong></li>
+</ul>
+<p>Tuy nhiên, các giải pháp mạng truyền thống dựa trên internet không thể đáp ứng yêu cầu nghiêm ngặt này.<br>
+Đó là lý do <strong>AWS Direct Connect SiteLink</strong> được lựa chọn — cung cấp kết nối <strong>riêng tư, chuyên dụng</strong>, bỏ qua internet công cộng, giúp cải thiện bảo mật và độ trễ đáng kể.</p>
+<hr>
+<h2 id="điều-kiện-tiên-quyết">Điều kiện tiên quyết</h2>
+<p>Trước khi triển khai, nhóm kỹ thuật Salesforce đã nắm rõ các thành phần mạng AWS sau:</p>
+<ul>
+<li><strong>Amazon Virtual Private Cloud (VPC)</strong></li>
+<li><strong>AWS Transit Gateway</strong></li>
+<li><strong>AWS Direct Connect</strong></li>
+</ul>
+<p>Các dịch vụ này là nền tảng cho kiến trúc mạng lai toàn cầu, cho phép kết nối riêng tư và độ trễ thấp giữa nhiều vị trí Direct Connect — mà không cần đi qua các vùng AWS trung gian.</p>
 <hr>
 <h2 id="aws-direct-connect-sitelink">AWS Direct Connect SiteLink</h2>
-<p><strong>AWS Direct Connect</strong> cho phép kết nối mạng tại chỗ với <strong>AWS</strong> thông qua các đường truyền chuyên dụng, giúp <strong>tối ưu độ trễ và đảm bảo hiệu suất ổn định</strong>.<br>
-<strong>SiteLink</strong> là tính năng mở rộng của Direct Connect, cho phép <strong>kết nối trực tiếp giữa các mạng tại chỗ</strong> qua <strong>AWS Global Network Backbone</strong>, mà không cần lưu lượng phải đi qua vùng (Region) AWS.</p>
-<p>Bạn có thể:</p>
+<p><strong>AWS Direct Connect</strong> cung cấp kết nối mạng riêng giữa hạ tầng tại chỗ và AWS, giúp tối ưu hiệu năng, độ trễ và độ tin cậy.</p>
+<p><strong>SiteLink</strong> là một tính năng mở rộng của Direct Connect, cho phép kết nối trực tiếp giữa các mạng tại chỗ thông qua <strong>đường trục mạng toàn cầu của AWS</strong>, giúp:</p>
 <ul>
-<li>Truyền dữ liệu trực tiếp giữa các <strong>Direct Connect locations</strong> qua tuyến đường ngắn nhất</li>
-<li>Tận dụng hơn <strong>100 địa điểm Direct Connect</strong> trên toàn thế giới</li>
-<li>Kích hoạt <strong>SiteLink</strong> mà không cần kết nối mới – chỉ cần bật trong các <strong>Virtual Interface (VIF)</strong> gắn với <strong>Direct Connect Gateway (DXGW)</strong></li>
+<li>Gửi dữ liệu qua <strong>đường dẫn ngắn nhất</strong>, không cần qua vùng AWS.</li>
+<li>Tận dụng <strong>mạng AWS toàn cầu</strong> để truyền dữ liệu nhanh và an toàn.</li>
+<li>Thanh toán theo mức sử dụng thực tế, không cần thiết lập kết nối mới.</li>
 </ul>
-<p>Dữ liệu sẽ di chuyển theo tuyến ngắn nhất và an toàn nhất trong mạng AWS, đảm bảo <strong>tốc độ, độ tin cậy và bảo mật cao</strong>.</p>
+<p>Quy trình hoạt động:</p>
+<ol>
+<li>Kết nối mạng tại chỗ đến AWS tại một trong hơn <strong>100 điểm Direct Connect</strong> trên toàn cầu.</li>
+<li>Tạo <strong>Virtual Interface (VIF)</strong> trên kết nối đó và bật <strong>SiteLink</strong>.</li>
+<li>Khi các VIF được gắn vào cùng một <strong>Direct Connect Gateway (DXGW)</strong>, dữ liệu sẽ được truyền trực tiếp giữa các vị trí, sử dụng đường trục AWS.</li>
+</ol>
 <hr>
 <h2 id="dấu-ấn-toàn-cầu-của-salesforce-business-technology">Dấu ấn toàn cầu của Salesforce Business Technology</h2>
-<p><strong>Salesforce Business Technology</strong> vận hành một hạ tầng mạng trải dài trên <strong>bảy địa điểm chiến lược</strong>:</p>
+<p>Salesforce Business Technology quản lý <strong>7 địa điểm chiến lược</strong> trên toàn cầu:</p>
 <ul>
-<li>3 tại Hoa Kỳ</li>
-<li>3 tại khu vực Châu Á – Thái Bình Dương</li>
-<li>1 tại Châu Âu</li>
+<li>3 ở Hoa Kỳ</li>
+<li>3 ở Châu Á – Thái Bình Dương</li>
+<li>1 ở Châu Âu</li>
 </ul>
-<p>Trước đây, Salesforce sử dụng <strong>đường trục riêng (MPLS-based private backbone)</strong> để kết nối các trung tâm dữ liệu.<br>
-Tuy nhiên, mô hình này gặp phải các vấn đề:</p>
+<p>Mạng được xây dựng trên <strong>đường trục riêng MPLS</strong> kết hợp với <strong>AWS Regions</strong>, hỗ trợ các luồng dữ liệu phức tạp giữa trung tâm dữ liệu và môi trường đám mây.</p>
+<p>Tuy nhiên, các thách thức nảy sinh gồm:</p>
 <ul>
-<li>Cơ sở hạ tầng tĩnh, khó mở rộng linh hoạt</li>
-<li>Chi phí cao và khó quản lý nhiều nhà cung cấp dịch vụ</li>
-<li>Gián đoạn kết nối kéo dài ở một số khu vực</li>
-<li>Phức tạp trong việc định tuyến Layer 3 VPN</li>
+<li>Cơ sở hạ tầng <strong>tĩnh và khó mở rộng</strong>.</li>
+<li><strong>Chi phí vận hành cao</strong> và phụ thuộc nhiều nhà cung cấp.</li>
+<li><strong>Độ phức tạp định tuyến</strong> và <strong>sự cố kéo dài</strong> ở một số khu vực.</li>
 </ul>
-<p>Để khắc phục, Salesforce quyết định <strong>hiện đại hóa toàn bộ kiến trúc mạng</strong> bằng cách chuyển sang <strong>AWS Direct Connect SiteLink</strong>, giúp hệ thống <strong>linh hoạt và mở rộng theo nhu cầu</strong>.</p>
-<p><img src="../../../images/3-BlogImage/blog2-1.png" alt="Hình 1. Mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng."></p>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-1.png" alt="Ảnh blog 2 - 1"></p>
 <blockquote>
-<p><em>Hình 1. Mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng.</em></p></blockquote>
+<p><em>Hình 1. Một mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng.</em></p></blockquote>
 <hr>
-<h2 id="giải-pháp-sitelink">Giải pháp SiteLink</h2>
-<p>Salesforce triển khai <strong>SiteLink</strong> trên các kết nối Direct Connect hiện có bằng cách tạo <strong>VIF chuyên dụng</strong> cho môi trường <strong>Production</strong> và <strong>Development</strong>.<br>
-Giải pháp này hỗ trợ nhiều luồng dữ liệu khác nhau như <strong>Data Center–to–Data Center (DC–DC)</strong> và <strong>DC–AWS</strong>, cho phép <strong>tận dụng các kết nối sẵn có</strong> mà không ảnh hưởng đến lưu lượng sản xuất.</p>
-<p>Nhờ đó, Salesforce có thể duy trì <strong>phân vùng toàn cầu</strong>, <strong>đảm bảo tuân thủ yêu cầu lưu trữ dữ liệu</strong>, và đồng thời <strong>tăng khả năng mở rộng linh hoạt</strong>.</p>
-<p><img src="../../../images/3-BlogImage/blog2-2.png" alt="Hình 2. Mẫu triển khai SiteLink toàn cầu cho môi trường Production và Development."></p>
-<blockquote>
-<p><em>Hình 2. Mẫu triển khai SiteLink toàn cầu cho môi trường Production và Development.</em></p></blockquote>
-<hr>
-<h2 id="lợi-ích">Lợi ích</h2>
-<p>Việc triển khai <strong>AWS Direct Connect SiteLink</strong> mang lại các lợi ích chính sau:</p>
+<h2 id="giải-pháp-sitelink">Giải pháp: SiteLink</h2>
+<p>Để giải quyết vấn đề, Salesforce Business Technology đã <strong>hiện đại hóa hạ tầng mạng</strong> bằng cách triển khai <strong>SiteLink</strong>.<br>
+Mục tiêu chính:</p>
 <ul>
-<li><strong>Đơn giản hóa quản lý mạng:</strong> loại bỏ sự phức tạp của định tuyến MPLS Layer 3 VPN</li>
-<li><strong>Tăng độ ổn định:</strong> tận dụng mạng backbone AWS để cải thiện khả năng phục hồi và giảm độ trễ trung bình 15%</li>
-<li><strong>Cải thiện trải nghiệm người dùng:</strong> nhờ độ trễ thấp hơn và nhất quán hơn giữa các trung tâm dữ liệu</li>
-<li><strong>Giám sát toàn diện:</strong> thông qua <strong>Amazon CloudWatch Network Synthetic Monitor</strong> và các công cụ giám sát tổng thể</li>
-<li><strong>Bảo mật nâng cao:</strong> sử dụng <strong>MACSec encryption (Layer 2)</strong> cho toàn bộ kết nối Direct Connect</li>
+<li>Xây dựng mạng linh hoạt, có thể mở rộng theo nhu cầu.</li>
+<li>Giảm chi phí vận hành và độ phức tạp.</li>
+<li>Tăng khả năng phục hồi và bảo mật.</li>
 </ul>
-<p>Triển khai SiteLink được thực hiện theo từng giai đoạn:</p>
-<ol>
-<li><strong>Giai đoạn 1:</strong> SiteLink được dùng như <strong>giải pháp dự phòng</strong> cho mạng riêng toàn cầu hiện có</li>
-<li><strong>Giai đoạn 2:</strong> Chuyển SiteLink thành <strong>kết nối chính</strong>, loại bỏ các kết nối điểm-điểm cũ</li>
-</ol>
-<p>Kết quả: Salesforce đạt được một <strong>mạng lưới toàn cầu đáng tin cậy, bảo mật, và dễ mở rộng hơn</strong>.</p>
-<hr>
-<h2 id="trích-dẫn-từ-salesforce">Trích dẫn từ Salesforce</h2>
+<p>Nhóm đã:</p>
+<ul>
+<li>Triển khai SiteLink trên <strong>các kết nối Direct Connect hiện có</strong>.</li>
+<li>Tạo các <strong>VIF chuyên dụng mới</strong> cho môi trường sản xuất và phát triển.</li>
+<li>Duy trì <strong>phân khúc toàn cầu</strong>, đáp ứng yêu cầu lưu trữ dữ liệu tại chỗ.</li>
+</ul>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-2.png" alt="Ảnh blog 2 - 2"></p>
 <blockquote>
-<p>“Với SiteLink, Salesforce Business Technology đã có thể hợp lý hóa các hoạt động mạng và đảm bảo khả năng phục hồi tối đa cho kết nối đường trục toàn cầu của chúng tôi.<br>
-SiteLink dễ dàng kích hoạt trên các mạch Direct Connect hiện có. Điều này cho phép chúng tôi thiết lập kết nối giữa bảy trung tâm dữ liệu toàn cầu chỉ trong vài phút và đáp ứng nhu cầu mạng cho các cơ hội thị trường trong tương lai một cách nhanh chóng.”<br>
-— <em>Ravi Patel, Giám đốc Kỹ thuật Cấp cao tại Salesforce.</em></p></blockquote>
+<p><em>Hình 2. Mẫu triển khai SiteLink toàn cầu cho Sản xuất và Phát triển.</em></p></blockquote>
+<hr>
+<h2 id="lợi-ích-đạt-được">Lợi ích đạt được</h2>
+<p>Giải pháp SiteLink mang lại nhiều lợi ích vượt trội cho Salesforce:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Lợi ích</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Đơn giản hóa quản lý mạng</strong></td>
+          <td>Loại bỏ độ phức tạp của định tuyến MPLS Layer 3 VPN, vẫn duy trì khả năng tách biệt lưu lượng.</td>
+      </tr>
+      <tr>
+          <td><strong>Cải thiện hiệu suất</strong></td>
+          <td>Tăng ổn định, giảm độ trễ trung bình 15% trên toàn cầu.</td>
+      </tr>
+      <tr>
+          <td><strong>Tối ưu hóa chi phí</strong></td>
+          <td>Tận dụng kết nối hiện có, thanh toán theo mức sử dụng.</td>
+      </tr>
+      <tr>
+          <td><strong>Bảo mật nâng cao</strong></td>
+          <td>Áp dụng mã hóa MACSec lớp 2 trên toàn bộ kết nối Direct Connect.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ngoài ra, SiteLink giúp:</p>
+<ul>
+<li><strong>Giảm số điểm hỏng đơn lẻ (SPOF)</strong> và tăng độ tin cậy mạng.</li>
+<li><strong>Tối ưu tuyến đường dữ liệu</strong> giữa các trung tâm dữ liệu.</li>
+<li><strong>Giám sát toàn diện</strong> qua CloudWatch Network Monitor.</li>
+</ul>
+<blockquote>
+<p><em>“Với SiteLink, Salesforce Business Technology đã hợp lý hóa các hoạt động mạng và đảm bảo khả năng phục hồi tối đa cho kết nối toàn cầu. Chúng tôi có thể thiết lập kết nối giữa 7 trung tâm dữ liệu chỉ trong vài phút và mở rộng sang thị trường mới trong vài ngày.”</em><br>
+— <em>Ravi Patel, Giám đốc kỹ thuật cấp cao tại Salesforce.</em></p></blockquote>
 <hr>
 <h2 id="kết-luận">Kết luận</h2>
-<p>Qua bài đăng này, chúng ta thấy cách <strong>Salesforce Business Technology</strong> sử dụng <strong>AWS Direct Connect SiteLink</strong> để:</p>
+<p>Việc áp dụng <strong>AWS Direct Connect SiteLink</strong> đã giúp Salesforce:</p>
 <ul>
-<li>Hợp nhất kiến trúc mạng trên phạm vi toàn cầu</li>
-<li>Hiện đại hóa kết nối để giảm chi phí và độ phức tạp vận hành</li>
-<li>Nâng cao hiệu suất, bảo mật, và khả năng phục hồi</li>
+<li>Thống nhất kiến trúc mạng trên toàn cầu.</li>
+<li>Hiện đại hóa hạ tầng, giảm chi phí và cải thiện hiệu suất.</li>
+<li>Chuẩn bị sẵn sàng cho quy mô mở rộng và đổi mới nhanh chóng.</li>
 </ul>
-<p><strong>SiteLink</strong> giúp Salesforce xây dựng nền tảng kết nối linh hoạt, sẵn sàng cho <strong>mở rộng toàn cầu</strong>, đồng thời duy trì <strong>hiệu quả kinh tế và hiệu suất tối ưu</strong>.</p>
+<blockquote>
+<p><em>Để tìm hiểu thêm về AWS Direct Connect SiteLink, bạn có thể tham khảo tài liệu chính thức hoặc đặt câu hỏi trên AWS re:Post.</em></p></blockquote>
 <hr>
 <h2 id="giới-thiệu-về-các-tác-giả">Giới thiệu về các tác giả</h2>
-<p><strong>Alexandra Huides</strong> — Kiến trúc sư giải pháp chuyên gia mạng chính tại AWS.<br>
-Cô tập trung vào việc giúp khách hàng xây dựng kiến trúc mạng mở rộng linh hoạt và là diễn giả về IPv6.</p>
-<p><strong>Corey Harris Jr.</strong> — Kiến trúc sư giải pháp cấp cao tại AWS, tập trung hỗ trợ Salesforce triển khai và tối ưu hóa các giải pháp AWS.</p>
-<p><strong>Georgi Stoev</strong> — Kiến trúc sư kỹ thuật cấp cao tại Salesforce, chuyên về Multi-cloud, AI, Security và Network Infrastructure.</p>
-<p><strong>Ravi Patel</strong> — Giám đốc kỹ thuật cấp cao tại Salesforce, với hơn 15 năm kinh nghiệm trong việc xây dựng các mạng hiệu suất cao, linh hoạt và bảo mật.</p>
+<blockquote>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-3.png" alt="Alexandra Huides"><br>
+<strong>Alexandra Huides</strong><br>
+<em>Kiến trúc sư giải pháp chuyên gia mạng tại AWS.</em><br>
+Tập trung vào kiến trúc mạng quy mô lớn, hỗ trợ khách hàng áp dụng IPv6 và xây dựng môi trường linh hoạt. Ngoài công việc, cô yêu thích chèo thuyền, du lịch và đọc sách.</p></blockquote>
+<hr>
+<blockquote>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-4.jpg" alt="Corey Harris Jr"><br>
+<strong>Corey Harris Jr.</strong><br>
+<em>Kiến trúc sư giải pháp cấp cao tại AWS.</em><br>
+Là chuyên gia về mạng và serverless, giúp khách hàng tối ưu hệ thống AWS. Ngoài công việc, anh yêu thích game, du lịch và thời gian bên gia đình.</p></blockquote>
+<hr>
+<blockquote>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-5.png" alt="Georgi Stoev"><br>
+<strong>Georgi Stoev</strong><br>
+<em>Kiến trúc sư kỹ thuật cấp cao tại Salesforce.</em><br>
+Với hơn 20 năm kinh nghiệm trong lĩnh vực mạng, AI và bảo mật, anh đam mê công nghệ, nghiên cứu ong mật và khám phá thiên nhiên.</p></blockquote>
+<hr>
+<blockquote>
+<p><img src="../../../images/3-BlogImage/Blog2/blog2-6.jpg" alt="Ravi Patel"><br>
+<strong>Ravi Patel</strong><br>
+<em>Giám đốc kỹ thuật cấp cao tại Salesforce.</em><br>
+Có hơn 15 năm kinh nghiệm xây dựng mạng linh hoạt và hiệu suất cao. Ngoài công việc, anh thích lướt sóng, leo núi, và phiêu lưu khám phá thế giới.</p></blockquote>
+<hr>
 
 
 
@@ -1817,19 +1880,19 @@ Cô tập trung vào việc giúp khách hàng xây dựng kiến trúc mạng m
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1761626635"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1761626635"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1761626635"></script>
-    <script src="../../../js/jquery.sticky.js?1761626635"></script>
-    <script src="../../../js/featherlight.min.js?1761626635"></script>
-    <script src="../../../js/highlight.pack.js?1761626635"></script>
+    <script src="../../../js/clipboard.min.js?1761635592"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1761635592"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1761635592"></script>
+    <script src="../../../js/jquery.sticky.js?1761635592"></script>
+    <script src="../../../js/featherlight.min.js?1761635592"></script>
+    <script src="../../../js/highlight.pack.js?1761635592"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1761626635"></script>
-    <script src="../../../js/learn.js?1761626635"></script>
-    <script src="../../../js/hugo-learn.js?1761626635"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1761635592"></script>
+    <script src="../../../js/learn.js?1761635592"></script>
+    <script src="../../../js/hugo-learn.js?1761635592"></script>
 
-    <link href="../../../mermaid/mermaid.css?1761626635" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.js?1761626635"></script>
+    <link href="../../../mermaid/mermaid.css?1761635592" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1761635592"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

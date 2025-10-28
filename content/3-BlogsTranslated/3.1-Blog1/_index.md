@@ -1,61 +1,190 @@
 ---
 title: "Blog 1"
-date: 2025-09-11
+date: 2025-10-08
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
+---
 
-# AWS wraps record-breaking week at devcom and gamescom 2025
+# How iFood Built a Platform to Run Hundreds of Machine Learning Models with Amazon SageMaker Inference
 
-by Jeff Harris and David Holladay on 11 SEP 2025 in Amazon API Gateway, Amazon CloudFront, Amazon GameLift, Amazon Simple Storage Service (S3), Application Services, AWS Lambda, Compute, Events, Game Development, Games, Industries, Networking & Content Delivery, Storage
+*By Daniel Vieira, Debora Fanin, Gopi Mudiyala, and Saurabh Trikande – April 8, 2025, in the Advanced section (300), Amazon SageMaker Data & AI Governance, Customer Solutions.*
 
 ---
 
-## Impressive turnout at devcom and gamescom
+## Introduction
 
-Impressive turnout at the devcom developer conference and gamescom this year underscored a thriving video game industry. Held in Cologne, Germany, both events reported record-breaking attendance for 2025, with developer-centric devcom receiving **5,400 visitors** and consumer-focused gamescom attracting **357,000 attendees**.  
+Headquartered in São Paulo, Brazil, **iFood** is a privately held national company and a leader in food tech in Latin America, processing millions of orders every month. iFood stands out for its strategy of integrating advanced technology into its operations. With the support of **AWS**, iFood has developed a powerful **machine learning (ML)** inference infrastructure using services like **Amazon SageMaker** to create and deploy ML models efficiently. This collaboration has allowed iFood to not only optimize internal processes but also provide innovative solutions for its delivery partners and restaurants.
 
-The Amazon Web Services (AWS) for Games team was out in full force, hosting insightful sessions and demos while also engaging with industry customers and partners. Continue reading for a brief recap.  
+iFood's ML platform includes a set of tools, processes, and workflows developed with the following main objectives:
+- Accelerating the development and training of AI/ML models, making them more reliable and easier to reproduce.
+- Ensuring that the deployment of these models into production is reliable, scalable, and traceable.
+- Enabling transparent, accessible, and standardized testing, monitoring, and evaluation of models in production.
 
-![Image 1: AWS team members at devcom developer conference.](/images/Image-1-devcom-blog.png)
-
----
-
-## Next generation experiences took center stage
-
-At devcom, AWS illustrated how game developers can build a scalable, browser-based game streaming platform that delivers AAA games in 1080p at 60 FPS using Amazon GameLift Streams. The demo combined this new capability with AWS Lambda, Amazon API Gateway, Amazon Simple Storage Service (Amazon S3), and Amazon CloudFront. Attendees were able to see how the architecture enables secure, low-latency game streaming without requiring downloads, and can turn phones, tablets, and PCs into powerful gaming machines.  
-
-AWS also showcased how to easily run any multiplayer game project on Amazon GameLift Servers using the new containers feature. Automating simple and fast packaging and deployment for projects with the Containers Starter Kit for Amazon GameLift, it results in faster iteration, without requiring the installation of local tools.  
-
-AWS Partner demos included harnessing the power of AI-powered quality assurance solution Razer QA Co-AI to boost bug detection and highlighting how to support global releases without slowing down production with Phrase Platform for continuous game localization. By integrating directly with tools like Unity, Unreal Engine, GitHub, and more, it makes it easier for game developers to manage and automate translation across every content layer—from UI to in-game dialogue. AWS also featured AI-powered game solutions from Globant, which streamline asset operations within existing pipelines across the gaming sector, and how devtodev by Appsflyer provides deep insights into a player’s journey.  
-
-![Image 2: Attendees interacting with AWS and Partner demos at the AWS booth.](/images/Image-2-devcom-blog.png)
+![Blog Image 1 - 1](/images/3-BlogImage/Blog1/blog1-1.png)
+> *Figure 1. Overview — iFood and the application of AI/ML in their product system.*
 
 ---
 
-## Celebrating the achievements of women in games
+## Goals and Approach
 
-A highlight of the conference, AWS, Amazon Games, and EPAM Systems held the third annual Women in Games networking panel and event on Monday, August 18. The occasion celebrated the 20th anniversary of Women in Games International (WIGI), a nonprofit organization dedicated to advancing economic equality and diversity in the global games industry. A standout element of the evening included a lively panel featuring Nika Nour from Savvy Games, Saumya Singh, CEO WinZO, and Bibbi Wikman, founder of Playcap, moderated by Joanie Kraut, CEO WIGI.  
+To achieve these goals, iFood leverages **SageMaker** to streamline model training and deployment. By integrating SageMaker features into iFood's infrastructure, key steps are automated — from creating training datasets, training models, deploying them into production, to continuously monitoring their performance.
 
-![Image 3: Celebrating Women in Games evening event during devcom developer conference.](/images/Image-3-devcom-blog.png)
+This article outlines how iFood uses SageMaker to enhance the entire ML lifecycle — from training to inference — and describes architectural changes and capabilities developed by the team.
 
 ---
 
-## Forward-thinking discussions fostered community
+## AI Inference at iFood
 
-On Tuesday, August 19, AWS hosted a pair of Community Clubhouse sessions covering generative artificial intelligence (AI) and data-driven decision making, respectively.  
+iFood leverages its AI/ML platform to enhance customer experience across various touchpoints. Some typical use cases include:
 
-Moderated by AWS Global Games Industry BD Leader Shayan Sanyal, *Beyond the Code: The Human Touch in AI-Driven Game Design* explored the fusion of human creativity, machine learning, and simulation tools in developing unique visual styles, prototyping game systems, and inventing compelling stories. It featured Irena Pereira, Founder, CEO, and Creative Director of Unleashed Games; Kayla Comalli, CEO of Lovelace Studio; Mike Fischer, Executive Advisor of KRAFTON; and Adam Boyes, CEO and Founder of Vivrato. The discussion covered ways AI-powered workflows can accelerate content creation and system modeling, highlighting the continued importance of creative direction and world building.  
+- **Personalized Recommendations** — Models analyze order history, preferences, and context to suggest appropriate restaurants and dishes, increasing customer satisfaction and order volume.
+- **Smart Order Tracking** — The system predicts delivery times in real-time by combining traffic data, restaurant preparation times, and the location of the delivery driver, proactively notifying customers.
+- **Automated Customer Service** — AI chatbots handle thousands of common requests daily, providing fast responses and retrieving relevant data to support personalization.
+- **Grocery Shopping Support** — The app integrates language models that help customers create shopping lists from voice or text requests.
 
-*Telemetry-Driven Dev Building feedback loops for live games* brought together industry veterans to dive into how data can drive better game design, team performance, and business outcomes. AWS Games Analytics and AI BD Andrei Muratov was joined by Josh Loveridge, Director of Stratton Studios, and Oscar Clark, Chief Strategy Officer of Arcanix, for an in-depth discussion on why successful games are shaped by smart, timely data. Key takeaways included day one data-driven decision making, rethinking KPIs, building ethical and sustainable teams, practical games analytics implementation, and real-world examples of how analytics informed product direction, monetization, and retention strategies.  
+Thanks to these initiatives, iFood can forecast demand, optimize processes, and deliver consistent user experiences.
 
-![Image 4: Community Clubhouse sessions with AWS team members Shayan Sanyal & Andrei Muratov.](/images/Image-4-devcom-blog.png)
+---
+
+## Solution Overview (Legacy Architecture)
+
+The diagram below illustrates iFood's legacy architecture, where Data Science and Engineering teams had separate workflows — leading to challenges when deploying real-time ML models into production.
+
+![Blog Image 1 - 2](/images/3-BlogImage/Blog1/blog1-2.jpg)
+> *Figure 2. Legacy Architecture — Describing data flow and the barriers between teams.*
+
+Previously, data scientists developed models in notebooks, fine-tuned, and published artifacts. Engineers then had to integrate these artifacts into the production system, causing delays and integration errors. To address this, iFood developed an internal ML platform to unify the process from development to deployment, creating a seamless experience for both teams.
+
+---
+
+## Updated Architecture and ML Go!
+
+One of the core capabilities of iFood's ML platform is providing the infrastructure to serve predictions. The internal platform (called **ML Go!**) is responsible for managing the deployment process, overseeing SageMaker Endpoints and Jobs. ML Go! supports both offline (batch) and real-time (online) predictions, and manages the lifecycle of models (registry, versioning, monitoring).
+
+![Blog Image 1 - 3](/images/3-BlogImage/Blog1/blog1-3.jpg)
+> *Figure 3. Updated Architecture — Including pipelines, model registry, and inference components.*
+
+The platform provides:
+- Automated ML pipelines (SageMaker Pipelines) for model training and retraining.
+- ML Go! CI/CD to push artifacts, build Docker images, and trigger pipelines.
+- SageMaker Model Registry for versioning and model management.
+- Monitoring mechanisms to detect drift and performance degradation.
+
+---
+
+## Final Architecture: Inference Components & ML Go! Gateway
+
+A significant improvement is the abstraction concept connecting with SageMaker (Endpoints & Jobs) called **ML Go! Gateway**, along with separating "inference components" in the endpoint — helping to divide concerns, accelerate delivery, and manage resources more efficiently. Endpoints now manage multiple inference components, and ML Go! CI/CD only focuses on model version promotion, without deep intervention in infrastructure.
+
+![Blog Image 1 - 4](/images/3-BlogImage/Blog1/blog1-4.jpg)
+> *Figure 4. Final Architecture — Inference components, ML Go! Gateway, and integration with service accounts.*
+
+In this new structure:
+- Endpoints can contain multiple inference components, allowing load distribution by function or load.
+- ML Go! Dispatcher/Gateway forwards requests to the appropriate endpoint or job.
+- CI/CD handles artifacts (Docker images, configs), and SageMaker Pipeline orchestrates training → evaluation → registry → deployment.
+
+---
+
+## Using SageMaker Inference Model Serving Containers
+
+Standardizing the environment through containers is a crucial element of modern ML platforms. SageMaker provides built-in containers for TensorFlow, PyTorch, XGBoost, and more, as well as the ability to use custom containers.
+
+iFood focuses on using **custom containers** to:
+- Standardize ML code (not directly using notebooks in production).
+- Package dependencies, libraries, and inference logic in an image (e.g., BruceML scaffolding).
+- Easily recreate training and serving environments, monitor results, and debug.
+
+BruceML helps standardize the way training and serving code is written, creating a scaffold compatible with SageMaker (autotuning, deployment hooks, monitoring).
+
+---
+
+## Automating Deployment and Retraining (ML Pipelines & CI/CD)
+
+iFood uses **SageMaker Pipelines** to build CI/CD for ML: pipelines are responsible for orchestrating the entire data flow — from preprocessing, training, evaluation, to promotion in the Model Registry and deployment. ML Go! CI/CD integrates with the organization’s CI/CD system to:
+- Push artifacts (code + container image).
+- Trigger training and evaluation pipelines.
+- Automatically register models into the Model Registry.
+- Deploy or promote models to the appropriate endpoint (online / batch).
+
+Depending on SLA:
+- **Batch inference**: Uses SageMaker Transform jobs for large-scale predictions.
+- **Real-time inference**: Deploys models to SageMaker Endpoint with the appropriate container/instance configuration.
+
+SageMaker Pipelines helps automate and coordinate complex workflows, reducing errors and shortening development cycles.
+
+---
+
+## Running Inference at Different SLA Formats
+
+iFood uses multiple inference methods to meet different requirements:
+- **Real-time endpoints** for low-latency tasks (user-facing).
+- **Batch transform jobs** for large-scale data processing, periodic recommendations.
+- **Asynchronous inference** (SageMaker Asynchronous Inference) for time-consuming inference tasks.
+- **Multi-model endpoints (GPU)** to host multiple models on the same GPU endpoint, optimizing resource use.
+
+The improvements in collaboration between iFood and the SageMaker Inference team include:
+- Optimizing cost and performance for inference (reducing ~50% of cost for some workloads, lowering ~20% average latency when using inference components).
+- Improving autoscaling to handle spikes more effectively (shortening scaling time, enhancing detection of scale events).
+- Easier deployment of LLM / Foundation Models (FM).
+- **Scale-to-zero** feature for endpoints helps save costs when there is no traffic.
+- Multi-model GPU endpoints reduce infrastructure costs in multi-model scenarios.
+
+---
+
+## Model Optimization and Packaging
+
+Some technical points iFood focuses on:
+- Standardizing containers for both training and serving.
+- Automating the build/publish of images to the registry (ECR).
+- Packaging LLM / FM for faster deployment.
+- Supporting autoscaling and scale-to-zero for dev/test environments and low-traffic workloads.
+
+---
+
+## Achieved Benefits & Impact
+
+The benefits iFood has gained:
+- Reduced time to get models into production (faster time-to-market).
+- Increased pipeline & artifact reuse across teams.
+- Lower operational costs through GPU/multi-model optimization and scale-to-zero.
+- Improved stability and model management at scale.
 
 ---
 
 ## Conclusion
 
-From game streaming and multiplayer hosting to AI integration and analytics, AWS for Games provides the tools and expertise you need to bring your gaming vision to life.  
+By leveraging SageMaker capabilities, iFood has transformed its approach to ML/AI: building a centralized ML platform (ML Go!), automating data flows, standardizing containers, and collaborating with the SageMaker Inference team to optimize efficiency, cost, and scalability. This has helped iFood:
+- Bridge the gap between Data Science and Engineering.
+- Deploy hundreds of ML models reliably.
+- Create a reference platform for organizations wishing to apply inference at scale.
 
-👉 Ready to level up your game development? Contact an AWS for Games expert today to explore how we can help accelerate your journey.
+> *“At iFood, we are leading the way in applying AI and machine learning technologies to transform... The lessons learned have helped us create our internal platform, which can serve as a blueprint for other organizations...”*  
+> – Daniel Vieira, Director of ML Platforms at iFood.
+
+---
+
+## About the Authors
+
+![Daniel Vieira](/images/3-BlogImage/Blog1/blog1-5.png)  
+**Daniel Vieira** — Director of Machine Learning Engineering at iFood. He has a background in computer science (BSc & MSc, UFMG) and over a decade of experience in software engineering and ML platforms. He enjoys music, philosophy, and coffee.
+
+---
+
+![Debora Fanin](/images/3-BlogImage/Blog1/blog1-6.png)  
+**Debora Fanin** — Senior Customer Solutions Architect at AWS (Brazil). She specializes in managing enterprise customer transformation and designing effective cloud adoption strategies.
+
+---
+
+![Saurabh Trikande](/images/3-BlogImage/Blog1/blog1-7.png)  
+**Saurabh Trikande** — Senior Product Manager, Amazon Bedrock & SageMaker Inference. Focuses on democratizing AI and inference solutions at scale.
+
+---
+
+![Gopi Mudiyala](/images/3-BlogImage/Blog1/blog1-8.jpg)  
+**Gopi Mudiyala** — Senior Technical Account Manager at AWS. Supports clients in the financial services industry and is passionate about machine learning.
+
+---
+

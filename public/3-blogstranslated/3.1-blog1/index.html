@@ -15,21 +15,21 @@
     <title>Blog 1 :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1761626635" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1761626635" rel="stylesheet">
-    <link href="../../css/hybrid.css?1761626635" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1761626635" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1761626635" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1761626635" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1761626635" rel="stylesheet">
-    <link href="../../css/theme.css?1761626635" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1761626635" rel="stylesheet">
+    <link href="../../css/nucleus.css?1761636309" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1761636309" rel="stylesheet">
+    <link href="../../css/hybrid.css?1761636309" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1761636309" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1761636309" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1761636309" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1761636309" rel="stylesheet">
+    <link href="../../css/theme.css?1761636309" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1761636309" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1761626635" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1761636309" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1761626635"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1761636309"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1761626635"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1761626635"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1761636309"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1761636309"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1761626635"></script>
+<script type="text/javascript" src="../../js/search.js?1761636309"></script>
  
   </div>
 
@@ -122,7 +122,7 @@
             
 <li
   data-nav-id="/1-worklog/1.1-week1/"
-  title="Week 1 Worklog"
+  title="Worklog Week 1"
   class="dd-item 
         
         
@@ -130,7 +130,7 @@
         "
 >
   <a href="../../1-worklog/1.1-week1/">
-     <b> 1.1. </b> Week 1 Worklog 
+     <b> 1.1. </b> Worklog Week 1 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -987,11 +987,19 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li><a href="#impressive-turnout-at-devcom-and-gamescom">Impressive turnout at devcom and gamescom</a></li>
-    <li><a href="#next-generation-experiences-took-center-stage">Next generation experiences took center stage</a></li>
-    <li><a href="#celebrating-the-achievements-of-women-in-games">Celebrating the achievements of women in games</a></li>
-    <li><a href="#forward-thinking-discussions-fostered-community">Forward-thinking discussions fostered community</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#goals-and-approach">Goals and Approach</a></li>
+    <li><a href="#ai-inference-at-ifood">AI Inference at iFood</a></li>
+    <li><a href="#solution-overview-legacy-architecture">Solution Overview (Legacy Architecture)</a></li>
+    <li><a href="#updated-architecture-and-ml-go">Updated Architecture and ML Go!</a></li>
+    <li><a href="#final-architecture-inference-components--ml-go-gateway">Final Architecture: Inference Components &amp; ML Go! Gateway</a></li>
+    <li><a href="#using-sagemaker-inference-model-serving-containers">Using SageMaker Inference Model Serving Containers</a></li>
+    <li><a href="#automating-deployment-and-retraining-ml-pipelines--cicd">Automating Deployment and Retraining (ML Pipelines &amp; CI/CD)</a></li>
+    <li><a href="#running-inference-at-different-sla-formats">Running Inference at Different SLA Formats</a></li>
+    <li><a href="#model-optimization-and-packaging">Model Optimization and Packaging</a></li>
+    <li><a href="#achieved-benefits--impact">Achieved Benefits &amp; Impact</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#about-the-authors">About the Authors</a></li>
   </ul>
 </nav></div>
 </div>
@@ -1017,33 +1025,152 @@
 
 
 
-	<h1 id="aws-wraps-record-breaking-week-at-devcom-and-gamescom-2025">AWS wraps record-breaking week at devcom and gamescom 2025</h1>
-<p>by Jeff Harris and David Holladay on 11 SEP 2025 in Amazon API Gateway, Amazon CloudFront, Amazon GameLift, Amazon Simple Storage Service (S3), Application Services, AWS Lambda, Compute, Events, Game Development, Games, Industries, Networking &amp; Content Delivery, Storage</p>
+	<hr>
+<h1 id="how-ifood-built-a-platform-to-run-hundreds-of-machine-learning-models-with-amazon-sagemaker-inference">How iFood Built a Platform to Run Hundreds of Machine Learning Models with Amazon SageMaker Inference</h1>
+<p><em>By Daniel Vieira, Debora Fanin, Gopi Mudiyala, and Saurabh Trikande – April 8, 2025, in the Advanced section (300), Amazon SageMaker Data &amp; AI Governance, Customer Solutions.</em></p>
 <hr>
-<h2 id="impressive-turnout-at-devcom-and-gamescom">Impressive turnout at devcom and gamescom</h2>
-<p>Impressive turnout at the devcom developer conference and gamescom this year underscored a thriving video game industry. Held in Cologne, Germany, both events reported record-breaking attendance for 2025, with developer-centric devcom receiving <strong>5,400 visitors</strong> and consumer-focused gamescom attracting <strong>357,000 attendees</strong>.</p>
-<p>The Amazon Web Services (AWS) for Games team was out in full force, hosting insightful sessions and demos while also engaging with industry customers and partners. Continue reading for a brief recap.</p>
-<p><img src="../../images/Image-1-devcom-blog.png" alt="Image 1: AWS team members at devcom developer conference."></p>
+<h2 id="introduction">Introduction</h2>
+<p>Headquartered in São Paulo, Brazil, <strong>iFood</strong> is a privately held national company and a leader in food tech in Latin America, processing millions of orders every month. iFood stands out for its strategy of integrating advanced technology into its operations. With the support of <strong>AWS</strong>, iFood has developed a powerful <strong>machine learning (ML)</strong> inference infrastructure using services like <strong>Amazon SageMaker</strong> to create and deploy ML models efficiently. This collaboration has allowed iFood to not only optimize internal processes but also provide innovative solutions for its delivery partners and restaurants.</p>
+<p>iFood&rsquo;s ML platform includes a set of tools, processes, and workflows developed with the following main objectives:</p>
+<ul>
+<li>Accelerating the development and training of AI/ML models, making them more reliable and easier to reproduce.</li>
+<li>Ensuring that the deployment of these models into production is reliable, scalable, and traceable.</li>
+<li>Enabling transparent, accessible, and standardized testing, monitoring, and evaluation of models in production.</li>
+</ul>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-1.png" alt="Blog Image 1 - 1"></p>
+<blockquote>
+<p><em>Figure 1. Overview — iFood and the application of AI/ML in their product system.</em></p></blockquote>
 <hr>
-<h2 id="next-generation-experiences-took-center-stage">Next generation experiences took center stage</h2>
-<p>At devcom, AWS illustrated how game developers can build a scalable, browser-based game streaming platform that delivers AAA games in 1080p at 60 FPS using Amazon GameLift Streams. The demo combined this new capability with AWS Lambda, Amazon API Gateway, Amazon Simple Storage Service (Amazon S3), and Amazon CloudFront. Attendees were able to see how the architecture enables secure, low-latency game streaming without requiring downloads, and can turn phones, tablets, and PCs into powerful gaming machines.</p>
-<p>AWS also showcased how to easily run any multiplayer game project on Amazon GameLift Servers using the new containers feature. Automating simple and fast packaging and deployment for projects with the Containers Starter Kit for Amazon GameLift, it results in faster iteration, without requiring the installation of local tools.</p>
-<p>AWS Partner demos included harnessing the power of AI-powered quality assurance solution Razer QA Co-AI to boost bug detection and highlighting how to support global releases without slowing down production with Phrase Platform for continuous game localization. By integrating directly with tools like Unity, Unreal Engine, GitHub, and more, it makes it easier for game developers to manage and automate translation across every content layer—from UI to in-game dialogue. AWS also featured AI-powered game solutions from Globant, which streamline asset operations within existing pipelines across the gaming sector, and how devtodev by Appsflyer provides deep insights into a player’s journey.</p>
-<p><img src="../../images/Image-2-devcom-blog.png" alt="Image 2: Attendees interacting with AWS and Partner demos at the AWS booth."></p>
+<h2 id="goals-and-approach">Goals and Approach</h2>
+<p>To achieve these goals, iFood leverages <strong>SageMaker</strong> to streamline model training and deployment. By integrating SageMaker features into iFood&rsquo;s infrastructure, key steps are automated — from creating training datasets, training models, deploying them into production, to continuously monitoring their performance.</p>
+<p>This article outlines how iFood uses SageMaker to enhance the entire ML lifecycle — from training to inference — and describes architectural changes and capabilities developed by the team.</p>
 <hr>
-<h2 id="celebrating-the-achievements-of-women-in-games">Celebrating the achievements of women in games</h2>
-<p>A highlight of the conference, AWS, Amazon Games, and EPAM Systems held the third annual Women in Games networking panel and event on Monday, August 18. The occasion celebrated the 20th anniversary of Women in Games International (WIGI), a nonprofit organization dedicated to advancing economic equality and diversity in the global games industry. A standout element of the evening included a lively panel featuring Nika Nour from Savvy Games, Saumya Singh, CEO WinZO, and Bibbi Wikman, founder of Playcap, moderated by Joanie Kraut, CEO WIGI.</p>
-<p><img src="../../images/Image-3-devcom-blog.png" alt="Image 3: Celebrating Women in Games evening event during devcom developer conference."></p>
+<h2 id="ai-inference-at-ifood">AI Inference at iFood</h2>
+<p>iFood leverages its AI/ML platform to enhance customer experience across various touchpoints. Some typical use cases include:</p>
+<ul>
+<li><strong>Personalized Recommendations</strong> — Models analyze order history, preferences, and context to suggest appropriate restaurants and dishes, increasing customer satisfaction and order volume.</li>
+<li><strong>Smart Order Tracking</strong> — The system predicts delivery times in real-time by combining traffic data, restaurant preparation times, and the location of the delivery driver, proactively notifying customers.</li>
+<li><strong>Automated Customer Service</strong> — AI chatbots handle thousands of common requests daily, providing fast responses and retrieving relevant data to support personalization.</li>
+<li><strong>Grocery Shopping Support</strong> — The app integrates language models that help customers create shopping lists from voice or text requests.</li>
+</ul>
+<p>Thanks to these initiatives, iFood can forecast demand, optimize processes, and deliver consistent user experiences.</p>
 <hr>
-<h2 id="forward-thinking-discussions-fostered-community">Forward-thinking discussions fostered community</h2>
-<p>On Tuesday, August 19, AWS hosted a pair of Community Clubhouse sessions covering generative artificial intelligence (AI) and data-driven decision making, respectively.</p>
-<p>Moderated by AWS Global Games Industry BD Leader Shayan Sanyal, <em>Beyond the Code: The Human Touch in AI-Driven Game Design</em> explored the fusion of human creativity, machine learning, and simulation tools in developing unique visual styles, prototyping game systems, and inventing compelling stories. It featured Irena Pereira, Founder, CEO, and Creative Director of Unleashed Games; Kayla Comalli, CEO of Lovelace Studio; Mike Fischer, Executive Advisor of KRAFTON; and Adam Boyes, CEO and Founder of Vivrato. The discussion covered ways AI-powered workflows can accelerate content creation and system modeling, highlighting the continued importance of creative direction and world building.</p>
-<p><em>Telemetry-Driven Dev Building feedback loops for live games</em> brought together industry veterans to dive into how data can drive better game design, team performance, and business outcomes. AWS Games Analytics and AI BD Andrei Muratov was joined by Josh Loveridge, Director of Stratton Studios, and Oscar Clark, Chief Strategy Officer of Arcanix, for an in-depth discussion on why successful games are shaped by smart, timely data. Key takeaways included day one data-driven decision making, rethinking KPIs, building ethical and sustainable teams, practical games analytics implementation, and real-world examples of how analytics informed product direction, monetization, and retention strategies.</p>
-<p><img src="../../images/Image-4-devcom-blog.png" alt="Image 4: Community Clubhouse sessions with AWS team members Shayan Sanyal &amp; Andrei Muratov."></p>
+<h2 id="solution-overview-legacy-architecture">Solution Overview (Legacy Architecture)</h2>
+<p>The diagram below illustrates iFood&rsquo;s legacy architecture, where Data Science and Engineering teams had separate workflows — leading to challenges when deploying real-time ML models into production.</p>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-2.jpg" alt="Blog Image 1 - 2"></p>
+<blockquote>
+<p><em>Figure 2. Legacy Architecture — Describing data flow and the barriers between teams.</em></p></blockquote>
+<p>Previously, data scientists developed models in notebooks, fine-tuned, and published artifacts. Engineers then had to integrate these artifacts into the production system, causing delays and integration errors. To address this, iFood developed an internal ML platform to unify the process from development to deployment, creating a seamless experience for both teams.</p>
+<hr>
+<h2 id="updated-architecture-and-ml-go">Updated Architecture and ML Go!</h2>
+<p>One of the core capabilities of iFood&rsquo;s ML platform is providing the infrastructure to serve predictions. The internal platform (called <strong>ML Go!</strong>) is responsible for managing the deployment process, overseeing SageMaker Endpoints and Jobs. ML Go! supports both offline (batch) and real-time (online) predictions, and manages the lifecycle of models (registry, versioning, monitoring).</p>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-3.jpg" alt="Blog Image 1 - 3"></p>
+<blockquote>
+<p><em>Figure 3. Updated Architecture — Including pipelines, model registry, and inference components.</em></p></blockquote>
+<p>The platform provides:</p>
+<ul>
+<li>Automated ML pipelines (SageMaker Pipelines) for model training and retraining.</li>
+<li>ML Go! CI/CD to push artifacts, build Docker images, and trigger pipelines.</li>
+<li>SageMaker Model Registry for versioning and model management.</li>
+<li>Monitoring mechanisms to detect drift and performance degradation.</li>
+</ul>
+<hr>
+<h2 id="final-architecture-inference-components--ml-go-gateway">Final Architecture: Inference Components &amp; ML Go! Gateway</h2>
+<p>A significant improvement is the abstraction concept connecting with SageMaker (Endpoints &amp; Jobs) called <strong>ML Go! Gateway</strong>, along with separating &ldquo;inference components&rdquo; in the endpoint — helping to divide concerns, accelerate delivery, and manage resources more efficiently. Endpoints now manage multiple inference components, and ML Go! CI/CD only focuses on model version promotion, without deep intervention in infrastructure.</p>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-4.jpg" alt="Blog Image 1 - 4"></p>
+<blockquote>
+<p><em>Figure 4. Final Architecture — Inference components, ML Go! Gateway, and integration with service accounts.</em></p></blockquote>
+<p>In this new structure:</p>
+<ul>
+<li>Endpoints can contain multiple inference components, allowing load distribution by function or load.</li>
+<li>ML Go! Dispatcher/Gateway forwards requests to the appropriate endpoint or job.</li>
+<li>CI/CD handles artifacts (Docker images, configs), and SageMaker Pipeline orchestrates training → evaluation → registry → deployment.</li>
+</ul>
+<hr>
+<h2 id="using-sagemaker-inference-model-serving-containers">Using SageMaker Inference Model Serving Containers</h2>
+<p>Standardizing the environment through containers is a crucial element of modern ML platforms. SageMaker provides built-in containers for TensorFlow, PyTorch, XGBoost, and more, as well as the ability to use custom containers.</p>
+<p>iFood focuses on using <strong>custom containers</strong> to:</p>
+<ul>
+<li>Standardize ML code (not directly using notebooks in production).</li>
+<li>Package dependencies, libraries, and inference logic in an image (e.g., BruceML scaffolding).</li>
+<li>Easily recreate training and serving environments, monitor results, and debug.</li>
+</ul>
+<p>BruceML helps standardize the way training and serving code is written, creating a scaffold compatible with SageMaker (autotuning, deployment hooks, monitoring).</p>
+<hr>
+<h2 id="automating-deployment-and-retraining-ml-pipelines--cicd">Automating Deployment and Retraining (ML Pipelines &amp; CI/CD)</h2>
+<p>iFood uses <strong>SageMaker Pipelines</strong> to build CI/CD for ML: pipelines are responsible for orchestrating the entire data flow — from preprocessing, training, evaluation, to promotion in the Model Registry and deployment. ML Go! CI/CD integrates with the organization’s CI/CD system to:</p>
+<ul>
+<li>Push artifacts (code + container image).</li>
+<li>Trigger training and evaluation pipelines.</li>
+<li>Automatically register models into the Model Registry.</li>
+<li>Deploy or promote models to the appropriate endpoint (online / batch).</li>
+</ul>
+<p>Depending on SLA:</p>
+<ul>
+<li><strong>Batch inference</strong>: Uses SageMaker Transform jobs for large-scale predictions.</li>
+<li><strong>Real-time inference</strong>: Deploys models to SageMaker Endpoint with the appropriate container/instance configuration.</li>
+</ul>
+<p>SageMaker Pipelines helps automate and coordinate complex workflows, reducing errors and shortening development cycles.</p>
+<hr>
+<h2 id="running-inference-at-different-sla-formats">Running Inference at Different SLA Formats</h2>
+<p>iFood uses multiple inference methods to meet different requirements:</p>
+<ul>
+<li><strong>Real-time endpoints</strong> for low-latency tasks (user-facing).</li>
+<li><strong>Batch transform jobs</strong> for large-scale data processing, periodic recommendations.</li>
+<li><strong>Asynchronous inference</strong> (SageMaker Asynchronous Inference) for time-consuming inference tasks.</li>
+<li><strong>Multi-model endpoints (GPU)</strong> to host multiple models on the same GPU endpoint, optimizing resource use.</li>
+</ul>
+<p>The improvements in collaboration between iFood and the SageMaker Inference team include:</p>
+<ul>
+<li>Optimizing cost and performance for inference (reducing ~50% of cost for some workloads, lowering ~20% average latency when using inference components).</li>
+<li>Improving autoscaling to handle spikes more effectively (shortening scaling time, enhancing detection of scale events).</li>
+<li>Easier deployment of LLM / Foundation Models (FM).</li>
+<li><strong>Scale-to-zero</strong> feature for endpoints helps save costs when there is no traffic.</li>
+<li>Multi-model GPU endpoints reduce infrastructure costs in multi-model scenarios.</li>
+</ul>
+<hr>
+<h2 id="model-optimization-and-packaging">Model Optimization and Packaging</h2>
+<p>Some technical points iFood focuses on:</p>
+<ul>
+<li>Standardizing containers for both training and serving.</li>
+<li>Automating the build/publish of images to the registry (ECR).</li>
+<li>Packaging LLM / FM for faster deployment.</li>
+<li>Supporting autoscaling and scale-to-zero for dev/test environments and low-traffic workloads.</li>
+</ul>
+<hr>
+<h2 id="achieved-benefits--impact">Achieved Benefits &amp; Impact</h2>
+<p>The benefits iFood has gained:</p>
+<ul>
+<li>Reduced time to get models into production (faster time-to-market).</li>
+<li>Increased pipeline &amp; artifact reuse across teams.</li>
+<li>Lower operational costs through GPU/multi-model optimization and scale-to-zero.</li>
+<li>Improved stability and model management at scale.</li>
+</ul>
 <hr>
 <h2 id="conclusion">Conclusion</h2>
-<p>From game streaming and multiplayer hosting to AI integration and analytics, AWS for Games provides the tools and expertise you need to bring your gaming vision to life.</p>
-<p>👉 Ready to level up your game development? Contact an AWS for Games expert today to explore how we can help accelerate your journey.</p>
+<p>By leveraging SageMaker capabilities, iFood has transformed its approach to ML/AI: building a centralized ML platform (ML Go!), automating data flows, standardizing containers, and collaborating with the SageMaker Inference team to optimize efficiency, cost, and scalability. This has helped iFood:</p>
+<ul>
+<li>Bridge the gap between Data Science and Engineering.</li>
+<li>Deploy hundreds of ML models reliably.</li>
+<li>Create a reference platform for organizations wishing to apply inference at scale.</li>
+</ul>
+<blockquote>
+<p><em>“At iFood, we are leading the way in applying AI and machine learning technologies to transform&hellip; The lessons learned have helped us create our internal platform, which can serve as a blueprint for other organizations&hellip;”</em><br>
+– Daniel Vieira, Director of ML Platforms at iFood.</p></blockquote>
+<hr>
+<h2 id="about-the-authors">About the Authors</h2>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-5.png" alt="Daniel Vieira"><br>
+<strong>Daniel Vieira</strong> — Director of Machine Learning Engineering at iFood. He has a background in computer science (BSc &amp; MSc, UFMG) and over a decade of experience in software engineering and ML platforms. He enjoys music, philosophy, and coffee.</p>
+<hr>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-6.png" alt="Debora Fanin"><br>
+<strong>Debora Fanin</strong> — Senior Customer Solutions Architect at AWS (Brazil). She specializes in managing enterprise customer transformation and designing effective cloud adoption strategies.</p>
+<hr>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-7.png" alt="Saurabh Trikande"><br>
+<strong>Saurabh Trikande</strong> — Senior Product Manager, Amazon Bedrock &amp; SageMaker Inference. Focuses on democratizing AI and inference solutions at scale.</p>
+<hr>
+<p><img src="../../images/3-BlogImage/Blog1/blog1-8.jpg" alt="Gopi Mudiyala"><br>
+<strong>Gopi Mudiyala</strong> — Senior Technical Account Manager at AWS. Supports clients in the financial services industry and is passionate about machine learning.</p>
+<hr>
 
 
 
@@ -1745,19 +1872,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1761626635"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1761626635"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1761626635"></script>
-    <script src="../../js/jquery.sticky.js?1761626635"></script>
-    <script src="../../js/featherlight.min.js?1761626635"></script>
-    <script src="../../js/highlight.pack.js?1761626635"></script>
+    <script src="../../js/clipboard.min.js?1761636309"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1761636309"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1761636309"></script>
+    <script src="../../js/jquery.sticky.js?1761636309"></script>
+    <script src="../../js/featherlight.min.js?1761636309"></script>
+    <script src="../../js/highlight.pack.js?1761636309"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1761626635"></script>
-    <script src="../../js/learn.js?1761626635"></script>
-    <script src="../../js/hugo-learn.js?1761626635"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1761636309"></script>
+    <script src="../../js/learn.js?1761636309"></script>
+    <script src="../../js/hugo-learn.js?1761636309"></script>
 
-    <link href="../../mermaid/mermaid.css?1761626635" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1761626635"></script>
+    <link href="../../mermaid/mermaid.css?1761636309" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1761636309"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

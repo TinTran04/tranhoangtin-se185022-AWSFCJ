@@ -1,163 +1,189 @@
 ---
 title: "Blog 1"
-date: 2025-04-08
+date: 2025-10-08
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-
-
+---
 
 # Cách iFood xây dựng nền tảng để chạy hàng trăm mô hình machine learning với Amazon SageMaker Inference
 
-*Bởi Daniel Vieira, Debora Fanin, Gopi Mudiyala và Saurabh Trikande — ngày 08 tháng 4 năm 2025*
+*Bởi Daniel Vieira, Debora Fanin, Gopi Mudiyala và Saurabh Trikande – ngày 08 tháng 4 năm 2025, trong chuyên mục Nâng cao (300), Amazon SageMaker Data & AI Governance, Customer Solutions.*
 
 ---
 
 ## Giới thiệu
 
-Có trụ sở tại **São Paulo, Brazil**, **iFood** là công ty tư nhân hàng đầu trong lĩnh vực **công nghệ thực phẩm (food-tech)** ở Mỹ Latinh, xử lý hàng triệu đơn đặt hàng mỗi tháng.  
-iFood đã nổi bật nhờ chiến lược **ứng dụng công nghệ tiên tiến** trong vận hành. Với sự hỗ trợ từ **AWS**, iFood phát triển **hạ tầng suy luận machine learning (ML)** mạnh mẽ, sử dụng các dịch vụ như **Amazon SageMaker** để huấn luyện và triển khai mô hình hiệu quả.
+Có trụ sở chính tại São Paulo, Brazil, **iFood** là một công ty tư nhân quốc gia và là công ty hàng đầu trong lĩnh vực công nghệ thực phẩm ở Mỹ Latinh, xử lý hàng triệu đơn đặt hàng hàng tháng. iFood nổi bật với chiến lược kết hợp công nghệ tiên tiến vào hoạt động của mình. Với sự hỗ trợ của **AWS**, iFood đã phát triển cơ sở hạ tầng suy luận **machine learning (ML)** mạnh mẽ, sử dụng các dịch vụ như **Amazon SageMaker** để tạo và triển khai các mô hình ML một cách hiệu quả. Sự hợp tác này đã cho phép iFood không chỉ tối ưu hóa các quy trình nội bộ mà còn cung cấp các giải pháp sáng tạo cho các đối tác giao hàng và nhà hàng của mình.
 
-Sự hợp tác này giúp iFood không chỉ **tối ưu hóa quy trình nội bộ**, mà còn mang lại **giải pháp sáng tạo cho đối tác giao hàng và nhà hàng**.
+Nền tảng ML của iFood bao gồm một tập hợp các công cụ, quy trình và workflow được phát triển với các mục tiêu chính:
+- Đẩy nhanh quá trình phát triển và đào tạo các mô hình AI/ML, làm cho chúng đáng tin cậy và dễ tái tạo hơn.
+- Đảm bảo rằng việc triển khai các mô hình này vào sản xuất là đáng tin cậy, có thể mở rộng và có thể truy xuất nguồn gốc.
+- Tạo điều kiện thuận lợi cho việc thử nghiệm, giám sát và đánh giá các mô hình trong sản xuất một cách minh bạch, dễ tiếp cận và tiêu chuẩn hóa.
+
+![Ảnh blog 1 - 1](/images/3-BlogImage/Blog1/blog1-1.png)
+> *Hình 1. Minh họa tổng quan — iFood và ứng dụng AI/ML trong hệ thống sản phẩm.*
 
 ---
 
-## Mục tiêu của nền tảng machine learning tại iFood
+## Mục tiêu và cách tiếp cận
 
-Nền tảng ML của iFood bao gồm một tập hợp các công cụ, quy trình và luồng làm việc được xây dựng nhằm mục tiêu:
+Để đạt được những mục tiêu trên, iFood tận dụng **SageMaker** để đơn giản hóa việc huấn luyện và triển khai mô hình. Việc tích hợp các tính năng của SageMaker trong cơ sở hạ tầng của iFood tự động hóa các bước quan trọng — từ tạo dataset huấn luyện, huấn luyện mô hình, triển khai mô hình vào production đến liên tục theo dõi hiệu suất.
 
-- **Đẩy nhanh** quá trình phát triển và huấn luyện các mô hình AI/ML, giúp chúng **đáng tin cậy và dễ tái tạo**.  
-- **Đảm bảo** việc triển khai mô hình vào sản xuất là **ổn định, mở rộng được và truy xuất nguồn gốc rõ ràng**.  
-- **Tạo điều kiện thuận lợi** cho việc thử nghiệm, giám sát và đánh giá mô hình trong môi trường sản xuất một cách **minh bạch và tiêu chuẩn hóa**.
-
-Để đạt được mục tiêu này, iFood sử dụng **Amazon SageMaker**, giúp đơn giản hóa quy trình huấn luyện và triển khai, đồng thời **tự động hóa** các tác vụ quan trọng như:  
-- Tạo bộ dữ liệu huấn luyện  
-- Huấn luyện mô hình  
-- Triển khai ra sản xuất  
-- Theo dõi hiệu suất hoạt động  
+Bài viết này trình bày cách iFood sử dụng SageMaker để cải tiến toàn bộ vòng đời ML — từ huấn luyện đến suy luận — đồng thời mô tả những thay đổi kiến trúc và các khả năng mà đội ngũ đã phát triển.
 
 ---
 
 ## Suy luận AI tại iFood
 
-iFood đã tận dụng sức mạnh của nền tảng AI/ML để nâng cao trải nghiệm khách hàng ở nhiều điểm chạm:
+iFood khai thác nền tảng AI/ML để nâng cao trải nghiệm khách hàng trên nhiều điểm tiếp xúc. Một số trường hợp sử dụng điển hình:
 
-- **Đề xuất cá nhân hóa:**  
-  Các mô hình AI phân tích lịch sử đặt hàng, sở thích và ngữ cảnh của khách hàng để đề xuất món ăn và nhà hàng phù hợp nhất, giúp gia tăng mức độ hài lòng và số lượng đơn đặt hàng.
+- **Đề xuất cá nhân hóa** — Mô hình phân tích lịch sử đặt hàng, sở thích và ngữ cảnh để đề xuất nhà hàng và món ăn phù hợp, giúp tăng mức độ hài lòng và số lượng đơn hàng.
+- **Theo dõi đơn hàng thông minh** — Hệ thống dự đoán thời gian giao hàng theo thời gian thực bằng cách kết hợp dữ liệu giao thông, thời gian chuẩn bị nhà hàng và vị trí shipper, từ đó thông báo chủ động cho khách.
+- **Dịch vụ khách hàng tự động** — Chatbot AI xử lý hàng nghìn yêu cầu phổ biến mỗi ngày, cung cấp phản hồi nhanh và có thể truy xuất dữ liệu liên quan để hỗ trợ cá nhân hóa.
+- **Hỗ trợ mua sắm hàng tạp hóa** — Ứng dụng tích hợp mô hình ngôn ngữ giúp khách hàng tạo danh sách mua sắm từ yêu cầu bằng giọng nói hoặc văn bản.
 
-- **Theo dõi đơn hàng thông minh:**  
-  AI theo dõi đơn hàng **thời gian thực**, dự đoán chính xác thời gian giao hàng dựa trên dữ liệu giao thông, thời gian chuẩn bị món và vị trí shipper.
-
-- **Dịch vụ khách hàng tự động:**  
-  Chatbot được huấn luyện bằng **AI xử lý ngôn ngữ tự nhiên (NLP)** giúp xử lý nhanh chóng hàng nghìn yêu cầu của khách hàng mỗi ngày, mang lại trải nghiệm hỗ trợ thống nhất và hiệu quả.
-
-- **Trợ lý mua sắm hàng tạp hóa:**  
-  Ứng dụng tích hợp mô hình ngôn ngữ tiên tiến, cho phép khách hàng **nhập hoặc nói** danh sách mua sắm, và AI tự động tạo danh sách chi tiết.
-
-Thông qua các sáng kiến AI này, iFood **dự đoán được nhu cầu**, **tối ưu quy trình** và **nâng cao trải nghiệm khách hàng**, củng cố vị thế là **nền tảng công nghệ thực phẩm hàng đầu khu vực**.
+Nhờ những sáng kiến này, iFood có thể dự đoán nhu cầu, tối ưu hoá quy trình và cung cấp trải nghiệm nhất quán cho người dùng.
 
 ---
 
-## Tổng quan về giải pháp
+## Tổng quan về giải pháp (Kiến trúc kế thừa)
 
+Sơ đồ dưới đây minh họa kiến trúc kế thừa của iFood, trong đó các nhóm Data Science và Engineering có workflow tách biệt — chính điều này gây ra thách thức khi triển khai mô hình ML thời gian thực vào production.
 
-![Hình 1. Kiến trúc kế thừa của iFood (trước khi tích hợp nền tảng ML nội bộ](/images/3-BlogImage/blog1-1.jpg)
+![Ảnh blog 1 - 2](/images/3-BlogImage/Blog1/blog1-2.jpg)
+> *Hình 2. Kiến trúc kế thừa — mô tả luồng dữ liệu và rào cản giữa các nhóm.*
 
-> _Hình 1. Kiến trúc kế thừa của iFood (trước khi tích hợp nền tảng ML nội bộ.)_
+Trước đây, các nhà khoa học dữ liệu thường phát triển mô hình trong notebook, tinh chỉnh và xuất bản artifact. Các kỹ sư sau đó phải tích hợp các artifact này vào hệ thống production, dẫn tới độ trễ và lỗi tích hợp. Để khắc phục, iFood đã phát triển một nền tảng ML nội bộ nhằm hợp nhất quy trình từ phát triển đến triển khai, tạo trải nghiệm liền mạch cho cả hai bên.
 
-Trước đây, các nhóm khoa học dữ liệu và kỹ thuật tại iFood hoạt động tách biệt —  
-nhà khoa học dữ liệu xây dựng mô hình, trong khi nhóm kỹ thuật gặp khó khăn khi tích hợp mô hình vào sản xuất.  
-Sự thiếu liên kết này khiến việc triển khai **mô hình ML thời gian thực** trở nên khó khăn.
+---
 
-Để giải quyết vấn đề này, iFood xây dựng **nền tảng ML nội bộ – ML Go!**, giúp hợp nhất và đơn giản hóa quy trình phát triển mô hình từ huấn luyện đến triển khai.  
-Nền tảng này cho phép các nhóm **xây dựng, đào tạo và triển khai mô hình liền mạch**, đồng thời tương tác với nhóm kỹ thuật để tích hợp vào ứng dụng trực tuyến hoặc ngoại tuyến.
+## Kiến trúc cập nhật và ML Go!
 
-> _Hình 2. Kiến trúc cập nhật sau khi tích hợp nền tảng ML nội bộ iFood._
+Một trong các khả năng cốt lõi của nền tảng ML của iFood là cung cấp cơ sở hạ tầng để phục vụ dự đoán. Nền tảng nội bộ (gọi là **ML Go!**) chịu trách nhiệm triển khai quy trình, quản lý SageMaker Endpoints và Jobs. ML Go! hỗ trợ cả dự đoán ngoại tuyến (batch) và dự đoán thời gian thực (online), đồng thời quản lý lifecycle của mô hình (registry, versioning, monitoring).
 
-Nền tảng **ML Go!** cũng tập trung vào các khả năng suy luận mới, kết nối với **nền tảng dữ liệu và nền tảng đặc trưng (feature platform)**, giúp tăng trải nghiệm người dùng và hiệu suất mô hình.
+![Ảnh blog 1 - 3](/images/3-BlogImage/Blog1/blog1-3.jpg)
+> *Hình 3. Kiến trúc cập nhật — bao gồm pipeline, model registry và component cho inference.*
 
-Một cải tiến nổi bật là **ML Go! Gateway** — lớp trừu tượng kết nối **SageMaker Endpoints** và **Jobs**, cho phép tách biệt mối quan tâm giữa các endpoint, tăng tốc độ và hiệu quả triển khai.  
-Các endpoint được quản lý qua **ML Go! CI/CD**, giảm thời gian thay đổi và rủi ro khi triển khai.
+Nền tảng cung cấp:
+- ML pipelines tự động (SageMaker Pipelines) để huấn luyện và tái huấn luyện mô hình.
+- ML Go! CI/CD để đẩy artifact, build Docker image, và kích hoạt pipeline.
+- SageMaker Model Registry để versioning và quản lý mô hình.
+- Cơ chế monitoring để phát hiện drift và cảnh báo hiệu năng suy giảm.
+
+---
+
+## Kiến trúc cuối cùng: inference components & ML Go! Gateway
+
+Một cải tiến lớn là khái niệm trừu tượng hóa để kết nối với SageMaker (Endpoints & Jobs) gọi là **ML Go! Gateway**, cùng với tách biệt “inference components” trong endpoint — giúp phân chia mối quan tâm, tăng tốc phân phối và quản lý tài nguyên hiệu quả hơn. Các endpoint giờ đây quản lý nhiều thành phần suy luận (component-based inference), và ML Go! CI/CD chỉ lo phần quảng bá phiên bản mô hình (model promotion), không can thiệp sâu vào tầng hạ tầng.
+
+![Ảnh blog 1 - 4](/images/3-BlogImage/Blog1/blog1-4.jpg)
+> *Hình 4. Kiến trúc cuối cùng — inference components, ML Go! Gateway và tích hợp với service accounts.*
+
+Trong cấu trúc mới:
+- Endpoints có thể chứa nhiều component inference, cho phép phân tải công việc, chia theo tải hoặc chức năng.
+- ML Go! Dispatcher/ Gateway đóng vai trò chuyển tiếp yêu cầu tới đúng endpoint hoặc job.
+- CI/CD xử lý artifacts (Docker images, configs), SageMaker Pipeline orchestrates training → evaluation → registry → deployment.
 
 ---
 
 ## Sử dụng SageMaker Inference Model Serving Containers
 
-Một tính năng quan trọng của nền tảng ML hiện đại là **tiêu chuẩn hóa** dịch vụ ML và AI bằng cách đóng gói mô hình và phụ thuộc vào **container Docker**.  
-SageMaker cung cấp **các container dựng sẵn** cho những framework phổ biến như **TensorFlow**, **PyTorch**, **XGBoost**… giúp triển khai nhanh chóng và ổn định.
+Tiêu chuẩn hóa môi trường bằng container là yếu tố quyết định của nền tảng ML hiện đại. SageMaker cung cấp các container dựng sẵn cho TensorFlow, PyTorch, XGBoost… đồng thời cho phép đưa container tùy chỉnh.
 
-Bên cạnh đó, SageMaker hỗ trợ **container tùy chỉnh**, cho phép người dùng mang theo **mã nguồn, thư viện và phụ thuộc riêng** — đặc biệt hữu ích khi làm việc với framework ít phổ biến hoặc yêu cầu đặc thù.
+iFood tập trung sử dụng **container tùy chỉnh** (custom containers) để:
+- Chuẩn hóa mã ML (không dùng trực tiếp notebook vào production).
+- Đóng gói dependency, thư viện và logic inference trong image (ví dụ: BruceML scaffolding).
+- Dễ dàng tái tạo môi trường huấn luyện và phục vụ, theo dõi kết quả và debug.
 
-iFood tập trung mạnh vào việc sử dụng **container tùy chỉnh** cho đào tạo và triển khai, đảm bảo môi trường **nhất quán và tái tạo được**.  
-Công cụ nội bộ **BruceML** giúp đóng gói mã huấn luyện và phục vụ mô hình ngay từ đầu, tích hợp liền mạch với SageMaker cho phép tận dụng các tính năng như **tinh chỉnh siêu tham số**, **triển khai**, và **giám sát mô hình**.
-
----
-
-## Tự động hóa triển khai và đào tạo lại mô hình
-
-> _Hình 3. Quy trình CI/CD tự động hóa qua SageMaker Pipelines._
-
-Để đảm bảo mô hình hoạt động hiệu quả và chính xác lâu dài, iFood sử dụng **Amazon SageMaker Pipelines** nhằm xây dựng hệ thống **CI/CD cho ML**, tự động hóa toàn bộ quy trình huấn luyện và triển khai.  
-
-Quy trình bắt đầu từ **ML Go! CI/CD pipeline**, đẩy các artifact chứa logic triển khai và huấn luyện mô hình.  
-Sau khi huấn luyện hoàn tất, mô hình được đăng ký tự động vào **SageMaker Model Registry** để quản lý phiên bản và bảo mật.
-
-Tùy theo yêu cầu suy luận:
-- **Dự đoán hàng loạt:** SageMaker Batch Transform xử lý các tập dữ liệu quy mô lớn.  
-- **Dự đoán thời gian thực:** SageMaker Endpoint được triển khai để phản hồi trực tiếp yêu cầu người dùng.
-
-Tự động hóa đầu-cuối giúp iFood **nhanh chóng lặp lại, triển khai và điều chỉnh** mô hình, đảm bảo hiệu suất liên tục.
+BruceML giúp chuẩn hóa cách viết mã huấn luyện và phục vụ, tạo scaffold tương thích với SageMaker (autotuning, deployment hooks, monitoring).
 
 ---
 
-## Chạy suy luận ở nhiều định dạng SLA khác nhau
+## Tự động hóa triển khai và đào tạo lại (ML pipelines & CI/CD)
 
-iFood sử dụng khả năng suy luận của SageMaker cho cả **thời gian thực** lẫn **xử lý hàng loạt**.  
-Các endpoint SageMaker được tích hợp vào ứng dụng khách hàng, giúp **dự đoán tức thì**.  
-Trong khi đó, **Batch Transform** hỗ trợ xử lý dữ liệu lớn cho các trường hợp như **đề xuất món ăn** hoặc **phân tích đối tác nhà hàng**.
+iFood dùng **SageMaker Pipelines** để xây dựng CI/CD cho ML: pipelines chịu trách nhiệm orchestrate toàn bộ luồng dữ liệu — từ data preprocessing, training, evaluation, tới promotion vào Model Registry và deployment. ML Go! CI/CD tích hợp với hệ thống CI/CD của tổ chức để:
+- Đẩy artifact (code + container image).
+- Kích hoạt pipeline huấn luyện và đánh giá.
+- Tự động đăng ký mô hình đạt chuẩn vào Model Registry.
+- Triển khai hoặc promote mô hình lên endpoint phù hợp (online / batch).
 
-> _Hình 4. Mô hình suy luận hỗn hợp (real-time + batch) trên SageMaker._
+Tùy theo SLA:
+- **Batch inference**: sử dụng SageMaker Transform jobs cho dự đoán quy mô lớn.
+- **Real-time inference**: triển khai mô hình tới SageMaker Endpoint với cấu hình container/instance phù hợp.
+
+SageMaker Pipelines giúp tự động hóa và điều phối các workflow phức tạp, giảm sai sót và rút ngắn vòng lặp phát triển.
 
 ---
 
-## Hợp tác giữa iFood và SageMaker Inference Team
+## Chạy suy luận ở các định dạng SLA khác nhau
 
-iFood đã đóng vai trò quan trọng trong việc phát triển các tính năng mới cho **SageMaker Inference**, bao gồm:
+iFood tận dụng nhiều phương thức suy luận để đáp ứng các yêu cầu khác nhau:
+- **Real-time endpoints** cho các tác vụ cần latency thấp (user-facing).
+- **Batch transform jobs** cho xử lý dữ liệu quy mô lớn, tính toán gợi ý định kỳ.
+- **Asynchronous inference** (SageMaker Asynchronous Inference) cho các tác vụ suy luận tốn thời gian.
+- **Multi-model endpoints (GPU)** để host nhiều mô hình trên cùng một GPU endpoint, tối ưu sử dụng tài nguyên.
 
-- **Tối ưu chi phí và hiệu suất**: giảm 50% chi phí triển khai và 20% độ trễ trung bình.  
-- **Cải thiện khả năng mở rộng**: rút ngắn thời gian autoscaling 40%, tăng tốc độ phản hồi 6 lần.  
-- **Triển khai mô hình AI tổng quát dễ dàng hơn** (LLM, FM) chỉ với vài cú nhấp chuột.  
-- **Scale-to-zero endpoints**: tự động tắt khi không sử dụng, tiết kiệm chi phí.  
-- **Đóng gói mô hình hiệu quả hơn** giúp tăng tốc quá trình triển khai.  
-- **Multi-model GPU endpoints**: nhiều mô hình chia sẻ GPU, giảm chi phí tới 75%.  
-- **Suy luận không đồng bộ**: hỗ trợ xử lý các yêu cầu lớn hoặc lâu dài (genomics, video, tài chính...).
+Những cải tiến hợp tác giữa iFood và đội SageMaker Inference bao gồm:
+- Tối ưu hóa chi phí và hiệu suất cho inference (giảm ~50% chi phí cho một số workloads, giảm ~20% latency trung bình khi dùng inference components).
+- Cải tiến autoscaling để xử lý spikes hiệu quả hơn (rút ngắn thời gian scale, cải thiện phát hiện scale events).
+- Hỗ trợ triển khai LLM / Foundation Models (FM) dễ dàng hơn.
+- Tính năng **scale-to-zero** cho endpoints giúp tiết kiệm chi phí khi không có traffic.
+- Multi-model GPU endpoints giúp giảm chi phí cơ sở hạ tầng cho trường hợp nhiều mô hình.
 
-> _Hình 5. Các cải tiến về SageMaker Inference thông qua hợp tác cùng iFood._
+---
+
+## Tối ưu hóa và đóng gói mô hình
+
+Một số điểm kỹ thuật iFood tập trung:
+- Chuẩn hóa container cho cả training và serving.
+- Tự động hóa build/publish images lên registry (ECR).
+- Đóng gói LLM / FM để triển khai nhanh hơn.
+- Hỗ trợ autoscaling và scale-to-zero cho môi trường dev/test và low-traffic workloads.
+
+---
+
+## Lợi ích đạt được & tác động
+
+Những lợi ích iFood thu được:
+- Giảm thời gian đưa mô hình vào production (faster time-to-market).
+- Tăng khả năng tái sử dụng pipeline & artifacts giữa các nhóm.
+- Hạ chi phí vận hành nhờ tối ưu GPU/multi-model và scale-to-zero.
+- Cải thiện độ ổn định và khả năng quản lý mô hình ở quy mô lớn.
 
 ---
 
 ## Kết luận
 
-Nhờ tận dụng các khả năng của **Amazon SageMaker**, iFood đã **chuyển đổi hoàn toàn cách tiếp cận với ML và AI**, rút ngắn vòng đời mô hình và mở rộng quy mô ứng dụng thông minh.
+Sử dụng các khả năng của SageMaker, iFood đã chuyển đổi cách tiếp cận ML/AI: xây dựng nền tảng ML tập trung (ML Go!), tự động hóa luồng dữ liệu, chuẩn hóa container và hợp tác cùng nhóm SageMaker Inference để tối ưu tính hiệu quả, chi phí và khả năng mở rộng. Việc này đã giúp iFood:
+- Thu hẹp khoảng cách giữa Data Science và Engineering.
+- Triển khai hàng trăm mô hình ML một cách đáng tin cậy.
+- Tạo nền tảng tham chiếu cho các tổ chức muốn ứng dụng inference ở quy mô lớn.
 
-Nền tảng **ML Go!** cùng sự tích hợp **SageMaker Pipelines** và **SageMaker Inference** giúp iFood:
-- Tự động hóa quy trình triển khai và huấn luyện lại  
-- Giảm chi phí vận hành  
-- Duy trì hiệu suất cao cho các ứng dụng thông minh  
+> *“Tại iFood, chúng tôi đi đầu trong việc áp dụng công nghệ AI và máy học biến đổi... Các bài học đã học được hỗ trợ chúng tôi trong việc tạo ra nền tảng nội bộ, có thể đóng vai trò như một kế hoạch chi tiết cho các tổ chức khác...”*  
+> – Daniel Vieira, Giám đốc Nền tảng ML tại iFood.
 
-Sự hợp tác giữa iFood và đội ngũ AWS không chỉ thúc đẩy **hiệu suất suy luận AI toàn cầu**, mà còn trở thành **hình mẫu triển khai ML hiện đại** cho nhiều doanh nghiệp khác.
+---
+
+## Giới thiệu về các tác giả
+
+![Daniel Vieira](/images/3-BlogImage/Blog1/blog1-5.png)  
+**Daniel Vieira** — Giám đốc Kỹ thuật Học máy tại iFood. Có nền tảng khoa học máy tính (BSc & MSc, UFMG) và hơn một thập kỷ kinh nghiệm về kỹ thuật phần mềm và nền tảng ML. Thích âm nhạc, triết học và cà phê.
 
 ---
 
-## Giới thiệu về tác giả
-
-**Daniel Vieira** – Giám đốc Kỹ thuật Machine Learning tại iFood, có hơn 10 năm kinh nghiệm trong phát triển nền tảng và hệ thống ML. Ông sở hữu bằng Cử nhân và Thạc sĩ Khoa học Máy tính tại Đại học Liên bang Minas Gerais (UFMG). Ngoài công việc, ông yêu thích âm nhạc, triết học và cà phê.
-
-**Debora Fanin** – Giám đốc Giải pháp Khách hàng cấp cao tại AWS, phụ trách chuyển đổi kỹ thuật số cho doanh nghiệp tại Brazil. Cô có bằng Thạc sĩ Quản trị (FEI) và chứng chỉ Amazon Solutions Architect Associate.
-
-**Saurabh Trikande** – Giám đốc sản phẩm cấp cao của **Amazon Bedrock** và **Amazon SageMaker Inference**, chuyên về triển khai AI phức tạp và tối ưu hóa chi phí.
-
-**Gopi Mudiyala** – Giám đốc tài khoản kỹ thuật cao cấp tại AWS, hỗ trợ khách hàng trong lĩnh vực tài chính trong hành trình chuyển đổi ML. Anh đam mê công nghệ và thường chơi cầu lông, du lịch cùng gia đình.
+![Debora Fanin](/images/3-BlogImage/Blog1/blog1-6.png)  
+**Debora Fanin** — Giám đốc giải pháp khách hàng cấp cao, AWS (Brazil). Chuyên quản lý chuyển đổi khách hàng doanh nghiệp, thiết kế các chiến lược áp dụng đám mây hiệu quả về chi phí.
 
 ---
+
+![Saurabh Trikande](/images/3-BlogImage/Blog1/blog1-7.png)  
+**Saurabh Trikande** — Giám đốc sản phẩm cấp cao, Amazon Bedrock & SageMaker Inference. Tập trung vào dân chủ hóa AI và giải pháp suy luận ở quy mô lớn.
+
+---
+
+![Gopi Mudiyala](/images/3-BlogImage/Blog1/blog1-8.jpg)  
+**Gopi Mudiyala** — Giám đốc tài khoản kỹ thuật cấp cao, AWS. Hỗ trợ khách hàng ngành dịch vụ tài chính và đam mê máy học.
+
+

@@ -1,131 +1,163 @@
 ---
 title: "Blog 2"
-date: 2025-05-09
+date: 2025-10-08
 weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-
-
-
+---
 # Cách Salesforce Business Technology sử dụng AWS Direct Connect SiteLink để kết nối toàn cầu đáng tin cậy
 
-*Bởi Alexandra Huides và Corey Harris Jr — ngày 09 tháng 5 năm 2025*
-
-> *Lưu ý: Bài đăng này được xuất bản với sự hợp tác của Georgi Stoev, Kiến trúc sư kỹ thuật cấp cao tại Salesforce và Ravi Patel, Giám đốc kỹ thuật cấp cao tại Salesforce.*
+*Bởi Alexandra Huides và Corey Harris Jr – ngày 09 tháng 5 năm 2025, trong chuyên mục AWS Direct Connect SiteLink.*
 
 ---
 
 ## Giới thiệu
 
-Trong bài đăng này, chúng tôi xem xét cách **Salesforce Business Technology** sử dụng **AWS Direct Connect SiteLink** để xây dựng kiến trúc kết hợp linh hoạt, tạo điều kiện mở rộng toàn cầu và tăng tốc quá trình di chuyển lên **AWS Cloud**.  
-Bài viết cũng mô tả cách **SiteLink** giúp **Salesforce** thống nhất kiến trúc mạng trên **bảy địa điểm toàn cầu**, hiện đại hóa giao tiếp mạng để **giảm chi phí**, **hợp lý hóa vận hành**, và **nâng cao hiệu suất**.
+**Salesforce Business Technology** đã sử dụng **AWS Direct Connect SiteLink** để xây dựng kiến trúc mạng lai toàn cầu, đảm bảo kết nối linh hoạt, hiệu suất cao và đáng tin cậy.  
+Giải pháp này giúp Salesforce mở rộng hạ tầng, giảm chi phí vận hành và tăng tốc độ đổi mới trong hành trình hiện đại hóa lên đám mây AWS.
+
+> *Bài viết được thực hiện với sự hợp tác của Georgi Stoev và Ravi Patel – các chuyên gia kỹ thuật cấp cao tại Salesforce.*
 
 ---
 
 ## Tổng quan
 
-**Salesforce** là Đối tác của **AWS** và là công ty hàng đầu thế giới trong lĩnh vực **Customer Relationship Management (CRM)**.  
-Nhóm **Business Technology** của Salesforce cung cấp các dịch vụ hỗ trợ xây dựng, vận hành và chuyển đổi ứng dụng doanh nghiệp, bao gồm tài chính, bảo mật, trung tâm cuộc gọi, và kho dữ liệu công ty.
+**Salesforce** là đối tác chiến lược của AWS và là công ty hàng đầu thế giới về quản lý quan hệ khách hàng (CRM).  
+Nhóm **Business Technology** chịu trách nhiệm xây dựng và vận hành các ứng dụng doanh nghiệp, hỗ trợ các mảng như tài chính, trung tâm dữ liệu, bảo mật, kho dữ liệu, và các máy ảo của Salesforce.
 
-Để đáp ứng nhu cầu hoạt động toàn cầu, Salesforce cần một **kiến trúc mạng linh hoạt, có khả năng mở rộng và đảm bảo dự phòng cao**.  
-Các giải pháp mạng truyền thống dựa vào Internet công cộng thường không đáp ứng được yêu cầu nghiêm ngặt về hiệu suất và độ tin cậy.  
-**AWS Direct Connect SiteLink** giúp giải quyết các thách thức này bằng cách cung cấp **kết nối riêng tư, chuyên dụng**, bỏ qua Internet công cộng — đảm bảo **độ trễ thấp**, **bảo mật cao hơn**, và **khả năng phục hồi tích hợp**.
+Với quy mô toàn cầu, Salesforce cần một kiến trúc mạng:
+- **Linh hoạt và có khả năng mở rộng cao.**  
+- **Giảm thiểu độ trễ và thời gian ngừng hoạt động.**  
+- **Đảm bảo tính bảo mật và độ tin cậy cao.**
+
+Tuy nhiên, các giải pháp mạng truyền thống dựa trên internet không thể đáp ứng yêu cầu nghiêm ngặt này.  
+Đó là lý do **AWS Direct Connect SiteLink** được lựa chọn — cung cấp kết nối **riêng tư, chuyên dụng**, bỏ qua internet công cộng, giúp cải thiện bảo mật và độ trễ đáng kể.
+
+---
+
+## Điều kiện tiên quyết
+
+Trước khi triển khai, nhóm kỹ thuật Salesforce đã nắm rõ các thành phần mạng AWS sau:
+- **Amazon Virtual Private Cloud (VPC)**  
+- **AWS Transit Gateway**  
+- **AWS Direct Connect**
+
+Các dịch vụ này là nền tảng cho kiến trúc mạng lai toàn cầu, cho phép kết nối riêng tư và độ trễ thấp giữa nhiều vị trí Direct Connect — mà không cần đi qua các vùng AWS trung gian.
 
 ---
 
 ## AWS Direct Connect SiteLink
 
-**AWS Direct Connect** cho phép kết nối mạng tại chỗ với **AWS** thông qua các đường truyền chuyên dụng, giúp **tối ưu độ trễ và đảm bảo hiệu suất ổn định**.  
-**SiteLink** là tính năng mở rộng của Direct Connect, cho phép **kết nối trực tiếp giữa các mạng tại chỗ** qua **AWS Global Network Backbone**, mà không cần lưu lượng phải đi qua vùng (Region) AWS.
+**AWS Direct Connect** cung cấp kết nối mạng riêng giữa hạ tầng tại chỗ và AWS, giúp tối ưu hiệu năng, độ trễ và độ tin cậy.
 
-Bạn có thể:
-- Truyền dữ liệu trực tiếp giữa các **Direct Connect locations** qua tuyến đường ngắn nhất  
-- Tận dụng hơn **100 địa điểm Direct Connect** trên toàn thế giới  
-- Kích hoạt **SiteLink** mà không cần kết nối mới – chỉ cần bật trong các **Virtual Interface (VIF)** gắn với **Direct Connect Gateway (DXGW)**
+**SiteLink** là một tính năng mở rộng của Direct Connect, cho phép kết nối trực tiếp giữa các mạng tại chỗ thông qua **đường trục mạng toàn cầu của AWS**, giúp:
+- Gửi dữ liệu qua **đường dẫn ngắn nhất**, không cần qua vùng AWS.  
+- Tận dụng **mạng AWS toàn cầu** để truyền dữ liệu nhanh và an toàn.  
+- Thanh toán theo mức sử dụng thực tế, không cần thiết lập kết nối mới.  
 
-Dữ liệu sẽ di chuyển theo tuyến ngắn nhất và an toàn nhất trong mạng AWS, đảm bảo **tốc độ, độ tin cậy và bảo mật cao**.
+Quy trình hoạt động:
+1. Kết nối mạng tại chỗ đến AWS tại một trong hơn **100 điểm Direct Connect** trên toàn cầu.  
+2. Tạo **Virtual Interface (VIF)** trên kết nối đó và bật **SiteLink**.  
+3. Khi các VIF được gắn vào cùng một **Direct Connect Gateway (DXGW)**, dữ liệu sẽ được truyền trực tiếp giữa các vị trí, sử dụng đường trục AWS.  
 
 ---
 
 ## Dấu ấn toàn cầu của Salesforce Business Technology
 
-**Salesforce Business Technology** vận hành một hạ tầng mạng trải dài trên **bảy địa điểm chiến lược**:  
-- 3 tại Hoa Kỳ  
-- 3 tại khu vực Châu Á – Thái Bình Dương  
-- 1 tại Châu Âu  
+Salesforce Business Technology quản lý **7 địa điểm chiến lược** trên toàn cầu:
+- 3 ở Hoa Kỳ  
+- 3 ở Châu Á – Thái Bình Dương  
+- 1 ở Châu Âu  
 
-Trước đây, Salesforce sử dụng **đường trục riêng (MPLS-based private backbone)** để kết nối các trung tâm dữ liệu.  
-Tuy nhiên, mô hình này gặp phải các vấn đề:  
-- Cơ sở hạ tầng tĩnh, khó mở rộng linh hoạt  
-- Chi phí cao và khó quản lý nhiều nhà cung cấp dịch vụ  
-- Gián đoạn kết nối kéo dài ở một số khu vực  
-- Phức tạp trong việc định tuyến Layer 3 VPN  
+Mạng được xây dựng trên **đường trục riêng MPLS** kết hợp với **AWS Regions**, hỗ trợ các luồng dữ liệu phức tạp giữa trung tâm dữ liệu và môi trường đám mây.
 
-Để khắc phục, Salesforce quyết định **hiện đại hóa toàn bộ kiến trúc mạng** bằng cách chuyển sang **AWS Direct Connect SiteLink**, giúp hệ thống **linh hoạt và mở rộng theo nhu cầu**.
+Tuy nhiên, các thách thức nảy sinh gồm:
+- Cơ sở hạ tầng **tĩnh và khó mở rộng**.  
+- **Chi phí vận hành cao** và phụ thuộc nhiều nhà cung cấp.  
+- **Độ phức tạp định tuyến** và **sự cố kéo dài** ở một số khu vực.
 
-![Hình 1. Mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng.](/images/3-BlogImage/blog2-1.png)
-> *Hình 1. Mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng.*
->
+![Ảnh blog 2 - 1](/images/3-BlogImage/Blog2/blog2-1.png)
+> *Hình 1. Một mẫu kết nối trung tâm dữ liệu riêng toàn cầu sử dụng các mạch riêng.*
 
 ---
 
-## Giải pháp SiteLink
+## Giải pháp: SiteLink
 
-Salesforce triển khai **SiteLink** trên các kết nối Direct Connect hiện có bằng cách tạo **VIF chuyên dụng** cho môi trường **Production** và **Development**.  
-Giải pháp này hỗ trợ nhiều luồng dữ liệu khác nhau như **Data Center–to–Data Center (DC–DC)** và **DC–AWS**, cho phép **tận dụng các kết nối sẵn có** mà không ảnh hưởng đến lưu lượng sản xuất.
+Để giải quyết vấn đề, Salesforce Business Technology đã **hiện đại hóa hạ tầng mạng** bằng cách triển khai **SiteLink**.  
+Mục tiêu chính:
+- Xây dựng mạng linh hoạt, có thể mở rộng theo nhu cầu.  
+- Giảm chi phí vận hành và độ phức tạp.  
+- Tăng khả năng phục hồi và bảo mật.
 
-Nhờ đó, Salesforce có thể duy trì **phân vùng toàn cầu**, **đảm bảo tuân thủ yêu cầu lưu trữ dữ liệu**, và đồng thời **tăng khả năng mở rộng linh hoạt**.
+Nhóm đã:
+- Triển khai SiteLink trên **các kết nối Direct Connect hiện có**.  
+- Tạo các **VIF chuyên dụng mới** cho môi trường sản xuất và phát triển.  
+- Duy trì **phân khúc toàn cầu**, đáp ứng yêu cầu lưu trữ dữ liệu tại chỗ.
 
-![Hình 2. Mẫu triển khai SiteLink toàn cầu cho môi trường Production và Development.](/images/3-BlogImage/blog2-2.png)
-> *Hình 2. Mẫu triển khai SiteLink toàn cầu cho môi trường Production và Development.*
-
----
-
-## Lợi ích
-
-Việc triển khai **AWS Direct Connect SiteLink** mang lại các lợi ích chính sau:
-
-- **Đơn giản hóa quản lý mạng:** loại bỏ sự phức tạp của định tuyến MPLS Layer 3 VPN  
-- **Tăng độ ổn định:** tận dụng mạng backbone AWS để cải thiện khả năng phục hồi và giảm độ trễ trung bình 15%  
-- **Cải thiện trải nghiệm người dùng:** nhờ độ trễ thấp hơn và nhất quán hơn giữa các trung tâm dữ liệu  
-- **Giám sát toàn diện:** thông qua **Amazon CloudWatch Network Synthetic Monitor** và các công cụ giám sát tổng thể  
-- **Bảo mật nâng cao:** sử dụng **MACSec encryption (Layer 2)** cho toàn bộ kết nối Direct Connect  
-
-Triển khai SiteLink được thực hiện theo từng giai đoạn:
-1. **Giai đoạn 1:** SiteLink được dùng như **giải pháp dự phòng** cho mạng riêng toàn cầu hiện có  
-2. **Giai đoạn 2:** Chuyển SiteLink thành **kết nối chính**, loại bỏ các kết nối điểm-điểm cũ  
-
-Kết quả: Salesforce đạt được một **mạng lưới toàn cầu đáng tin cậy, bảo mật, và dễ mở rộng hơn**.
+![Ảnh blog 2 - 2](/images/3-BlogImage/Blog2/blog2-2.png)
+> *Hình 2. Mẫu triển khai SiteLink toàn cầu cho Sản xuất và Phát triển.*
 
 ---
 
-## Trích dẫn từ Salesforce
+## Lợi ích đạt được
 
-> “Với SiteLink, Salesforce Business Technology đã có thể hợp lý hóa các hoạt động mạng và đảm bảo khả năng phục hồi tối đa cho kết nối đường trục toàn cầu của chúng tôi.  
-> SiteLink dễ dàng kích hoạt trên các mạch Direct Connect hiện có. Điều này cho phép chúng tôi thiết lập kết nối giữa bảy trung tâm dữ liệu toàn cầu chỉ trong vài phút và đáp ứng nhu cầu mạng cho các cơ hội thị trường trong tương lai một cách nhanh chóng.”  
-> — *Ravi Patel, Giám đốc Kỹ thuật Cấp cao tại Salesforce.*
+Giải pháp SiteLink mang lại nhiều lợi ích vượt trội cho Salesforce:
+
+| Lợi ích | Mô tả |
+| ------- | ----- |
+| **Đơn giản hóa quản lý mạng** | Loại bỏ độ phức tạp của định tuyến MPLS Layer 3 VPN, vẫn duy trì khả năng tách biệt lưu lượng. |
+| **Cải thiện hiệu suất** | Tăng ổn định, giảm độ trễ trung bình 15% trên toàn cầu. |
+| **Tối ưu hóa chi phí** | Tận dụng kết nối hiện có, thanh toán theo mức sử dụng. |
+| **Bảo mật nâng cao** | Áp dụng mã hóa MACSec lớp 2 trên toàn bộ kết nối Direct Connect. |
+
+Ngoài ra, SiteLink giúp:
+- **Giảm số điểm hỏng đơn lẻ (SPOF)** và tăng độ tin cậy mạng.  
+- **Tối ưu tuyến đường dữ liệu** giữa các trung tâm dữ liệu.  
+- **Giám sát toàn diện** qua CloudWatch Network Monitor.  
+
+> *“Với SiteLink, Salesforce Business Technology đã hợp lý hóa các hoạt động mạng và đảm bảo khả năng phục hồi tối đa cho kết nối toàn cầu. Chúng tôi có thể thiết lập kết nối giữa 7 trung tâm dữ liệu chỉ trong vài phút và mở rộng sang thị trường mới trong vài ngày.”*  
+> — *Ravi Patel, Giám đốc kỹ thuật cấp cao tại Salesforce.*
 
 ---
 
 ## Kết luận
 
-Qua bài đăng này, chúng ta thấy cách **Salesforce Business Technology** sử dụng **AWS Direct Connect SiteLink** để:
-- Hợp nhất kiến trúc mạng trên phạm vi toàn cầu  
-- Hiện đại hóa kết nối để giảm chi phí và độ phức tạp vận hành  
-- Nâng cao hiệu suất, bảo mật, và khả năng phục hồi  
+Việc áp dụng **AWS Direct Connect SiteLink** đã giúp Salesforce:
+- Thống nhất kiến trúc mạng trên toàn cầu.  
+- Hiện đại hóa hạ tầng, giảm chi phí và cải thiện hiệu suất.  
+- Chuẩn bị sẵn sàng cho quy mô mở rộng và đổi mới nhanh chóng.
 
-**SiteLink** giúp Salesforce xây dựng nền tảng kết nối linh hoạt, sẵn sàng cho **mở rộng toàn cầu**, đồng thời duy trì **hiệu quả kinh tế và hiệu suất tối ưu**.
+> *Để tìm hiểu thêm về AWS Direct Connect SiteLink, bạn có thể tham khảo tài liệu chính thức hoặc đặt câu hỏi trên AWS re:Post.*
 
 ---
 
 ## Giới thiệu về các tác giả
 
-**Alexandra Huides** — Kiến trúc sư giải pháp chuyên gia mạng chính tại AWS.  
-Cô tập trung vào việc giúp khách hàng xây dựng kiến trúc mạng mở rộng linh hoạt và là diễn giả về IPv6.
+> ![Alexandra Huides](/images/3-BlogImage/Blog2/blog2-3.png)  
+> **Alexandra Huides**  
+> *Kiến trúc sư giải pháp chuyên gia mạng tại AWS.*  
+> Tập trung vào kiến trúc mạng quy mô lớn, hỗ trợ khách hàng áp dụng IPv6 và xây dựng môi trường linh hoạt. Ngoài công việc, cô yêu thích chèo thuyền, du lịch và đọc sách.
 
-**Corey Harris Jr.** — Kiến trúc sư giải pháp cấp cao tại AWS, tập trung hỗ trợ Salesforce triển khai và tối ưu hóa các giải pháp AWS.
+---
 
-**Georgi Stoev** — Kiến trúc sư kỹ thuật cấp cao tại Salesforce, chuyên về Multi-cloud, AI, Security và Network Infrastructure.
+> ![Corey Harris Jr](/images/3-BlogImage/Blog2/blog2-4.jpg)  
+> **Corey Harris Jr.**  
+> *Kiến trúc sư giải pháp cấp cao tại AWS.*  
+> Là chuyên gia về mạng và serverless, giúp khách hàng tối ưu hệ thống AWS. Ngoài công việc, anh yêu thích game, du lịch và thời gian bên gia đình.
 
-**Ravi Patel** — Giám đốc kỹ thuật cấp cao tại Salesforce, với hơn 15 năm kinh nghiệm trong việc xây dựng các mạng hiệu suất cao, linh hoạt và bảo mật.
+---
+
+> ![Georgi Stoev](/images/3-BlogImage/Blog2/blog2-5.png)  
+> **Georgi Stoev**  
+> *Kiến trúc sư kỹ thuật cấp cao tại Salesforce.*  
+> Với hơn 20 năm kinh nghiệm trong lĩnh vực mạng, AI và bảo mật, anh đam mê công nghệ, nghiên cứu ong mật và khám phá thiên nhiên.
+
+---
+
+> ![Ravi Patel](/images/3-BlogImage/Blog2/blog2-6.jpg)  
+> **Ravi Patel**  
+> *Giám đốc kỹ thuật cấp cao tại Salesforce.*  
+> Có hơn 15 năm kinh nghiệm xây dựng mạng linh hoạt và hiệu suất cao. Ngoài công việc, anh thích lướt sóng, leo núi, và phiêu lưu khám phá thế giới.
+
+---

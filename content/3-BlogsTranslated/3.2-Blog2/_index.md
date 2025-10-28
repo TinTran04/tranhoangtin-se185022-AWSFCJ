@@ -1,126 +1,166 @@
 ---
 title: "Blog 2"
-date: 2025-01-01
+date: 2025-10-08
 weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+---
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# How Salesforce Business Technology Uses AWS Direct Connect SiteLink for Reliable Global Connectivity
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
-
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+*By Alexandra Huides and Corey Harris Jr – May 9, 2025, in the AWS Direct Connect SiteLink section.*
 
 ---
 
-## Architecture Guidance
+## Introduction
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+**Salesforce Business Technology** has used **AWS Direct Connect SiteLink** to build a global hybrid network architecture, ensuring flexible, high-performance, and reliable connectivity.  
+This solution helped Salesforce scale its infrastructure, reduce operational costs, and accelerate innovation in its journey toward cloud modernization with AWS.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
-
-**The solution architecture is now as follows:**
-
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+> *This article is brought to you in collaboration with Georgi Stoev and Ravi Patel – senior technical experts at Salesforce.*
 
 ---
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+## Overview
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+**Salesforce** is an AWS strategic partner and the world leader in customer relationship management (CRM).  
+The **Business Technology** team is responsible for building and operating enterprise applications that support areas such as finance, data centers, security, data warehousing, and Salesforce's virtual machines.
 
----
+With a global presence, Salesforce needed a network architecture that was:
+- **Flexible and highly scalable.**  
+- **Minimized latency and downtime.**  
+- **Ensured high security and reliability.**
 
-## Technology Choices and Communication Scope
-
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+However, traditional internet-based network solutions couldn't meet these stringent requirements.  
+This is why **AWS Direct Connect SiteLink** was chosen — providing a **private, dedicated connection**, bypassing the public internet to significantly improve security and latency.
 
 ---
 
-## The Pub/Sub Hub
+## Prerequisites
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+Before deployment, the Salesforce technical team understood the following AWS network components:
+- **Amazon Virtual Private Cloud (VPC)**  
+- **AWS Transit Gateway**  
+- **AWS Direct Connect**
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
-
----
-
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+These services form the foundation for the global hybrid network architecture, allowing for private, low-latency connectivity between multiple Direct Connect locations without going through intermediate AWS regions.
 
 ---
 
-## Front Door Microservice
+## AWS Direct Connect SiteLink
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+**AWS Direct Connect** provides a private network connection between on-premises infrastructure and AWS, optimizing performance, latency, and reliability.
 
----
+**SiteLink** is an extension feature of Direct Connect that allows direct connections between on-premises networks via the **global AWS backbone**, enabling:
+- Data transmission through the **shortest path**, bypassing AWS regions.  
+- Leveraging the **global AWS network** to transfer data quickly and securely.  
+- Pay-per-use pricing, without needing to establish new connections.
 
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+How it works:
+1. Establish an on-premises connection to AWS at one of over **100 Direct Connect locations** worldwide.  
+2. Create a **Virtual Interface (VIF)** on that connection and enable **SiteLink**.  
+3. When VIFs are attached to the same **Direct Connect Gateway (DXGW)**, data is transmitted directly between locations using the AWS backbone.
 
 ---
 
-## New Features in the Solution
+## Salesforce Business Technology's Global Footprint
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Salesforce Business Technology manages **7 strategic locations** globally:
+- 3 in the United States  
+- 3 in the Asia-Pacific region  
+- 1 in Europe  
+
+The network is built on **private MPLS backbone links** combined with **AWS Regions**, supporting complex data flows between data centers and cloud environments.
+
+However, challenges arose including:
+- **Static and hard-to-scale infrastructure.**  
+- **High operational costs** and heavy reliance on multiple providers.  
+- **Routing complexity** and **outages in some regions.**
+
+![Blog Image 2 - 1](/images/3-BlogImage/Blog2/blog2-1.png)
+> *Figure 1. A sample global private data center connection using dedicated circuits.*
+
+---
+
+## Solution: SiteLink
+
+To solve these problems, Salesforce Business Technology **modernized its network infrastructure** by deploying **SiteLink**.  
+The main objectives were:
+- Build a flexible, scalable network as needed.  
+- Reduce operational costs and complexity.  
+- Enhance resilience and security.
+
+The team:
+- Deployed SiteLink on **existing Direct Connect connections**.  
+- Created new **dedicated VIFs** for production and development environments.  
+- Maintained a **global segmentation** to meet on-premises data storage requirements.
+
+![Blog Image 2 - 2](/images/3-BlogImage/Blog2/blog2-2.png)
+> *Figure 2. Sample global SiteLink deployment for Production and Development.*
+
+---
+
+## Achieved Benefits
+
+The SiteLink solution delivered several outstanding benefits for Salesforce:
+
+| Benefit | Description |
+| ------- | ----- |
+| **Simplified network management** | Eliminated the complexity of MPLS Layer 3 VPN routing while maintaining traffic isolation. |
+| **Improved performance** | Increased stability, reducing global average latency by 15%. |
+| **Cost optimization** | Utilized existing connections with pay-per-use billing. |
+| **Enhanced security** | Applied MACSec Layer 2 encryption on all Direct Connect connections. |
+
+Additionally, SiteLink helps:
+- **Reduce single points of failure (SPOF)** and improve network reliability.  
+- **Optimize data path routing** between data centers.  
+- **Comprehensive monitoring** via CloudWatch Network Monitor.
+
+> *“With SiteLink, Salesforce Business Technology has streamlined network operations and ensured maximum resilience for global connectivity. We can set up connections between 7 data centers in just a few minutes and expand into new markets in a few days.”*  
+> — *Ravi Patel, Senior Technical Director at Salesforce.*
+
+---
+
+## Conclusion
+
+Adopting **AWS Direct Connect SiteLink** has helped Salesforce:
+- Unify its global network architecture.  
+- Modernize infrastructure, reduce costs, and improve performance.  
+- Be ready for scaling and rapid innovation.
+
+> *To learn more about AWS Direct Connect SiteLink, you can refer to the official documentation or ask questions on AWS re:Post.*
+
+---
+
+## About the Authors
+
+> ![Alexandra Huides](/images/3-BlogImage/Blog2/blog2-3.png)  
+> **Alexandra Huides**  
+> *Senior Network Solutions Architect at AWS.*  
+> Specializes in large-scale network architecture, helping clients adopt IPv6 and build flexible environments. Outside of work, she enjoys kayaking, traveling, and reading books.
+
+---
+
+> ![Corey Harris Jr](/images/3-BlogImage/Blog2/blog2-4.jpg)  
+> **Corey Harris Jr.**  
+> *Senior Solutions Architect at AWS.*  
+> A network and serverless expert, helping customers optimize their AWS systems. Outside of work, he enjoys gaming, traveling, and spending time with family.
+
+---
+
+> ![Georgi Stoev](/images/3-BlogImage/Blog2/blog2-5.png)  
+> **Georgi Stoev**  
+> *Senior Technical Architect at Salesforce.*  
+> With over 20 years of experience in networking, AI, and security, he is passionate about technology, beekeeping, and nature exploration.
+
+---
+
+> ![Ravi Patel](/images/3-BlogImage/Blog2/blog2-6.jpg)  
+> **Ravi Patel**  
+> *Senior Technical Director at Salesforce.*  
+> With over 15 years of experience in building flexible and high-performance networks, he enjoys surfing, mountaineering, and adventuring around the world.
+
+---
+
+
