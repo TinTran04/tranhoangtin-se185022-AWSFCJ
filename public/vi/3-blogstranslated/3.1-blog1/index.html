@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/workshop-template/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=workshop-template/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.1">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="thienlh@thienlu.com" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Blog 1 :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1761622757" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1761622757" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1761622757" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1761622757" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1761622757" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1761622757" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1761622757" rel="stylesheet">
+    <link href="../../../css/theme.css?1761622757" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1761622757" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1761622757" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1761622757"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/3-blogstranslated/3.1-blog1/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1761622757"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1761622757"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/workshop-template\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1761622757"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Worklog Tuần 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Worklog Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Worklog Tuần 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Worklog Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Worklog Tuần 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Worklog Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Worklog Tuần 4"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Worklog Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Worklog Tuần 5"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Worklog Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Worklog Tuần 6"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Worklog Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Worklog Tuần 7"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Worklog Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Worklog Tuần 8"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Worklog Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12 </b> Worklog Tuần 12 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Bản đề xuất"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Bản đề xuất 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Các bài blogs đã dịch"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Các bài blogs đã dịch 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.4-blog4/"
+  title="Blog 4"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.4-blog4/">
+     <b> 3.4. </b> Blog 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.5-blog5/"
+  title="Blog 5"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.5-blog5/">
+     <b> 3.6. </b> Blog 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.6-blog6/"
+  title="Blog 6"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.6-blog6/">
+     <b> 3.6. </b> Blog 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Event 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Event 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Event 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Event 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.1-workshop-overview/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.1-workshop-overview/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.2-prerequiste/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.2-prerequiste/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.5-policy/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.5-policy/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.6-cleanup/"
+  title=""
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.6-cleanup/">
+     
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="http://localhost:1313/workshop-template/3-blogstranslated/3.1-blog1/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="http://localhost:1313/workshop-template/vi/3-blogstranslated/3.1-blog1/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/3-blogstranslated/'>Các bài blogs đã dịch</a> > Blog 1
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#giới-thiệu">Giới thiệu</a></li>
+    <li><a href="#mục-tiêu-của-nền-tảng-machine-learning-tại-ifood">Mục tiêu của nền tảng machine learning tại iFood</a></li>
+    <li><a href="#suy-luận-ai-tại-ifood">Suy luận AI tại iFood</a></li>
+    <li><a href="#tổng-quan-về-giải-pháp">Tổng quan về giải pháp</a></li>
+    <li><a href="#sử-dụng-sagemaker-inference-model-serving-containers">Sử dụng SageMaker Inference Model Serving Containers</a></li>
+    <li><a href="#tự-động-hóa-triển-khai-và-đào-tạo-lại-mô-hình">Tự động hóa triển khai và đào tạo lại mô hình</a></li>
+    <li><a href="#chạy-suy-luận-ở-nhiều-định-dạng-sla-khác-nhau">Chạy suy luận ở nhiều định dạng SLA khác nhau</a></li>
+    <li><a href="#hợp-tác-giữa-ifood-và-sagemaker-inference-team">Hợp tác giữa iFood và SageMaker Inference Team</a></li>
+    <li><a href="#kết-luận">Kết luận</a></li>
+    <li><a href="#giới-thiệu-về-tác-giả">Giới thiệu về tác giả</a></li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Blog 1
+            </h1>
+          
+
+        
+
+
+
+	<h1 id="cách-ifood-xây-dựng-nền-tảng-để-chạy-hàng-trăm-mô-hình-machine-learning-với-amazon-sagemaker-inference">Cách iFood xây dựng nền tảng để chạy hàng trăm mô hình machine learning với Amazon SageMaker Inference</h1>
+<p><em>Bởi Daniel Vieira, Debora Fanin, Gopi Mudiyala và Saurabh Trikande — ngày 08 tháng 4 năm 2025</em></p>
+<hr>
+<h2 id="giới-thiệu">Giới thiệu</h2>
+<p>Có trụ sở tại <strong>São Paulo, Brazil</strong>, <strong>iFood</strong> là công ty tư nhân hàng đầu trong lĩnh vực <strong>công nghệ thực phẩm (food-tech)</strong> ở Mỹ Latinh, xử lý hàng triệu đơn đặt hàng mỗi tháng.<br>
+iFood đã nổi bật nhờ chiến lược <strong>ứng dụng công nghệ tiên tiến</strong> trong vận hành. Với sự hỗ trợ từ <strong>AWS</strong>, iFood phát triển <strong>hạ tầng suy luận machine learning (ML)</strong> mạnh mẽ, sử dụng các dịch vụ như <strong>Amazon SageMaker</strong> để huấn luyện và triển khai mô hình hiệu quả.</p>
+<p>Sự hợp tác này giúp iFood không chỉ <strong>tối ưu hóa quy trình nội bộ</strong>, mà còn mang lại <strong>giải pháp sáng tạo cho đối tác giao hàng và nhà hàng</strong>.</p>
+<hr>
+<h2 id="mục-tiêu-của-nền-tảng-machine-learning-tại-ifood">Mục tiêu của nền tảng machine learning tại iFood</h2>
+<p>Nền tảng ML của iFood bao gồm một tập hợp các công cụ, quy trình và luồng làm việc được xây dựng nhằm mục tiêu:</p>
+<ul>
+<li><strong>Đẩy nhanh</strong> quá trình phát triển và huấn luyện các mô hình AI/ML, giúp chúng <strong>đáng tin cậy và dễ tái tạo</strong>.</li>
+<li><strong>Đảm bảo</strong> việc triển khai mô hình vào sản xuất là <strong>ổn định, mở rộng được và truy xuất nguồn gốc rõ ràng</strong>.</li>
+<li><strong>Tạo điều kiện thuận lợi</strong> cho việc thử nghiệm, giám sát và đánh giá mô hình trong môi trường sản xuất một cách <strong>minh bạch và tiêu chuẩn hóa</strong>.</li>
+</ul>
+<p>Để đạt được mục tiêu này, iFood sử dụng <strong>Amazon SageMaker</strong>, giúp đơn giản hóa quy trình huấn luyện và triển khai, đồng thời <strong>tự động hóa</strong> các tác vụ quan trọng như:</p>
+<ul>
+<li>Tạo bộ dữ liệu huấn luyện</li>
+<li>Huấn luyện mô hình</li>
+<li>Triển khai ra sản xuất</li>
+<li>Theo dõi hiệu suất hoạt động</li>
+</ul>
+<hr>
+<h2 id="suy-luận-ai-tại-ifood">Suy luận AI tại iFood</h2>
+<p>iFood đã tận dụng sức mạnh của nền tảng AI/ML để nâng cao trải nghiệm khách hàng ở nhiều điểm chạm:</p>
+<ul>
+<li>
+<p><strong>Đề xuất cá nhân hóa:</strong><br>
+Các mô hình AI phân tích lịch sử đặt hàng, sở thích và ngữ cảnh của khách hàng để đề xuất món ăn và nhà hàng phù hợp nhất, giúp gia tăng mức độ hài lòng và số lượng đơn đặt hàng.</p>
+</li>
+<li>
+<p><strong>Theo dõi đơn hàng thông minh:</strong><br>
+AI theo dõi đơn hàng <strong>thời gian thực</strong>, dự đoán chính xác thời gian giao hàng dựa trên dữ liệu giao thông, thời gian chuẩn bị món và vị trí shipper.</p>
+</li>
+<li>
+<p><strong>Dịch vụ khách hàng tự động:</strong><br>
+Chatbot được huấn luyện bằng <strong>AI xử lý ngôn ngữ tự nhiên (NLP)</strong> giúp xử lý nhanh chóng hàng nghìn yêu cầu của khách hàng mỗi ngày, mang lại trải nghiệm hỗ trợ thống nhất và hiệu quả.</p>
+</li>
+<li>
+<p><strong>Trợ lý mua sắm hàng tạp hóa:</strong><br>
+Ứng dụng tích hợp mô hình ngôn ngữ tiên tiến, cho phép khách hàng <strong>nhập hoặc nói</strong> danh sách mua sắm, và AI tự động tạo danh sách chi tiết.</p>
+</li>
+</ul>
+<p>Thông qua các sáng kiến AI này, iFood <strong>dự đoán được nhu cầu</strong>, <strong>tối ưu quy trình</strong> và <strong>nâng cao trải nghiệm khách hàng</strong>, củng cố vị thế là <strong>nền tảng công nghệ thực phẩm hàng đầu khu vực</strong>.</p>
+<hr>
+<h2 id="tổng-quan-về-giải-pháp">Tổng quan về giải pháp</h2>
+<p><img src="../../../images/3-BlogImage/blog1-1.jpg" alt="Hình 1. Kiến trúc kế thừa của iFood (trước khi tích hợp nền tảng ML nội bộ"></p>
+<blockquote>
+<p><em>Hình 1. Kiến trúc kế thừa của iFood (trước khi tích hợp nền tảng ML nội bộ.)</em></p></blockquote>
+<p>Trước đây, các nhóm khoa học dữ liệu và kỹ thuật tại iFood hoạt động tách biệt —<br>
+nhà khoa học dữ liệu xây dựng mô hình, trong khi nhóm kỹ thuật gặp khó khăn khi tích hợp mô hình vào sản xuất.<br>
+Sự thiếu liên kết này khiến việc triển khai <strong>mô hình ML thời gian thực</strong> trở nên khó khăn.</p>
+<p>Để giải quyết vấn đề này, iFood xây dựng <strong>nền tảng ML nội bộ – ML Go!</strong>, giúp hợp nhất và đơn giản hóa quy trình phát triển mô hình từ huấn luyện đến triển khai.<br>
+Nền tảng này cho phép các nhóm <strong>xây dựng, đào tạo và triển khai mô hình liền mạch</strong>, đồng thời tương tác với nhóm kỹ thuật để tích hợp vào ứng dụng trực tuyến hoặc ngoại tuyến.</p>
+<blockquote>
+<p><em>Hình 2. Kiến trúc cập nhật sau khi tích hợp nền tảng ML nội bộ iFood.</em></p></blockquote>
+<p>Nền tảng <strong>ML Go!</strong> cũng tập trung vào các khả năng suy luận mới, kết nối với <strong>nền tảng dữ liệu và nền tảng đặc trưng (feature platform)</strong>, giúp tăng trải nghiệm người dùng và hiệu suất mô hình.</p>
+<p>Một cải tiến nổi bật là <strong>ML Go! Gateway</strong> — lớp trừu tượng kết nối <strong>SageMaker Endpoints</strong> và <strong>Jobs</strong>, cho phép tách biệt mối quan tâm giữa các endpoint, tăng tốc độ và hiệu quả triển khai.<br>
+Các endpoint được quản lý qua <strong>ML Go! CI/CD</strong>, giảm thời gian thay đổi và rủi ro khi triển khai.</p>
+<hr>
+<h2 id="sử-dụng-sagemaker-inference-model-serving-containers">Sử dụng SageMaker Inference Model Serving Containers</h2>
+<p>Một tính năng quan trọng của nền tảng ML hiện đại là <strong>tiêu chuẩn hóa</strong> dịch vụ ML và AI bằng cách đóng gói mô hình và phụ thuộc vào <strong>container Docker</strong>.<br>
+SageMaker cung cấp <strong>các container dựng sẵn</strong> cho những framework phổ biến như <strong>TensorFlow</strong>, <strong>PyTorch</strong>, <strong>XGBoost</strong>… giúp triển khai nhanh chóng và ổn định.</p>
+<p>Bên cạnh đó, SageMaker hỗ trợ <strong>container tùy chỉnh</strong>, cho phép người dùng mang theo <strong>mã nguồn, thư viện và phụ thuộc riêng</strong> — đặc biệt hữu ích khi làm việc với framework ít phổ biến hoặc yêu cầu đặc thù.</p>
+<p>iFood tập trung mạnh vào việc sử dụng <strong>container tùy chỉnh</strong> cho đào tạo và triển khai, đảm bảo môi trường <strong>nhất quán và tái tạo được</strong>.<br>
+Công cụ nội bộ <strong>BruceML</strong> giúp đóng gói mã huấn luyện và phục vụ mô hình ngay từ đầu, tích hợp liền mạch với SageMaker cho phép tận dụng các tính năng như <strong>tinh chỉnh siêu tham số</strong>, <strong>triển khai</strong>, và <strong>giám sát mô hình</strong>.</p>
+<hr>
+<h2 id="tự-động-hóa-triển-khai-và-đào-tạo-lại-mô-hình">Tự động hóa triển khai và đào tạo lại mô hình</h2>
+<blockquote>
+<p><em>Hình 3. Quy trình CI/CD tự động hóa qua SageMaker Pipelines.</em></p></blockquote>
+<p>Để đảm bảo mô hình hoạt động hiệu quả và chính xác lâu dài, iFood sử dụng <strong>Amazon SageMaker Pipelines</strong> nhằm xây dựng hệ thống <strong>CI/CD cho ML</strong>, tự động hóa toàn bộ quy trình huấn luyện và triển khai.</p>
+<p>Quy trình bắt đầu từ <strong>ML Go! CI/CD pipeline</strong>, đẩy các artifact chứa logic triển khai và huấn luyện mô hình.<br>
+Sau khi huấn luyện hoàn tất, mô hình được đăng ký tự động vào <strong>SageMaker Model Registry</strong> để quản lý phiên bản và bảo mật.</p>
+<p>Tùy theo yêu cầu suy luận:</p>
+<ul>
+<li><strong>Dự đoán hàng loạt:</strong> SageMaker Batch Transform xử lý các tập dữ liệu quy mô lớn.</li>
+<li><strong>Dự đoán thời gian thực:</strong> SageMaker Endpoint được triển khai để phản hồi trực tiếp yêu cầu người dùng.</li>
+</ul>
+<p>Tự động hóa đầu-cuối giúp iFood <strong>nhanh chóng lặp lại, triển khai và điều chỉnh</strong> mô hình, đảm bảo hiệu suất liên tục.</p>
+<hr>
+<h2 id="chạy-suy-luận-ở-nhiều-định-dạng-sla-khác-nhau">Chạy suy luận ở nhiều định dạng SLA khác nhau</h2>
+<p>iFood sử dụng khả năng suy luận của SageMaker cho cả <strong>thời gian thực</strong> lẫn <strong>xử lý hàng loạt</strong>.<br>
+Các endpoint SageMaker được tích hợp vào ứng dụng khách hàng, giúp <strong>dự đoán tức thì</strong>.<br>
+Trong khi đó, <strong>Batch Transform</strong> hỗ trợ xử lý dữ liệu lớn cho các trường hợp như <strong>đề xuất món ăn</strong> hoặc <strong>phân tích đối tác nhà hàng</strong>.</p>
+<blockquote>
+<p><em>Hình 4. Mô hình suy luận hỗn hợp (real-time + batch) trên SageMaker.</em></p></blockquote>
+<hr>
+<h2 id="hợp-tác-giữa-ifood-và-sagemaker-inference-team">Hợp tác giữa iFood và SageMaker Inference Team</h2>
+<p>iFood đã đóng vai trò quan trọng trong việc phát triển các tính năng mới cho <strong>SageMaker Inference</strong>, bao gồm:</p>
+<ul>
+<li><strong>Tối ưu chi phí và hiệu suất</strong>: giảm 50% chi phí triển khai và 20% độ trễ trung bình.</li>
+<li><strong>Cải thiện khả năng mở rộng</strong>: rút ngắn thời gian autoscaling 40%, tăng tốc độ phản hồi 6 lần.</li>
+<li><strong>Triển khai mô hình AI tổng quát dễ dàng hơn</strong> (LLM, FM) chỉ với vài cú nhấp chuột.</li>
+<li><strong>Scale-to-zero endpoints</strong>: tự động tắt khi không sử dụng, tiết kiệm chi phí.</li>
+<li><strong>Đóng gói mô hình hiệu quả hơn</strong> giúp tăng tốc quá trình triển khai.</li>
+<li><strong>Multi-model GPU endpoints</strong>: nhiều mô hình chia sẻ GPU, giảm chi phí tới 75%.</li>
+<li><strong>Suy luận không đồng bộ</strong>: hỗ trợ xử lý các yêu cầu lớn hoặc lâu dài (genomics, video, tài chính&hellip;).</li>
+</ul>
+<blockquote>
+<p><em>Hình 5. Các cải tiến về SageMaker Inference thông qua hợp tác cùng iFood.</em></p></blockquote>
+<hr>
+<h2 id="kết-luận">Kết luận</h2>
+<p>Nhờ tận dụng các khả năng của <strong>Amazon SageMaker</strong>, iFood đã <strong>chuyển đổi hoàn toàn cách tiếp cận với ML và AI</strong>, rút ngắn vòng đời mô hình và mở rộng quy mô ứng dụng thông minh.</p>
+<p>Nền tảng <strong>ML Go!</strong> cùng sự tích hợp <strong>SageMaker Pipelines</strong> và <strong>SageMaker Inference</strong> giúp iFood:</p>
+<ul>
+<li>Tự động hóa quy trình triển khai và huấn luyện lại</li>
+<li>Giảm chi phí vận hành</li>
+<li>Duy trì hiệu suất cao cho các ứng dụng thông minh</li>
+</ul>
+<p>Sự hợp tác giữa iFood và đội ngũ AWS không chỉ thúc đẩy <strong>hiệu suất suy luận AI toàn cầu</strong>, mà còn trở thành <strong>hình mẫu triển khai ML hiện đại</strong> cho nhiều doanh nghiệp khác.</p>
+<hr>
+<h2 id="giới-thiệu-về-tác-giả">Giới thiệu về tác giả</h2>
+<p><strong>Daniel Vieira</strong> – Giám đốc Kỹ thuật Machine Learning tại iFood, có hơn 10 năm kinh nghiệm trong phát triển nền tảng và hệ thống ML. Ông sở hữu bằng Cử nhân và Thạc sĩ Khoa học Máy tính tại Đại học Liên bang Minas Gerais (UFMG). Ngoài công việc, ông yêu thích âm nhạc, triết học và cà phê.</p>
+<p><strong>Debora Fanin</strong> – Giám đốc Giải pháp Khách hàng cấp cao tại AWS, phụ trách chuyển đổi kỹ thuật số cho doanh nghiệp tại Brazil. Cô có bằng Thạc sĩ Quản trị (FEI) và chứng chỉ Amazon Solutions Architect Associate.</p>
+<p><strong>Saurabh Trikande</strong> – Giám đốc sản phẩm cấp cao của <strong>Amazon Bedrock</strong> và <strong>Amazon SageMaker Inference</strong>, chuyên về triển khai AI phức tạp và tối ưu hóa chi phí.</p>
+<p><strong>Gopi Mudiyala</strong> – Giám đốc tài khoản kỹ thuật cao cấp tại AWS, hỗ trợ khách hàng trong lĩnh vực tài chính trong hành trình chuyển đổi ML. Anh đam mê công nghệ và thường chơi cầu lông, du lịch cùng gia đình.</p>
+<hr>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/3-blogstranslated/" title="Các bài blogs đã dịch"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/3-blogstranslated/3.2-blog2/" title="Blog 2" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1761622757"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1761622757"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1761622757"></script>
+    <script src="../../../js/jquery.sticky.js?1761622757"></script>
+    <script src="../../../js/featherlight.min.js?1761622757"></script>
+    <script src="../../../js/highlight.pack.js?1761622757"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1761622757"></script>
+    <script src="../../../js/learn.js?1761622757"></script>
+    <script src="../../../js/hugo-learn.js?1761622757"></script>
+
+    <link href="../../../mermaid/mermaid.css?1761622757" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1761622757"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>
+
