@@ -1,144 +1,47 @@
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo ---   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo --- ) 
-) 
 ---
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo title: "Workshop"   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo title: "Workshop" ) 
-) 
 title: "Workshop"
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo date: 2025-01-01   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo date: 2025-01-01 ) 
-) 
-date: 2025-01-01T00:00:00Z
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo weight: 5   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo weight: 5 ) 
-) 
 weight: 5
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo chapter: false   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo chapter: false ) 
-) 
 chapter: false
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo pre: " <b> 5. </b> "   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo pre: " <b> 5. </b> " ) 
-) 
 pre: " <b> 5. </b> "
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo ---   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo --- ) 
-) 
 ---
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo {{% notice warning %}}   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo {{% notice warning %}} ) 
-) 
-{{% notice warning %}}
+# Clickstream Analytics Platform for E-Commerce
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo ⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo ⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning. ) 
-) 
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo {{% /notice %}}   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo {{% /notice %}} ) 
-) 
-{{% /notice %}}
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo # Secure Hybrid Access to S3 using VPC Endpoints   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo # Secure Hybrid Access to S3 using VPC Endpoints ) 
-) 
-# Secure Hybrid Access to S3 using VPC Endpoints
-
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo #### Overview   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo #### Overview ) 
-) 
 #### Overview
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo **AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo **AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet. ) 
-) 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+This workshop walks through a **Batch-based Clickstream Analytics Platform** for an e-commerce website that sells computer products.
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet. ) 
-) 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
+You will see how clickstream events:
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location ) 
-) 
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
+- Are captured by a **Next.js** frontend hosted on **AWS Amplify** and delivered through **Amazon CloudFront**.  
+- Are ingested via **Amazon API Gateway** and a **Lambda Ingest** function into a **Raw Clickstream bucket on Amazon S3**.  
+- Are processed in batch by a **VPC-enabled ETL Lambda** that reads from S3 through an **S3 Gateway VPC Endpoint** and loads curated data into a **PostgreSQL Data Warehouse** on **EC2** in a private subnet.  
+- Are visualized via **R Shiny dashboards** running on the same EC2 instance as the Data Warehouse.
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo + **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo + **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables. ) 
-) 
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
+The workshop emphasises:
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo + **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo + **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS. ) 
-) 
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+- **Separation of OLTP and Analytics** workloads.  
+- A fully **private analytics backend** (ETL Lambda, Data Warehouse, Shiny) with no public IPs.  
+- **Cost‑efficient private access to S3** using a Gateway VPC Endpoint instead of a NAT Gateway.
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo #### Content   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo #### Content ) 
-) 
-#### Content
+#### Prerequisites
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 1. [Workshop overview](5.1-Workshop-overview)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 1. [Workshop overview](5.1-Workshop-overview) ) 
-) 
-1. [Workshop overview](5.1-Workshop-overview)
+Before starting the detailed sections (5.1–5.6), the reader is expected to have:
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 2. [Prerequiste](5.2-Prerequiste/)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 2. [Prerequiste](5.2-Prerequiste/) ) 
-) 
-2. [Prerequiste](5.2-Prerequiste/)
+- Basic familiarity with **AWS services** such as EC2, S3, Lambda, API Gateway, VPC, and IAM.  
+- Working knowledge of **SQL** and **PostgreSQL**.  
+- A general understanding of **web applications** (HTTP, JSON, REST APIs).  
+- An AWS account with sufficient permissions to create VPC endpoints, Lambda functions, EC2 instances, S3 buckets, and EventBridge rules.
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 3. [Access S3 from VPC](5.3-S3-vpc/)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 3. [Access S3 from VPC](5.3-S3-vpc/) ) 
-) 
-3. [Access S3 from VPC](5.3-S3-vpc/)
+> This workshop assumes that the core infrastructure (VPC, subnets, EC2 instances, Lambda functions, API Gateway, and S3 buckets) is already provisioned, for example via Infrastructure‑as‑Code such as Terraform or CloudFormation.
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 4. [Access S3 from On-premises](5.4-S3-onprem/)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 4. [Access S3 from On-premises](5.4-S3-onprem/) ) 
-) 
-4. [Access S3 from On-premises](5.4-S3-onprem/)
+#### Content Map
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 5. [VPC Endpoint Policies (Bonus)](5.5-Policy/) ) 
-) 
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
+The workshop content is split into six sections:
 
-E:\thuctap\report mau\fcj-workshop-template-main>(
-echo 6. [Clean up](5.6-Cleanup/)   | findstr /R "^date:"  1>nul  
- if not errorlevel 1 (echo date: 2025-01-01T00:00:00Z )  else (echo 6. [Clean up](5.6-Cleanup/) ) 
-) 
-6. [Clean up](5.6-Cleanup/)
+1. [Objectives & Scope](5.1-Objectives-&-Scope)
+2. [Architecture Walkthrough](5.2-Architecture-Walkthrough) 
+3. [Implementing Clickstream Ingestion](5.3-Implementing-Clickstream-Ingestion) 
+4. [Building the Private Analytics Layer](5.4-Building-the-Private-Analytics-Layer)  
+5. [Visualizing Analytics with Shiny Dashboards](5.5-Visualizing-Analytics-with-Shiny-Dashboards)
+6. [Summary & Clean up](5.6-Summary-&-Clean-up)

@@ -6,117 +6,169 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Reflection Report “Exploring Agentic AI – Amazon QuickSuite”
+### Event Information
 
-### Event Objectives
+- **Event name: GenAI-powered App-DB Modernization workshop
+- **Date: 7 November 2025
+- **Location**: 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
+- **Role**: Attendee 
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+---
+
+### Purpose of the Event
+
+- Clarify the concept of **Agentic AI**: the shift from passive **Generative AI** to **Agentic AI (AI agents)** capable of autonomous action.  
+- Introduce and demonstrate **Amazon QuickSuite** live for the first time in Vietnam.  
+- Encourage businesses to **adopt Agentic AI** through the **AWS LIFT** financial support program (credits of up to USD 80,000).  
+- Provide a **practical hands-on environment** in which participants can directly build and experience AI models under the guidance of AWS experts and partners.  
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Vivien Nguyen** – Territory Manager, AWS  
+- **Tung Cao** – Solution Architect, AWS  
+- **Cloud Kinetics team** – AWS strategic implementation partner in Vietnam  
 
-### Key Highlights
+---
 
-#### Identifying the drawbacks of legacy application architecture
+### Key Content
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+#### Paradigm shift: From Generative AI to Agentic AI
 
-#### Transitioning to modern application architecture – Microservices
+- **Generative AI**  
+  - Focuses on **generating content** (text, images, source code, etc.) based on user **prompts**.  
+  - Fundamentally **reactive**: only responds when queried.  
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- **Agentic AI (AI agents)**  
+  - Focuses on **autonomy and the ability to act**.  
+  - Can **perceive its environment**, plan, reason through multiple steps, and **execute tasks automatically** without constant human intervention.  
+  - The goal is to build systems where **“AI does the work for us”**, not just “chats with us”.  
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+The workshop helped me clearly understand that Agentic AI is the evolution from *“AI that answers”* to *“AI that acts”*, which is very suitable for complex and repetitive tasks in enterprises.
 
-#### Domain-Driven Design (DDD)
+#### Introduction to Amazon QuickSuite
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+- **First live demo in Vietnam:**  
+  - The workshop marked the **first live demonstration** of Amazon QuickSuite for users in Vietnam.  
 
-#### Event-Driven Architecture
+- **Unified ecosystem:**  
+  - Tightly integrates:  
+    - **Amazon QuickSight** – data visualization and analytics.  
+    - **QuickSuite Q** – natural language interaction for asking questions and generating insights.  
+  - Together, they enable **“Analyst Agents”** that can read data, answer business questions, and propose actions.  
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+- **Speed and agility (“Quick”):**  
+  - Allows businesses to move from **idea → prototype → real-world testing** in a short time.  
+  - Suitable for teams that want to experiment quickly and iterate continuously.  
 
-#### Compute Evolution
+- **Data-centric by design:**  
+  - QuickSuite is built for **large data volumes**, ensuring that AI agents have enough “fuel” to make accurate decisions grounded in real business context.  
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+#### Partner ecosystem & strategic support
 
-#### Amazon Q Developer
+- **AWS** provides the underlying infrastructure platform and AI/Analytics services.  
+- **Cloud Kinetics** plays the role of:  
+  - Architecture advisor, ensuring that solutions fit the specific needs of each business.  
+  - Supporting the **“last mile”** of implementation – turning abstract technology into concrete solutions that run in production.  
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+This **“two-layer support model”** (AWS + partner) helps businesses reduce risk, especially when starting out with new technologies such as Agentic AI.
 
-### Key Takeaways
+#### AWS LIFT program – Financial support for innovation
+
+- **Credits of up to USD 80,000** for eligible customers, particularly new customers and SMBs.  
+- Purpose:  
+  - Lower the cost barrier when experimenting with high-performance compute systems and AI-related R&D projects.  
+  - Allow companies to focus on **ideas and execution**, instead of worrying too much about initial infrastructure costs.  
+
+---
+
+### What I Learned
 
 #### Design Mindset
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- **Focus on system autonomy:**  
+  - When designing Agentic AI, the goal is to build agents that **proactively work on behalf of humans**, for example:  
+    - Automatically generating periodic reports.  
+    - Monitoring metrics and sending alerts.  
+    - Suggesting operational adjustments (such as in the supply chain).  
+
+- **Tying AI to concrete operational bottlenecks:**  
+  - AI should not be built just because it is a “trend”, but should start from processes that are:  
+    - Repetitive.  
+    - Composed of many manual steps.  
+    - Error-prone when done entirely by humans.  
 
 #### Technical Architecture
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+- **Ecosystem-based approach:**  
+  - An effective agent must be connected to **multiple tools**: data sources, BI, APIs, workflows, etc.  
+  - In this context, **QuickSuite** is the “connective tissue” between:  
+    - Data (data sources, QuickSight).  
+    - Action logic (questions, rules, automated task workflows).  
 
-#### Modernization Strategy
+- **AWS infrastructure readiness:**  
+  - The first step is to set up the **AWS account, region, access permissions**, and required services.  
+  - This lays the foundation to easily enable/disable and experiment with new services such as QuickSuite and Agentic workflows later on.  
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+#### Modernization & Deployment Strategy
 
-### Applying to Work
+- **Early adopter advantage:**  
+  - Businesses/teams that learn and master QuickSuite early will gain advantages in **productivity, decision-making speed, and the ability to test new business models**.  
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Smart cost management:**  
+  - Combining **AWS LIFT credits** with a small, clearly scoped PoC approach.  
+  - Helps **accelerate time-to-market** while still minimizing financial risk.  
+
+---
+
+### Application to My Work
+
+- **Deepening my knowledge of QuickSuite:**  
+  - Exploring how to integrate **QuickSight + QuickSuite Q** into existing data analytics workflows.  
+  - Aiming to build **“Analyst Agents”** that can automatically answer questions about KPIs, trends, and reporting.  
+
+- **Leveraging the AWS LIFT program:**  
+  - Reviewing eligibility and applying to receive **AWS credits** for upcoming AI/Agentic AI R&D or PoC projects.  
+
+- **Identifying internal use cases suitable for Agentic AI:**  
+  - Reviewing workflows that involve many repetitive steps (reporting, monitoring, request classification, etc.) to see whether they can be transformed into AI agent workflows.  
+
+- **Collaborating with partners such as Cloud Kinetics:**  
+  - Instead of building everything 100% in-house, partnering with experts to design a robust architecture from the start, and avoid fundamental mistakes for complex systems.  
+
+---
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending the **“Exploring Agentic AI – Amazon QuickSuite”** workshop at Bitexco Financial Tower was a professional and multi-dimensional experience: combining theory, hands-on practice, and community connection.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning from experienced speakers
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- I had the opportunity to hear directly from **AWS** and **Cloud Kinetics** about the vision for Agentic AI in enterprises.  
+- The content was well balanced between **concepts** (what Agentic AI is and why it matters) and **real-world implementation** (how to use QuickSuite and where to start).  
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Hands-on technical experience
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+- The **~90-minute hands-on session** allowed me to:  
+  - Work directly with **QuickSight + QuickSuite Q**.  
+  - Understand more concretely how an “analyst agent” can read data and answer business questions.  
+- The “hands-on guidance” from AWS experts helped me quickly overcome initial difficulties when working with a new tool.  
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+#### Networking and ecosystem
 
-#### Some event photos
-*Add your event photos here*  
+- Networking time enabled me to talk with:  
+  - Professionals working in cloud, data, and AI.  
+  - The Cloud Kinetics team, which helped me better understand the role of partners in *turning* the AWS platform into concrete solutions for each industry.  
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Key takeaways
+
+- **Agentic AI is the future of enterprise operations:**  
+  - The shift from “chatting with AI” to “AI actually doing the work” will unlock many new optimization models.  
+
+- **Speed is a critical factor:**  
+  - Tools like QuickSuite are designed for rapid deployment, so early adopters will gain a clear advantage in agility.  
+
+- **Capital enables innovation:**  
+  - The **AWS LIFT** program shows that the key question is no longer “Can we afford it?”, but rather “Do we have the courage and readiness to seize the opportunity?”.  
+
+> In summary, the workshop helped me gain a much clearer understanding of **Agentic AI**, how AWS brings it to life through **Amazon QuickSuite**, and the resources (tools, partners, funding) that AWS provides so that businesses can start their AI adoption journey in a practical and sustainable way.

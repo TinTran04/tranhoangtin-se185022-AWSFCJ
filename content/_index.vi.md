@@ -14,7 +14,7 @@ chapter: false
 
 &emsp; **Email:** tinthse185022@fpt.edu.vn
 
-&emsp; **Trường:** Đại học FPT
+&emsp; **Trường:** Đại học FPT Hồ Chí Minh
 
 &emsp; **Ngành:** Công nghệ thông tin
 

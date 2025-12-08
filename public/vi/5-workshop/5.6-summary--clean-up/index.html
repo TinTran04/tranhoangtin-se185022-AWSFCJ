@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/tranhoangtin-se185022-AWSFCJ/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=tranhoangtin-se185022-AWSFCJ/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.150.1">
+    <meta
+  name="description"
+  content=""
+/>
+<meta name="author" content="tinthse185022@fpt.edu.vn" />
+
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
+
+    <title>Summary &amp; Clean up :: Báo cáo thực tập</title>
+
+    
+    <link href="../../../css/nucleus.css?1765225037" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765225037" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765225037" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765225037" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
+    <link href="../../../css/theme.css?1765225037" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    
+    <link href="../../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    
+    
+
+    <script src="../../../js/jquery-3.3.1.min.js?1765225037"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+
+  </head>
+  <body class="" data-url="../../../vi/5-workshop/5.6-summary--clean-up/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="../../../">
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 60 30"
+    width="30%"
+  >
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+        .cls-2 {
+          fill: #f90;
+          fill-rule: evenodd;
+        }
+      </style>
+    </defs>
+    <title>AWS-Logo_White-Color</title>
+    <path
+      class="cls-1"
+      d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"
+    ></path>
+    <path
+      class="cls-2"
+      d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"
+    ></path>
+  </svg>
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../../js/lunr.min.js?1765225037"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/\/vi";
+    
+</script>
+<script type="text/javascript" src="../../../js/search.js?1765225037"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/1-worklog/"
+  title="Nhật ký công việc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/">
+     <b> 1. </b> Nhật ký công việc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/1-worklog/1.1-week1/"
+  title="Worklog Tuần 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.1-week1/">
+     <b> 1.1. </b> Worklog Tuần 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.2-week2/"
+  title="Worklog Tuần 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.2-week2/">
+     <b> 1.2. </b> Worklog Tuần 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.3-week3/"
+  title="Worklog Tuần 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.3-week3/">
+     <b> 1.3. </b> Worklog Tuần 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.4-week4/"
+  title="Worklog Tuần 4"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.4-week4/">
+     <b> 1.4. </b> Worklog Tuần 4 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.5-week5/"
+  title="Worklog Tuần 5"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.5-week5/">
+     <b> 1.5. </b> Worklog Tuần 5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.6-week6/"
+  title="Worklog Tuần 6"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.6-week6/">
+     <b> 1.6. </b> Worklog Tuần 6 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.7-week7/"
+  title="Worklog Tuần 7"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.7-week7/">
+     <b> 1.7. </b> Worklog Tuần 7 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.8-week8/"
+  title="Worklog Tuần 8"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.8-week8/">
+     <b> 1.8. </b> Worklog Tuần 8 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.9-week9/"
+  title="Worklog Tuần 9"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.9-week9/">
+     <b> 1.9. </b> Worklog Tuần 9 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.10-week10/"
+  title="Worklog Tuần 10"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.10-week10/">
+     <b> 1.10. </b> Worklog Tuần 10 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.11-week11/"
+  title="Worklog Tuần 11"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.11-week11/">
+     <b> 1.11. </b> Worklog Tuần 11 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/1-worklog/1.12-week12/"
+  title="Worklog Tuần 12"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/1-worklog/1.12-week12/">
+     <b> 1.12 </b> Worklog Tuần 12 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/2-proposal/"
+  title="Bản đề xuất"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/2-proposal/">
+     <b> 2. </b> Bản đề xuất 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/3-blogstranslated/"
+  title="Các bài blogs đã dịch"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/">
+     <b> 3. </b> Các bài blogs đã dịch 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.1-blog1/"
+  title="Blog 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.1-blog1/">
+     <b> 3.1. </b> Blog 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.2-blog2/"
+  title="Blog 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.2-blog2/">
+     <b> 3.2. </b> Blog 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/3-blogstranslated/3.3-blog3/"
+  title="Blog 3"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/3-blogstranslated/3.3-blog3/">
+     <b> 3.3. </b> Blog 3 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/4-eventparticipated/"
+  title="Các events đã tham gia"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/">
+     <b> 4. </b> Các events đã tham gia 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.1-event1/"
+  title="Sự kiện 1"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.1-event1/">
+     <b> 4.1. </b> Sự kiện 1 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/4-eventparticipated/4.2-event2/"
+  title="Sự kiện 2"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/4-eventparticipated/4.2-event2/">
+     <b> 4.2. </b> Sự kiện 2 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/5-workshop/"
+  title="Workshop"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/">
+     <b> 5. </b> Workshop 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+          
+            
+<li
+  data-nav-id="/vi/5-workshop/5.1-objectives--scope/"
+  title="Objectives &amp; Scope"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.1-objectives--scope/">
+     <b> 5.1. </b> Objectives &amp; Scope 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.2-architecture-walkthrough/"
+  title="Architecture Walkthrough"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.2-architecture-walkthrough/">
+     <b> 5.2. </b> Architecture Walkthrough 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.3-implementing-clickstream-ingestion/"
+  title="Implementing Clickstream Ingestion"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.3-implementing-clickstream-ingestion/">
+     <b> 5.3. </b> Implementing Clickstream Ingestion 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.4-building-the-private-analytics-layer/"
+  title="Building the Private Analytics Layer"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.4-building-the-private-analytics-layer/">
+     <b> 5.4. </b> Building the Private Analytics Layer 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/"
+  title="Visualizing Analytics with Shiny Dashboards"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/">
+     <b> 5.5. </b> Visualizing Analytics with Shiny Dashboards 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/vi/5-workshop/5.6-summary--clean-up/"
+  title="Summary &amp; Clean up"
+  class="dd-item 
+        
+        active
+        
+        "
+>
+  <a href="../../../vi/5-workshop/5.6-summary--clean-up/">
+     <b> 5.6. </b> Summary &amp; Clean up 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+     
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/6-self-evaluation/"
+  title="Tự đánh giá"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/6-self-evaluation/">
+     <b> 6. </b> Tự đánh giá 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+           
+<li
+  data-nav-id="/vi/7-feedback/"
+  title="Chia sẻ, đóng góp ý kiến"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../../vi/7-feedback/">
+     <b> 7. </b> Chia sẻ, đóng góp ý kiến 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        More
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.6-summary--clean-up/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.6-summary--clean-up/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Clear History</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7920860&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" Alt="web counter" border="0" /></a> <br>
+    <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total CLoud Journey" Alt="web counter" border="0" />
+
+</left>
+<left>
+    <br>
+    <br>
+    <b>Last Updated</b><br>
+    <i>
+        <span id="lastUpdated" style="color:orange;"></span>
+    </i>
+
+    <script>
+        
+        const today = new Date();
+        
+        const formattedDate = today.toLocaleDateString('en-GB');
+        
+        document.getElementById('lastUpdated').textContent = formattedDate;
+    </script>
+</left>
+<left>
+    <br>
+    <br>
+    <b> Team </b> <br>
+
+    <i> <a href="https://www.facebook.com/groups/660548818043427" style="color:orange">First Cloud Journey </a> <br>
+
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Summary & Clean up
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tóm-tắt-những-điểm-chính-đã-học">Tóm tắt những điểm chính đã học</a></li>
+        <li><a href="#checklist-dọn-dẹp-clean-up-các-tài-nguyên-aws">Checklist dọn dẹp (Clean-up) các tài nguyên AWS</a></li>
+        <li><a href="#nên-giữ-lại-những-gì-cho-các-bước-kế-tiếp">Nên giữ lại những gì cho các bước kế tiếp?</a></li>
+        <li><a href="#lời-kết">Lời kết</a></li>
+        <li><a href="#hình-5-15-danh-sách-tài-nguyên-cần-rà-soát-sau-workshop">Hình 5-15: Danh sách tài nguyên cần rà soát sau workshop</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Summary &amp; Clean up
+            </h1>
+          
+
+        
+
+
+
+	<p>Phần cuối cùng này sẽ:</p>
+<ul>
+<li>Tóm tắt lại các khái niệm và thành phần chính mà bạn đã làm việc xuyên suốt workshop.</li>
+<li>Nhấn mạnh cách chúng kết hợp với nhau thành một <strong>Nền tảng phân tích Clickstream theo lô (Batch-based Clickstream Analytics Platform)</strong> hoàn chỉnh.</li>
+<li>Cung cấp một <strong>checklist dọn dẹp (clean-up)</strong> để bạn có thể dừng hoặc xoá các tài nguyên AWS và tránh chi phí không cần thiết sau khi kết thúc thực hành.</li>
+</ul>
+<hr>
+<h3 id="tóm-tắt-những-điểm-chính-đã-học">Tóm tắt những điểm chính đã học</h3>
+<p>Xuyên suốt các Mục <strong>5.1–5.5</strong>, bạn đã xây dựng và kiểm chứng một pipeline phân tích đầu–cuối cho một website thương mại điện tử bán các sản phẩm máy tính.</p>
+<h4 id="kiến-trúc-và-thiết-kế">Kiến trúc và thiết kế</h4>
+<p>Từ <strong>5.1 Objectives &amp; Scope</strong> và <strong>5.2 Architecture Walkthrough</strong>, bạn đã học cách:</p>
+<ul>
+<li>
+<p>Mô tả các khối chức năng cốt lõi của nền tảng:</p>
+<ul>
+<li>
+<p><strong>Frontend &amp; miền hướng tới người dùng (user-facing domain)</strong>:</p>
+<ul>
+<li>Ứng dụng Next.js trên <strong>AWS Amplify Hosting</strong>.</li>
+<li>Phân phối qua <strong>Amazon CloudFront</strong>.</li>
+<li>Xác thực người dùng bằng <strong>Amazon Cognito</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Miền ingest &amp; data lake</strong>:</p>
+<ul>
+<li><strong>Amazon API Gateway (HTTP API)</strong> làm endpoint ingest clickstream.</li>
+<li><strong>Lambda Ingest</strong> để validate và enrich event.</li>
+<li><strong>S3 Raw Clickstream bucket</strong> lưu trữ log JSON được phân vùng theo thời gian.</li>
+</ul>
+</li>
+<li>
+<p><strong>Miền Analytics &amp; Data Warehouse</strong>:</p>
+<ul>
+<li><strong>VPC</strong> với <strong>public OLTP subnet</strong> và <strong>các private subnet cho Analytics + ETL</strong>.</li>
+<li><strong>PostgreSQL Data Warehouse trên EC2</strong> trong Analytics private subnet.</li>
+<li><strong>R Shiny Server</strong> cùng EC2 đó để hiển thị dashboard phân tích.</li>
+<li><strong>Lambda ETL có gắn VPC</strong> trong ETL private subnet.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Giải thích vì sao nền tảng tách biệt:</p>
+<ul>
+<li>Workload <strong>OLTP (Operational)</strong> (đơn hàng, tồn kho, người dùng thời gian thực) và</li>
+<li>Workload <strong>Analytics (Read-heavy)</strong> (phân tích funnel, hiệu suất sản phẩm, chuỗi thời gian).</li>
+</ul>
+</li>
+</ul>
+<p>Việc tách biệt này cải thiện hiệu năng, độ ổn định và bảo mật cho hệ thống.</p>
+<h5 id="đường-ingest-frontend--api-gateway--s3">Đường ingest: Frontend → API Gateway → S3</h5>
+<p>Từ <strong>5.3 Implementing Clickstream Ingestion</strong>, bạn đã:</p>
+<ul>
+<li>
+<p>Triển khai và/hoặc hiểu một <strong>luồng tracking</strong> trong đó:</p>
+<ul>
+<li>Trình duyệt thu thập các event page view, product view, add-to-cart và checkout.</li>
+<li>Event được tuần tự hoá thành payload JSON chứa metadata về người dùng, session và sản phẩm.</li>
+<li>Frontend gọi <code>POST /clickstream</code> trên <strong>API Gateway</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Thấy được cách <strong>Lambda Ingest</strong>:</p>
+<ul>
+<li>
+<p>Parse các event nhận được.</p>
+</li>
+<li>
+<p>Thực thi validate tối thiểu và gắn thêm metadata phía server.</p>
+</li>
+<li>
+<p>Ghi các object JSON dạng batch vào <strong>S3 Raw Clickstream bucket</strong> sử dụng prefix phân vùng, ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events/YYYY/MM/DD/HH/events-&lt;uuid&gt;.json
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Thực hành <strong>kiểm thử thủ công</strong> bằng cả:</p>
+<ul>
+<li>Frontend thật (thông qua Developer Tools của trình duyệt), và</li>
+<li>Các API client như Postman hoặc Thunder Client.</li>
+</ul>
+</li>
+</ul>
+<h4 id="lớp-phân-tích-riêng-tư-gateway-endpoint-lambda-etl-data-warehouse">Lớp phân tích riêng tư: Gateway Endpoint, Lambda ETL, Data Warehouse</h4>
+<p>Từ <strong>5.4 Building the Private Analytics Layer</strong>, bạn đã:</p>
+<ul>
+<li>
+<p>Cấu hình <strong>S3 Gateway VPC Endpoint</strong>, đảm bảo rằng:</p>
+<ul>
+<li>Các private subnet <strong>không</strong> cần public IP hoặc NAT Gateway để truy cập S3.</li>
+<li>Traffic giữa Lambda ETL và S3 luôn chạy trên <strong>mạng riêng nội bộ của AWS</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Gắn <strong>Lambda ETL</strong> vào VPC bằng cách:</p>
+<ul>
+<li>Chọn ETL private subnet và security group phù hợp.</li>
+<li>Cấp cho IAM execution role của Lambda các quyền tối thiểu để đọc từ Raw bucket và ghi log vào CloudWatch.</li>
+</ul>
+</li>
+<li>
+<p>Cài đặt logic ETL để:</p>
+<ul>
+<li>Liệt kê các object S3 trong một khoảng thời gian nhất định.</li>
+<li>Parse các event clickstream JSON thô.</li>
+<li>Transform chúng thành các cấu trúc quan hệ (ví dụ: <code>fact_events</code>, <code>dim_products</code>).</li>
+<li>Nạp dữ liệu vào <strong>PostgreSQL Data Warehouse</strong> trên EC2 trong Analytics private subnet.</li>
+</ul>
+</li>
+<li>
+<p>Kiểm chứng kết nối và bảo mật thông qua:</p>
+<ul>
+<li>Security group chỉ cho phép <strong>Lambda ETL</strong> kết nối tới Data Warehouse trên port <code>5432</code>.</li>
+<li>Route table trong private subnet chỉ chứa các route <code>local</code> + prefix-list tới S3, <strong>không có 0.0.0.0/0</strong>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="phân-tích-và-trực-quan-hoá-với-shiny">Phân tích và trực quan hoá với Shiny</h4>
+<p>Từ <strong>5.5 Visualizing Analytics with Shiny Dashboards</strong>, bạn đã:</p>
+<ul>
+<li>
+<p>Trigger job ETL (qua EventBridge hoặc thủ công) và kiểm tra <strong>tính mới</strong> của dữ liệu bằng các truy vấn SQL:</p>
+<ul>
+<li>Đếm tổng số event.</li>
+<li>Phân bố event theo loại.</li>
+<li>Top sản phẩm được xem nhiều nhất.</li>
+<li>Các chỉ số funnel đơn giản.</li>
+</ul>
+</li>
+<li>
+<p>Truy cập <strong>R Shiny dashboards</strong> chạy trên EC2 private cùng với Data Warehouse bằng cách forward port an toàn:</p>
+<ul>
+<li>SSH tunnel, hoặc</li>
+<li>AWS Systems Manager Session Manager.</li>
+</ul>
+</li>
+<li>
+<p>Khám phá các dashboard mô tả:</p>
+<ul>
+<li><strong>Phễu và hành trình người dùng</strong> (page view → product view → add-to-cart → checkout → purchase).</li>
+<li><strong>Hiệu suất sản phẩm</strong> (top sản phẩm theo lượt xem và đơn hàng).</li>
+<li><strong>Xu hướng theo thời gian</strong> (số event theo giờ/ngày).</li>
+</ul>
+</li>
+<li>
+<p>Kết nối các biểu đồ trong Shiny với các <strong>truy vấn SQL và bảng trong Data Warehouse</strong>, xác nhận rằng:</p>
+<ul>
+<li>Dashboard nhất quán với dữ liệu.</li>
+<li>Bạn có thể kiểm tra lại các chỉ số quan trọng bằng SQL khi cần.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="checklist-dọn-dẹp-clean-up-các-tài-nguyên-aws">Checklist dọn dẹp (Clean-up) các tài nguyên AWS</h3>
+<p>Sau khi hoàn thành workshop, nên <strong>dọn dẹp tài nguyên</strong> để tránh chi phí phát sinh. Cách xử lý cụ thể tuỳ thuộc vào việc môi trường này là:</p>
+<ul>
+<li>Một môi trường lab/demo ngắn hạn, hay</li>
+<li>Một môi trường phát triển/staging cần giữ lại lâu dài.</li>
+</ul>
+<blockquote>
+<p><strong>Quan trọng:</strong> Trước khi xoá bất kỳ thứ gì, hãy đảm bảo rằng <strong>không có ai khác</strong> đang sử dụng cùng AWS account hoặc các tài nguyên chung.</p></blockquote>
+<h4 id="ec2-instances">EC2 instances</h4>
+<ol>
+<li>
+<p><strong>EC2 OLTP (Public Subnet)</strong></p>
+<ul>
+<li>Nếu không còn cần cơ sở dữ liệu vận hành:
+<ul>
+<li>Dừng instance để ngưng chi phí compute, hoặc</li>
+<li>Terminate để xoá vĩnh viễn.</li>
+</ul>
+</li>
+<li>Trước khi terminate, cân nhắc:
+<ul>
+<li>Chụp snapshot volume hoặc backup cuối.</li>
+<li>Dùng <code>pg_dump</code> hoặc công cụ tương tự để xuất dữ liệu quan trọng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>EC2 Data Warehouse + Shiny (Private Subnet)</strong></p>
+<ul>
+<li>Nếu chỉ dùng cho workshop:
+<ul>
+<li>Dừng hoặc terminate sau khi đã export kết quả phân tích hoặc schema cần giữ.</li>
+</ul>
+</li>
+<li>Nếu dự định mở rộng lớp analytics sau này:
+<ul>
+<li>Có thể giữ instance nhưng cần:
+<ul>
+<li>Gỡ bỏ các service không dùng (các app Shiny thử nghiệm).</li>
+<li>Đảm bảo security group vẫn chặt chẽ (không inbound rộng).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="lambda-functions-và-eventbridge-rules">Lambda functions và EventBridge rules</h4>
+<ol>
+<li>
+<p><strong>Lambda Ingest</strong></p>
+<ul>
+<li>Nếu bạn không còn gửi clickstream event:
+<ul>
+<li>Có thể xoá function để giao diện console gọn gàng hơn.</li>
+</ul>
+</li>
+<li>Nếu vẫn muốn dùng để thử nghiệm tiếp:
+<ul>
+<li>Giữ lại, nhưng cân nhắc tạm thời tắt frontend hoặc sửa cấu hình.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Lambda ETL</strong></p>
+<ul>
+<li>Nếu EC2 Data Warehouse đã dừng hoặc xoá:
+<ul>
+<li>Disable hoặc xoá Lambda ETL (và EventBridge rule đi kèm) để tránh các lần invoke thất bại.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>EventBridge ETL schedule</strong></p>
+<ul>
+<li>Vào <strong>Amazon EventBridge → Rules</strong>.</li>
+<li>Disable hoặc xoá rule (ví dụ <code>clickstream-etl-schedule</code>) để nó không kích hoạt ETL nữa.</li>
+</ul>
+</li>
+</ol>
+<h4 id="s3-buckets-và-dữ-liệu">S3 buckets và dữ liệu</h4>
+<ol>
+<li>
+<p><strong>Raw Clickstream S3 bucket</strong></p>
+<ul>
+<li>
+<p>Quyết định có giữ lại dữ liệu raw hay không:</p>
+<ul>
+<li>Với <strong>lab ngắn hạn</strong>, bạn có thể xoá các prefix <code>events/YYYY/MM/DD/HH/</code> được tạo trong lúc test.</li>
+<li>Với <strong>dự án dài hạn</strong>, giữ lại bucket nhưng:
+<ul>
+<li>Cân nhắc bật <strong>S3 lifecycle policy</strong> để:
+<ul>
+<li>Chuyển dữ liệu cũ sang storage class rẻ hơn, hoặc</li>
+<li>Xoá sau N ngày.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Các bucket khác cho project</strong></p>
+<ul>
+<li>Nếu có các bucket chỉ phục vụ workshop (log, artifact, screenshots…), hãy rà soát và xoá nếu không cần nữa.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Lưu ý:</strong> Chi phí S3 có thể tăng dần theo thời gian; nên định kỳ kiểm tra nội dung bucket và rule lifecycle.</p></blockquote>
+<h4 id="vpc-endpoint-và-thành-phần-mạng">VPC Endpoint và thành phần mạng</h4>
+<ol>
+<li>
+<p><strong>S3 Gateway VPC Endpoint</strong></p>
+<ul>
+<li>Nếu VPC không còn dùng cho analytics:
+<ul>
+<li>Có thể xoá <strong>Gateway Endpoint</strong>.</li>
+</ul>
+</li>
+<li>Nếu VPC vẫn dùng chung cho các workload khác:
+<ul>
+<li>Có thể giữ lại để dùng tiếp.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Route table, subnet, VPC</strong></p>
+<ul>
+<li>Với VPC dành riêng cho lab:
+<ul>
+<li>Có thể xoá toàn bộ VPC (xoá luôn subnet, route table, endpoint đi kèm) <strong>sau khi</strong> chắc chắn không còn EC2, RDS hay tài nguyên quan trọng nào phụ thuộc.</li>
+</ul>
+</li>
+<li>Với VPC dùng chung:
+<ul>
+<li>Chỉ xoá các subnet/route table tạo riêng cho workshop, tránh ảnh hưởng môi trường khác.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="cloudwatch-logs-và-monitoring">CloudWatch Logs và monitoring</h4>
+<ol>
+<li>
+<p><strong>CloudWatch Logs cho Lambda và API Gateway</strong></p>
+<ul>
+<li>Log group có thể lớn dần theo thời gian.</li>
+<li>Đặt <strong>retention policy</strong> phù hợp (7, 30, 90 ngày) cho:
+<ul>
+<li>Lambda Ingest.</li>
+<li>Lambda ETL.</li>
+<li>API Gateway access log.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CloudWatch Alarms và metric</strong></p>
+<ul>
+<li>Nếu bạn tạo các alarm riêng cho môi trường này (ví dụ: alarm lỗi ingest hoặc ETL):
+<ul>
+<li>Disable hoặc xoá khi decommission môi trường.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Hình 5-14: CloudWatch alarms cho nền tảng clickstream</strong></p>
+<p>Ảnh chụp màn hình hiển thị một tập các CloudWatch alarms cho đường ingest và Data Warehouse, bao gồm:</p>
+<ul>
+<li>Alarm latency và tỉ lệ 4xx/5xx của API.</li>
+<li>Alarm duration và throttling cho Lambda Ingest.</li>
+<li>Alarm status check và CPU utilization cho EC2 Data Warehouse.</li>
+</ul>
+<p>Phần lớn alarm ở trạng thái <code>OK</code> hoặc <code>Insufficient data</code>, cho thấy hệ thống đang “khỏe mạnh” và có thể được tắt/xoá an toàn sau workshop.</p>
+<p><img src="../../../images/5-Workshop/5.6-Summary-&amp;-Clean-up/5-6-cloudwatch-alarms.png" alt="Hình 5-14: CloudWatch alarms cho nền tảng clickstream"></p>
+<h4 id="iam-roles-và-policies">IAM roles và policies</h4>
+<ol>
+<li>
+<p><strong>Lambda execution roles</strong></p>
+<ul>
+<li>
+<p>Rà soát các IAM role tạo cho:</p>
+<ul>
+<li>Lambda Ingest.</li>
+<li>Lambda ETL.</li>
+</ul>
+</li>
+<li>
+<p>Nếu không còn cần:</p>
+<ul>
+<li>Gỡ các policy đính kèm.</li>
+<li>Xoá role để tránh tích luỹ các IAM identity không dùng đến.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>User/role test</strong></p>
+<ul>
+<li>Nếu bạn tạo IAM user hoặc role chỉ để test trong workshop:
+<ul>
+<li>Xoá hoặc siết chặt permission.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="amplify-cognito-và-api-gateway">Amplify, Cognito và API Gateway</h4>
+<ol>
+<li>
+<p><strong>Amplify app</strong></p>
+<ul>
+<li>Nếu frontend Next.js chỉ dùng cho workshop:
+<ul>
+<li>Xoá <strong>Amplify app</strong> và các branch/environment tương ứng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cognito User Pool</strong></p>
+<ul>
+<li>Xoá các user test hoặc xoá toàn bộ User Pool nếu nó chỉ phục vụ workshop.</li>
+</ul>
+</li>
+<li>
+<p><strong>API Gateway HTTP API</strong></p>
+<ul>
+<li>Xoá API ingest clickstream nếu không còn dùng, nhất là khi nó được tạo riêng cho lab.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="nên-giữ-lại-những-gì-cho-các-bước-kế-tiếp">Nên giữ lại những gì cho các bước kế tiếp?</h3>
+<p>Nếu bạn dự định <strong>mở rộng</strong> project sau workshop, hãy cân nhắc giữ lại:</p>
+<ul>
+<li>
+<p><strong>Code repository</strong>:</p>
+<ul>
+<li>Frontend Next.js (bao gồm tracking logic).</li>
+<li>Lambda Ingest và Lambda ETL.</li>
+<li>Mã Shiny app.</li>
+<li>File hạ tầng như Terraform/CloudFormation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Schema Data Warehouse và một tập dữ liệu mẫu nhỏ</strong>:</p>
+<ul>
+<li>Một EC2 instance nhỏ với database chứa vài nghìn event là đủ để tiếp tục phát triển dashboard và truy vấn mà không cần ingest volume lớn.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sơ đồ kiến trúc và ghi chú</strong>:</p>
+<ul>
+<li>Các sơ đồ dùng trong Hình 5-1 đến 5-6 (và các hình ở phần 5.3–5.5).</li>
+<li>Lý do thiết kế (ví dụ: dùng Gateway Endpoint thay vì NAT Gateway).</li>
+</ul>
+</li>
+</ul>
+<p>Những tài sản này sẽ giúp bạn tiếp tục project hoặc chuyển đổi nó thành giải pháp nâng cao hơn (ví dụ: chuyển sang <strong>Amazon Redshift Serverless</strong> hoặc thêm <strong>Streaming real-time</strong>).</p>
+<hr>
+<h3 id="lời-kết">Lời kết</h3>
+<p>Workshop này đã minh hoạ cách:</p>
+<ul>
+<li>Thiết kế và triển khai một kiến trúc phân tích <strong>an toàn, tiết kiệm chi phí và dễ mở rộng</strong> trên AWS.</li>
+<li>Thu thập event clickstream từ một frontend thương mại điện tử thực tế.</li>
+<li>Xây dựng một quy trình ETL riêng tư đọc từ S3 và nạp dữ liệu vào một Data Warehouse riêng.</li>
+<li>Trực quan hoá hành vi người dùng và hiệu suất sản phẩm bằng R Shiny, <strong>mà không cần phơi bày backend analytics ra Internet công cộng</strong>.</li>
+</ul>
+<p>Giờ đây bạn đã có một “bản mẫu” (reference) cho việc xây dựng các nền tảng phân tích tương tự, cùng một nền tảng kiến thức vững chắc để thực hiện các nâng cấp trong tương lai như:</p>
+<ul>
+<li>Streaming real-time (Kinesis / Kafka).</li>
+<li>Mô hình phân bổ (attribution) nâng cao và phân đoạn người dùng.</li>
+<li>Di chuyển Data Warehouse sang các dịch vụ quản lý như Amazon Redshift.</li>
+</ul>
+<hr>
+<h3 id="hình-5-15-danh-sách-tài-nguyên-cần-rà-soát-sau-workshop">Hình 5-15: Danh sách tài nguyên cần rà soát sau workshop</h3>
+<p>Sơ đồ hoặc bảng trong hình này nên liệt kê, với mỗi dịch vụ AWS:</p>
+<ul>
+<li>Loại tài nguyên (EC2, S3, Lambda, EventBridge, API Gateway, VPC Endpoint, …).</li>
+<li>Ví dụ tên tài nguyên cụ thể.</li>
+<li>Hành động khuyến nghị sau workshop (Keep / Stop / Delete / Set retention).</li>
+</ul>
+<p><img src="../../../images/5-Workshop/5.6-Summary-&amp;-Clean-up/5-7-cleanup.png" alt="Hình 5-15: Các tài nguyên chính cần kiểm tra và dọn dẹp sau workshop"></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/" title="Visualizing Analytics with Shiny Dashboards"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../../../vi/6-self-evaluation/" title="Tự đánh giá" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../../js/clipboard.min.js?1765225037"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765225037"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
+    <script src="../../../js/jquery.sticky.js?1765225037"></script>
+    <script src="../../../js/featherlight.min.js?1765225037"></script>
+    <script src="../../../js/highlight.pack.js?1765225037"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765225037"></script>
+    <script src="../../../js/learn.js?1765225037"></script>
+    <script src="../../../js/hugo-learn.js?1765225037"></script>
+
+    <link href="../../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765225037"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    ((i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date()));
+    ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "https://www.google-analytics.com/analytics.js",
+    "ga",
+  );
+
+  ga("create", "UA-158079754-2", "auto");
+  ga("send", "pageview");
+</script>
+
+  </body>
+</html>
+

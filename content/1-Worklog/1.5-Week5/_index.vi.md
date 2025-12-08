@@ -1,59 +1,31 @@
 ---
 title: "Worklog Tuần 5"
-date: 2025-01-01
-weight: 1
+date: 2025-10-11
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
+---
 ### Mục tiêu tuần 5:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Học về AWS CloudWatch để giám sát và quản lý các dịch vụ AWS.
+* Tìm hiểu về AWS CloudTrail và AWS Config để theo dõi và quản lý thay đổi trong môi trường AWS.
+* Thực hành cấu hình và giám sát tài nguyên trên AWS.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 06/10/2025   | 06/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 07/10/2025   | 07/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 08/10/2025   | 08/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 09/10/2025  | 09/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 10/10/2025   | 10/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc                                                                                                                                                 | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                          |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------------- |
+| 2   | - Học về AWS CloudWatch <br>&emsp; + Cấu hình và giám sát tài nguyên AWS với CloudWatch <br>&emsp; + Tạo cảnh báo (Alarms) và biểu đồ (Dashboards)       | 06/10/2025   | 06/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 3   | - Học về AWS CloudTrail <br>&emsp; + Giám sát hành động và sự kiện của người dùng trên AWS <br>&emsp; + Phân tích log sự kiện CloudTrail                 | 07/10/2025   | 07/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 4   | - Học về AWS Config <br>&emsp; + Theo dõi thay đổi cấu hình và lịch sử tài nguyên AWS                                                                    | 08/10/2025   | 08/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 5   | - Thực hành cấu hình và giám sát với CloudWatch <br>&emsp; + Tạo CloudWatch Alarm <br>&emsp; + Giám sát EC2 và các tài nguyên khác qua metric & log      | 09/10/2025   | 09/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 6   | - Thực hành với CloudTrail và AWS Config <br>&emsp; + Phân tích sự kiện CloudTrail <br>&emsp; + Quản lý thay đổi cấu hình với AWS Config                | 10/10/2025   | 10/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
 
 ### Kết quả đạt được tuần 5:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Đã cấu hình và giám sát các tài nguyên AWS sử dụng **AWS CloudWatch** (EC2, RDS, …).
+* Tạo được **các cảnh báo (alarms) và biểu đồ (dashboards)** để theo dõi hiệu suất và trạng thái hệ thống.
+* Hiểu cách sử dụng **AWS CloudTrail** để theo dõi các sự kiện và hành động của người dùng trong tài khoản AWS.
+* Sử dụng **AWS Config** để theo dõi và quản lý các thay đổi cấu hình tài nguyên AWS theo thời gian.
+* Củng cố kiến thức về **giám sát, logging và audit** trong môi trường AWS, phục vụ cho việc vận hành hệ thống an toàn và ổn định.

@@ -36,6 +36,6 @@ pre: " <b> 1.1. </b> "
   * AWS global infrastructure  
   * Managing account and cost budgets  
   * Introduction to EC2 and creating an instance  
-* Started to understand how to **create, launch, and connect to an EC2 instance**, although still at a basic level.  
+* Started to understand how to **create, launch, and connect to an EC2 instance**.  
 * Learned how to **set up a budget** with AWS Budgets to monitor usage costs.  
 * Completed **basic security configurations** (setting up MFA, IAM admin users).

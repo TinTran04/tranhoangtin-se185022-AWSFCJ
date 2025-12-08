@@ -41,6 +41,6 @@ pre: " <b> 1.1. </b> "
   * Hạ tầng toàn cầu của AWS
   * Quản lý tài khoản và ngân sách chi phí
   * Giới thiệu về EC2 và cách tạo instance
-* Bắt đầu hiểu cách **tạo, khởi chạy và kết nối tới EC2 instance**, dù mới ở mức cơ bản.
+* Bắt đầu hiểu cách **tạo, khởi chạy và kết nối tới EC2 instance**.
 * Biết cách **thiết lập ngân sách** bằng AWS Budgets để theo dõi chi phí sử dụng.  
 * Hoàn thành các bước **cấu hình bảo mật cơ bản** (thiết lập MFA, người dùng quản trị IAM).

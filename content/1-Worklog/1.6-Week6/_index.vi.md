@@ -1,58 +1,30 @@
 ---
 title: "Worklog Tuần 6"
-date: 2025-01-01
-weight: 1
+date: 2025-10-18
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
+---
 ### Mục tiêu tuần 6:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tìm hiểu về **AWS Auto Scaling** và **Elastic Load Balancing (ELB)** để đảm bảo ứng dụng có thể mở rộng và phân phối tải hiệu quả.
+* Học về **AWS Elastic Container Service (ECS)** và **AWS Fargate**.
+* Thực hành triển khai ứng dụng container trên ECS và sử dụng Auto Scaling để tự động điều chỉnh tài nguyên.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 13/10/2025   | 13/10/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 14/10/2025   | 14/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 15/10/2025   | 15/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 16/10/2025   | 16/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 17/10/2025   | 17/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc                                                                                                                                                                              | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                                          |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------------- |
+| 2   | - Học về **AWS Auto Scaling** <br>&emsp; + Cấu hình Auto Scaling cho EC2 <br>&emsp; + Thiết lập chính sách mở rộng (scale-out) và thu hẹp (scale-in)                                  | 12/10/2025   | 12/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 3   | - Học về **Elastic Load Balancer (ELB)** <br>&emsp; + Cấu hình và sử dụng ELB để phân phối tải giữa các EC2 instance / service                                                        | 13/10/2025   | 13/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 4   | - Học về **AWS ECS và AWS Fargate** <br>&emsp; + Giới thiệu kiến trúc ECS, Task, Service <br>&emsp; + Giới thiệu Fargate và mô hình chạy container không quản lý server              | 14/10/2025   | 14/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 5   | - Thực hành triển khai ứng dụng trên **ECS & Fargate** <br>&emsp; + Triển khai ứng dụng container đơn giản trên ECS <br>&emsp; + Sử dụng Fargate để chạy container                    | 15/10/2025   | 15/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
+| 6   | - Thực hành với **Auto Scaling** và **ELB** cho ứng dụng trên ECS <br>&emsp; + Cấu hình Auto Scaling cho ECS Service <br>&emsp; + Tích hợp với ELB để phân phối tải                   | 16/10/2025   | 16/10/2025      | **[Tài liệu học tập](https://cloudjourney.awsstudygroup.com/)** |
 
 ### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Đã cấu hình **AWS Auto Scaling** và **Elastic Load Balancing** cho ứng dụng chạy trên EC2 / ECS.
+* Làm quen với **AWS ECS** và **AWS Fargate**, hiểu cách tổ chức **Cluster – Task – Service**.
+* Thực hành **triển khai ứng dụng container trên ECS**, sử dụng Fargate để chạy container mà không cần quản lý máy chủ.
+* Hiểu cách kết hợp **ELB + Auto Scaling + ECS** để xây dựng hệ thống có khả năng tự động mở rộng, phân phối tải và vận hành ổn định.

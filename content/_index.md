@@ -15,7 +15,7 @@ chapter: false
 
 &emsp; **Email:** tinthse185022@fpt.edu.vn
 
-&emsp; **University:** Ho Chi Minh City University of Technology and Education
+&emsp; **University:** FPT University Ho Chi Minh
 
 &emsp; **Major:** Information Technology
 
