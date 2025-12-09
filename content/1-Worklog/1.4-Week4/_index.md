@@ -17,11 +17,11 @@ pre: " <b> 1.4. </b> "
 
 | Day | Task                                                                                                                    | Start Date  | End Date    | References                                                              |
 | --- | ----------------------------------------------------------------------------------------------------------------------- | ----------- | ----------- | ------------------------------------------------------------------------|
-| 2   | - Learn about AWS RDS <br>&emsp; + Create an RDS instance <br>&emsp; + Backup and maintenance for RDS                  | 29/09/2025  | 29/09/2025  | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)**       |
-| 3   | - Learn about Amazon DynamoDB <br>&emsp; + Introduction to DynamoDB <br>&emsp; + Working with tables and data          | 30/09/2025  | 30/09/2025  | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)**       |
-| 4   | - Study backup and restore mechanisms in RDS                                                                            | 01/10/2025  | 01/10/2025  | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)**       |
-| 5   | - Learn about database performance optimization on AWS (RDS & DynamoDB)                                                | 02/10/2025  | 02/10/2025  | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)**       |
-| 6   | - Practice labs for RDS and DynamoDB <br>&emsp; + Create / update / delete databases, tables, and data <br>&emsp; + Test backup & restore | 03/10/2025  | 03/10/2025  | **[Learning Materials](https://cloudjourney.awsstudygroup.com/)**       |
+| 2   | - Learn about AWS RDS <br>&emsp; + Create an RDS instance <br>&emsp; + Backup and maintenance for RDS                  | 29/09/2025  | 29/09/2025  | **[Study materials](https://cloudjourney.awsstudygroup.com/)**       |
+| 3   | - Learn about Amazon DynamoDB <br>&emsp; + Introduction to DynamoDB <br>&emsp; + Working with tables and data          | 30/09/2025  | 30/09/2025  | **[Study materials](https://cloudjourney.awsstudygroup.com/)**       |
+| 4   | - Study backup and restore mechanisms in RDS                                                                            | 01/10/2025  | 01/10/2025  | **[Study materials](https://cloudjourney.awsstudygroup.com/)**       |
+| 5   | - Learn about database performance optimization on AWS (RDS & DynamoDB)                                                | 02/10/2025  | 02/10/2025  | **[Study materials](https://cloudjourney.awsstudygroup.com/)**       |
+| 6   | - Practice labs for RDS and DynamoDB <br>&emsp; + Create / update / delete databases, tables, and data <br>&emsp; + Test backup & restore | 03/10/2025  | 03/10/2025  | **[Study materials](https://cloudjourney.awsstudygroup.com/)**       |
 
 ### Week 4 Outcomes
 
