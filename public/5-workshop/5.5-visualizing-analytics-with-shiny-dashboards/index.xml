@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visualizing Analytics with Shiny Dashboards on Internship Report</title>
-    <link>https://tintran04.github.io/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/</link>
+    <link>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/</link>
     <description>Recent content in Visualizing Analytics with Shiny Dashboards on Internship Report</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="https://tintran04.github.io/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

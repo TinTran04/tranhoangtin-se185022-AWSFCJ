@@ -1,6 +1,6 @@
 baseURL = 'https://tintran04.github.io/tranhoangtin-se185022-AWSFCJ/'
 relativeURLs = false
-canonifyURLs = false
+canonifyURLs = true
 publishDir = "public"
 
 # Change the default theme to be use when building the site with Hugo
