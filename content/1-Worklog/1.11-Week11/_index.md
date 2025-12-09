@@ -1,57 +1,47 @@
 ---
-title: "Week 11 Worklog"
+title: "Worklog Week 11"
 date: 2025-01-01
 weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 11 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Deploy the e-commerce web application to **AWS Amplify** in the real AWS environment.
+* Integrate **Amazon Cognito** into the web app to manage logins/users.
+* Set up **S3** for image storage and configure the web app to use images from S3.
+* Migrate data from **Supabase** to **EC2** and use EC2 as the main data source.
+* Complete the creation and configuration of the core **AWS cloud services** according to the planned architecture.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+
+| Day | Tasks                                                                                                                                                                                                                                           | Start date  | Completion date | References |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | ---------------- | ---------- |
+| 2   | - Online meeting: deploy the web application to **AWS Amplify** in the real AWS environment <br> - Integrate **Cognito** into the web app  <br> - Start creating the required **AWS Cloud services** according to the architecture (Amplify app, Cognito user pool, S3 bucket, EC2, …) | 01/12/2025  | 03/12/2025       |            |
+| 3   | - Complete **Cognito** integration into the web app and verify that login works <br> - Successfully deploy the web app to **Amplify** (stable build & hosting) <br> - Create an S3 bucket, upload product images, and configure the web app to load images directly from **S3**        | 03/12/2025  | 04/12/2025       |            |
+| 4   | - Migrate data from **Supabase** to the database on **EC2** (import/export, migrate schema & data) <br> - Reconfigure the web application to use **EC2** as the main data source instead of Supabase <br> - Quickly test core features after switching the data source                 | 04/12/2025  | 04/12/2025       |            |
 
 
 ### Week 11 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **E-commerce web application**:
+  * Successfully deployed to **AWS Amplify** in the real AWS environment.
+  * Build & hosting are stable; the app can be accessed and tested directly on Amplify.
 
-* Successfully created and configured an AWS Free Tier account.
+* **Cognito**:
+  * Integrated into the web app to support user login/management in line with the AWS architecture.
+  * The basic login flow works and is ready for future enhancements (authorization, security, …).
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **S3 & media**:
+  * Created an S3 bucket and uploaded product images to S3.
+  * Reconfigured the web app to **use images from S3**, separating media from the source code.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+* **Data layer (Supabase → EC2)**:
+  * Data has been **migrated from Supabase to EC2**.
+  * The web application has been reconfigured to use the EC2-hosted database as the main data source.
+  * Quick checks of core features after switching data show that the system still operates correctly.
 
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* **Core AWS cloud services**:
+  * Completed the initial creation and configuration of key services: Amplify, Cognito, S3, EC2, … according to the architectural direction.
+  * Established a solid foundation so that the following weeks can focus on **clickstream, ETL, and analytics**.

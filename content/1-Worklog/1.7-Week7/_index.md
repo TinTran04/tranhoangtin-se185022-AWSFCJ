@@ -1,57 +1,36 @@
 ---
-title: "Week 7 Worklog"
+title: "Worklog Week 7"
 date: 2025-01-01
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 7 Objectives
 
-### Week 7 Objectives:
+* Understand the **overall scope of the Batch-based Clickstream Analytics & Sessionization project**.
+* Identify the **project objectives, problem statement, and approach**.
+* Explore **AWS services** suitable for the clickstream analytics architecture.
+* Draft the **system architecture** and perform a rough **cost estimation**.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks for this week
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task                                                                                                                                                                                                                                                                                                                         | Start Date | End Date   | References |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ---------- |
+| Mon | - Online kick-off meeting with FCJ team members. <br> - Present an overview of the project: sessionization & clickstream for an e-commerce website. <br> - Align on scope, objectives and final deliverables (web application + analytics pipeline).                                                                         | 20/10/2025 | 20/10/2025 |            |
+| Tue | - Study the theory of **clickstream** and **sessionization**: concepts, importance and common metrics. <br> - Review several reference architectures for clickstream analytics on AWS. <br> - Note down functional and non-functional requirements related to data, security and performance.                                 | 21/10/2025 | 21/10/2025 |            |
+| Wed | - Online team discussion to list **AWS services** that can be used in the project: Amplify, CloudFront, S3, API Gateway, Lambda, EventBridge, EC2, RDS/EC2 DW, Cognito, IAM, CloudWatch, SNS, … <br> - Analyze the role of each service in the architecture (frontend, ingest, storage, ETL, analytics, monitoring).          | 22/10/2025 | 22/10/2025 |            |
+| Thu | - Start **designing the overall architecture**: <br>&emsp; + Draw the main data flows through the system. <br> - Conduct an online review meeting to get initial feedback on the architecture from all team members.                                                                  | 23/10/2025 | 23/10/2025 |            |
+| Fri | - Finalize **Architecture Diagram – Version 1** for the project based on team feedback.                                                                                                                                                                                                                                      | 24/10/2025 | 24/10/2025 |            |
 
+### Outcomes of Week 7
 
-### Week 7 Achievements:
+* The whole team has a **clear understanding of the project**:  
+  * The problem of collecting and analyzing clickstream data for an e-commerce website selling laptops & electronic devices.  
+  * The need for **sessionization** to group user behaviors into meaningful sessions.
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Clearly defined **objectives and problems to solve**:
+  * Build a batch-based clickstream pipeline from frontend → storage → ETL → analytics.  
+  * Leverage managed AWS services to reduce operational overhead and improve scalability.
 
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed **Architecture Diagram – Version 1** for the entire system and reached consensus within the team through multiple online discussions.

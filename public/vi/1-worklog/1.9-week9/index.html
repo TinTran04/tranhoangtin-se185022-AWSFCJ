@@ -15,21 +15,21 @@
     <title>Worklog Tuần 9 :: Báo cáo thực tập</title>
 
     
-    <link href="../../../css/nucleus.css?1765266249" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1765266249" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1765266249" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1765266249" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1765266249" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1765266249" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1765266249" rel="stylesheet">
-    <link href="../../../css/theme.css?1765266249" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1765266249" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1765297075" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765297075" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765297075" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765297075" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765297075" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765297075" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765297075" rel="stylesheet">
+    <link href="../../../css/theme.css?1765297075" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765297075" rel="stylesheet">
     
-    <link href="../../../css/theme-workshop.css?1765266249" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1765297075" rel="stylesheet">
     
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1765266249"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1765297075"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1765266249"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1765266249"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1765297075"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765297075"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1765266249"></script>
+<script type="text/javascript" src="../../../js/search.js?1765297075"></script>
  
   </div>
 
@@ -849,19 +849,13 @@
 
 
 
-	
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
-
-</div>
-
-<h3 id="mục-tiêu-tuần-9">Mục tiêu tuần 9:</h3>
+	<h3 id="mục-tiêu-tuần-9">Mục tiêu tuần 9:</h3>
 <ul>
-<li>Kết nối, làm quen với các thành viên trong First Cloud Journey.</li>
-<li>Hiểu dịch vụ AWS cơ bản, cách dùng console &amp; CLI.</li>
+<li>Rà soát lại hướng triển khai <strong>CloudFront, Amplify</strong> và thống nhất cách sử dụng <strong>LocalStack</strong>.</li>
+<li>Điều chỉnh <strong>kiến trúc hệ thống</strong> cho phù hợp với thiết kế mới (Amplify, Supabase/PostgreSQL, LocalStack,…).</li>
+<li>Tiếp tục hoàn thiện <strong>giao diện web (UI)</strong> và xử lý các lỗi còn tồn tại.</li>
+<li>Bắt đầu làm quen với <strong>Docker</strong> để đóng gói môi trường phát triển.</li>
+<li>Chuẩn bị <strong>template báo cáo (docx)</strong> và định hình cách đưa nội dung lên Hugo.</li>
 </ul>
 <h3 id="các-công-việc-cần-triển-khai-trong-tuần-này">Các công việc cần triển khai trong tuần này:</h3>
 <table>
@@ -877,84 +871,71 @@
   <tbody>
       <tr>
           <td>2</td>
-          <td>- Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập</td>
-          <td>11/08/2025</td>
-          <td>11/08/2025</td>
+          <td>- Cá nhân: sửa lại <strong>UI web</strong> theo feedback của team (layout, màu sắc, lỗi hiển thị) <br> - Tiếp tục tìm hiểu về <strong>S3, Cognito, CloudFront, Amplify, LocalStack</strong> để nắm rõ hơn vai trò của từng dịch vụ trong kiến trúc <br> - Kiểm tra lại web sau khi sửa UI để đảm bảo không phát sinh lỗi mới</td>
+          <td>03/11/2025</td>
+          <td>06/11/2025</td>
           <td></td>
       </tr>
       <tr>
           <td>3</td>
-          <td>- Tìm hiểu AWS và các loại dịch vụ <br>  + Compute <br>  + Storage <br>  + Networking <br>  + Database <br>  + &hellip; <br></td>
-          <td>12/08/2025</td>
-          <td>12/08/2025</td>
-          <td><a href="https://cloudjourney.awsstudygroup.com/">https://cloudjourney.awsstudygroup.com/</a></td>
+          <td>- Họp nhóm: xem lại phương án dùng <strong>CloudFront &amp; Amplify</strong> trong kiến trúc <br> - Thống nhất sử dụng <strong>LocalStack bản Base</strong> để mô phỏng nhiều dịch vụ (đặc biệt là Cognito) <br> - Chỉnh lại luồng kiến trúc tương ứng với việc dùng <strong>Supabase/PostgreSQL</strong> làm database cho web</td>
+          <td>09/11/2025</td>
+          <td>10/11/2025</td>
+          <td></td>
       </tr>
       <tr>
           <td>4</td>
-          <td>- Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console &amp; AWS CLI <br> - <strong>Thực hành:</strong> <br>  + Tạo AWS account <br>  + Cài AWS CLI &amp; cấu hình <br>   + Cách sử dụng AWS CLI</td>
-          <td>13/08/2025</td>
-          <td>13/08/2025</td>
-          <td><a href="https://cloudjourney.awsstudygroup.com/">https://cloudjourney.awsstudygroup.com/</a></td>
+          <td>- Họp: tìm hiểu cách sử dụng <strong>Docker</strong> (image, container, cài thư viện vào image) <br> - Đề xuất ý tưởng dùng <strong>Docker + LocalStack</strong> làm môi trường phát triển chuẩn cho cả nhóm</td>
+          <td>11/11/2025</td>
+          <td>11/11/2025</td>
+          <td></td>
       </tr>
       <tr>
           <td>5</td>
-          <td>- Tìm hiểu EC2 cơ bản: <br>  + Instance types <br>  + AMI <br>  + EBS <br>  + &hellip; <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br></td>
-          <td>14/08/2025</td>
-          <td>15/08/2025</td>
-          <td><a href="https://cloudjourney.awsstudygroup.com/">https://cloudjourney.awsstudygroup.com/</a></td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>- <strong>Thực hành:</strong> <br>  + Tạo EC2 instance <br>  + Kết nối SSH <br>  + Gắn EBS volume</td>
-          <td>15/08/2025</td>
-          <td>15/08/2025</td>
-          <td><a href="https://cloudjourney.awsstudygroup.com/">https://cloudjourney.awsstudygroup.com/</a></td>
+          <td>- Họp nhóm: chỉnh sửa và chốt <strong>architecture diagram v9</strong> <br> - Cá nhân: hoàn thiện file <strong>docx template</strong> (các phần worklog, workshop, mô tả kiến trúc) <br> - Chia nhỏ các phần nội dung, phân công người phụ trách và đặt deadline rõ ràng cho từng phần</td>
+          <td>12/11/2025</td>
+          <td>13/11/2025</td>
+          <td></td>
       </tr>
   </tbody>
 </table>
 <h3 id="kết-quả-đạt-được-tuần-9">Kết quả đạt được tuần 9:</h3>
 <ul>
 <li>
-<p>Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản:</p>
+<p><strong>Giao diện web (UI)</strong> đã được rà soát và cải thiện:</p>
 <ul>
-<li>Compute</li>
-<li>Storage</li>
-<li>Networking</li>
-<li>Database</li>
-<li>&hellip;</li>
+<li>Sửa một số lỗi hiển thị, căn lề, màu sắc theo góp ý của team.</li>
+<li>Web ổn định hơn trên local, sẵn sàng cho việc tích hợp thêm các dịch vụ AWS.</li>
 </ul>
 </li>
 <li>
-<p>Đã tạo và cấu hình AWS Free Tier account thành công.</p>
-</li>
-<li>
-<p>Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.</p>
-</li>
-<li>
-<p>Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:</p>
+<p>Nhóm đã <strong>hiểu rõ hơn vai trò các dịch vụ AWS</strong> trong kiến trúc:</p>
 <ul>
-<li>Access Key</li>
-<li>Secret Key</li>
-<li>Region mặc định</li>
-<li>&hellip;</li>
+<li>Tiếp tục tìm hiểu và thống nhất cách dùng <strong>S3, Cognito, CloudFront, Amplify, LocalStack</strong>.</li>
+<li>Quyết định chọn <strong>LocalStack bản Base</strong> để giả lập nhiều dịch vụ (đặc biệt là Cognito) trong môi trường dev.</li>
+<li>Chốt hướng dùng <strong>Supabase/PostgreSQL</strong> làm database cho web.</li>
 </ul>
 </li>
 <li>
-<p>Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:</p>
+<p>Kiến trúc hệ thống được cập nhật lên <strong>phiên bản v9</strong>:</p>
 <ul>
-<li>Kiểm tra thông tin tài khoản &amp; cấu hình</li>
-<li>Lấy danh sách region</li>
-<li>Xem dịch vụ EC2</li>
-<li>Tạo và quản lý key pair</li>
-<li>Kiểm tra thông tin dịch vụ đang chạy</li>
-<li>&hellip;</li>
+<li>Điều chỉnh lại luồng dữ liệu phù hợp với Amplify, Supabase và LocalStack.</li>
+<li>Danh sách các service chính trong mô hình đã được thống nhất, giúp nhóm có “khung” rõ ràng để triển khai.</li>
 </ul>
 </li>
 <li>
-<p>Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.</p>
+<p>Bước đầu <strong>làm quen với Docker</strong>:</p>
+<ul>
+<li>Nắm được khái niệm image, container và cách cài thư viện vào image.</li>
+<li>Đặt nền tảng cho việc dùng <strong>Docker + LocalStack</strong> làm môi trường phát triển chuẩn cho cả nhóm.</li>
+</ul>
 </li>
 <li>
-<p>&hellip;</p>
+<p><strong>Template báo cáo (docx)</strong> đã có bản phác thảo và phân chia công việc:</p>
+<ul>
+<li>Hoàn thiện khung cho các phần: worklog, workshop, mô tả kiến trúc.</li>
+<li>Chia nhỏ nội dung, phân công người phụ trách và đặt deadline rõ ràng, giúp việc viết báo cáo sau này dễ dàng và nhất quán hơn.</li>
+</ul>
 </li>
 </ul>
 
@@ -1510,19 +1491,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1765266249"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1765266249"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
-    <script src="../../../js/jquery.sticky.js?1765266249"></script>
-    <script src="../../../js/featherlight.min.js?1765266249"></script>
-    <script src="../../../js/highlight.pack.js?1765266249"></script>
+    <script src="../../../js/clipboard.min.js?1765297075"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765297075"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765297075"></script>
+    <script src="../../../js/jquery.sticky.js?1765297075"></script>
+    <script src="../../../js/featherlight.min.js?1765297075"></script>
+    <script src="../../../js/highlight.pack.js?1765297075"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1765266249"></script>
-    <script src="../../../js/learn.js?1765266249"></script>
-    <script src="../../../js/hugo-learn.js?1765266249"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765297075"></script>
+    <script src="../../../js/learn.js?1765297075"></script>
+    <script src="../../../js/hugo-learn.js?1765297075"></script>
 
-    <link href="../../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.js?1765266249"></script>
+    <link href="../../../mermaid/mermaid.css?1765297075" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765297075"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

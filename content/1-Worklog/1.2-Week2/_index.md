@@ -1,55 +1,36 @@
 ---
-title: "Week 2 Worklog"
-date: 2025-01-01
+title: "Worklog Week 2"
+date: 2025-09-20
 weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
 ---
-
-
 ### Week 2 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Dive deeper into AWS services, focusing on Compute, Networking, and Storage.
+* Get familiar with AWS EC2, S3, Lambda, and Elastic Beanstalk.
+* Practice creating and managing EC2 instances, working with storage, and deploying a web application.
+* Understand AWS IAM for managing identities and access permissions.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Tasks                                                                                                                                                               | Start date | Completion date | References                                             |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------- | ------------------------------------------------------ |
+| 2   | - Learn the basics of AWS EC2 <br>&emsp; + Types of EC2 instances <br>&emsp; + EC2 Security Groups <br>&emsp; + Managing the lifecycle of EC2 instances             | 15/09/2025 | 15/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
+| 3   | - Learn about AWS S3 <br>&emsp; + Create an S3 Bucket <br>&emsp; + Manage objects in S3 <br>&emsp; + Control access (ACL, Bucket policy)                           | 16/09/2025 | 16/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
+| 4   | - Learn about AWS Lambda <br>&emsp; + Introduction to serverless architecture and AWS Lambda <br>&emsp; + Create a simple Lambda function <br>&emsp; + Trigger Lambda from other AWS services | 17/09/2025 | 17/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
+| 5   | - Learn about AWS Elastic Beanstalk <br>&emsp; + Overview of Elastic Beanstalk <br>&emsp; + Deploy a sample application using Elastic Beanstalk                    | 18/09/2025 | 18/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
+| 6   | - Learn about IAM (Identity and Access Management) <br>&emsp; + Create and manage IAM Users, Groups, and Roles <br>&emsp; + Attach policies and manage access      | 19/09/2025 | 19/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
+| 7   | - Summary practice: <br>&emsp; + Labs for EC2, S3, Lambda, Elastic Beanstalk <br>&emsp; + Review steps for creating, configuring, and deploying                    | 20/09/2025 | 20/09/2025       | **[Study materials](https://cloudjourney.awsstudygroup.com/)** |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Created and managed EC2 instances (launch, stop/delete, view details).
+* Understood how to configure and use AWS S3 to store and manage objects (upload, view, delete, set permissions).
+* Created and tested a simple AWS Lambda function, and learned how to trigger Lambda from other services.
+* Successfully deployed a sample application using AWS Elastic Beanstalk.
+* Gained a basic understanding of AWS IAM, including how to:
+  * Create IAM Users, Groups, and Roles.
+  * Attach IAM Policies to control access following the “least privilege” principle.
+* Completed several combined hands-on labs for EC2, S3, Lambda, and Elastic Beanstalk, reinforcing the theoretical knowledge learned.

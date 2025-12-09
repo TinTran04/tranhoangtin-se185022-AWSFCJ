@@ -1,57 +1,40 @@
 ---
-title: "Week 12 Worklog"
+title: "Worklog Week 12"
 date: 2025-01-01
 weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
-### Week 12 Objectives:
+### Week 12 Objectives
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Complete the **project** and re-test the whole system.
+* Ensure the processing flow runs **end-to-end stably** (web → data → analytics).
+* Finalize and consolidate **Worklogs** from previous weeks.
+* Support teammates in reviewing **Worklogs** and editing **presentation slides** for the final report.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks for this week
+
+| Day | Task                                                                                                                                                                                                                         | Start Date   | End Date    | References |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------- | ---------- |
+| 2   | - Meeting: finish the remaining parts of the project <br>&emsp; + Re-check all main features on the web app <br>&emsp; + Re-test the data processing flow and analysis charts <br> - Support teammates: review and refine **Worklogs** and **presentation slides** (structure, content, key points) | 07/12/2025   | 08/12/2025  |            |
+| 3   | - Start writing the **Worklog**: summarize key activities for each week <br> - Note down important milestones, architecture changes, and AWS services used                                                                   | 08/12/2025   | 09/12/2025  |            |
+| 4   | - Finalize the personal **Worklog**                                                                                                                                                                                          | 09/12/2025   | 09/12/2025  |            |
 
 
-### Week 12 Achievements:
+### Week 12 Outcomes
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **The project has been completed and re-tested**:
+  * Main features on the web app work stably after testing.
+  * The data processing flow has been tested end-to-end, ensuring the system is ready for demo/reporting.
 
-* Successfully created and configured an AWS Free Tier account.
+* **Personal Worklog**:
+  * The Worklog has been consolidated and completed, clearly recording tasks, timelines, and outcomes.
+  * Highlight points (architecture changes, AWS services implementation, bug fixing, dashboard completion) have been noted for later use in reporting and self-evaluation.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* **Team support**:
+  * Helped teammates review and adjust their Worklogs, making the content more consistent across members.
+  * Gave feedback and refined **presentation slides**, ensuring the project story is coherent from architecture → implementation → testing → lessons learned.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Week 12 marks **the completion of the project**; all major parts are done and the team is ready for the final presentation/evaluation.

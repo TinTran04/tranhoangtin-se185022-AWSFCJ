@@ -5,55 +5,43 @@ weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 11:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai ứng dụng web thương mại điện tử lên **AWS Amplify** trên môi trường AWS thật.
+* Tích hợp **Amazon Cognito** vào web để quản lý đăng nhập/người dùng.
+* Thiết lập **S3** để lưu trữ hình ảnh và cấu hình web sử dụng hình ảnh từ S3.
+* Chuyển data từ **Supabase** sang **EC2** và sử dụng EC2 làm nguồn dữ liệu chính.
+* Hoàn thiện bước tạo và cấu hình các **dịch vụ AWS cloud** cốt lõi theo kiến trúc đã đề ra.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+
+| Thứ | Công việc                                                                                                                                                                                                                                           | Ngày bắt đầu           | Ngày hoàn thành        | Nguồn tài liệu |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------- | ------------- |
+| 2   | - Online meeting: triển khai ứng dụng web lên **AWS Amplify** trên môi trường AWS thật <br> - Tích hợp **Cognito** vào web  <br> - Bắt đầu tạo các **AWS Cloud services** cần thiết theo kiến trúc (Amplify app, Cognito user pool, S3 bucket, EC2, …) | 01/12/2025    | 03/12/2025             |               |
+| 3   | - Hoàn tất việc tích hợp **Cognito** vào web và xác nhận login hoạt động <br> - Deploy thành công web lên **Amplify** (build & hosting ổn định) <br> - Tạo S3 bucket, upload hình ảnh sản phẩm và cấu hình web đọc hình ảnh trực tiếp từ **S3**                                          | 03/12/2025             | 04/12/2025             |               |
+| 4   | - Chuyển dữ liệu từ **Supabase** sang database trên **EC2** (import/export, migrate schema & data) <br> - Cấu hình lại ứng dụng web để sử dụng **EC2** làm nguồn dữ liệu chính thay cho Supabase <br> - Kiểm tra nhanh các chức năng chính sau khi đổi nguồn data                       | 04/12/2025             | 04/12/2025             |               |
 
 
 ### Kết quả đạt được tuần 11:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Web thương mại điện tử** đã được:
+  * Deploy thành công lên **AWS Amplify** trên môi trường AWS thật.
+  * Build & hosting ổn định, có thể truy cập và test trực tiếp trên Amplify.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* **Cognito**:
+  * Đã được tích hợp vào web, hỗ trợ đăng nhập/người dùng theo đúng hướng kiến trúc AWS.
+  * Luồng đăng nhập cơ bản hoạt động, sẵn sàng cho các bước mở rộng sau này (phân quyền, bảo mật,…).
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* **S3 & media**:
+  * Tạo S3 bucket và upload hình ảnh sản phẩm lên S3.
+  * Cấu hình lại web để **sử dụng hình ảnh từ S3**, tách biệt phần media khỏi source code.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* **Data layer (Supabase → EC2)**:
+  * Dữ liệu đã được **chuyển từ Supabase sang EC2**.
+  * Ứng dụng web đã được cấu hình lại để sử dụng database trên EC2 làm nguồn dữ liệu chính.
+  * Kiểm tra nhanh các chức năng chính sau khi đổi data cho thấy hệ thống vẫn hoạt động ổn.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* **Dịch vụ AWS cloud cốt lõi**:
+  * Hoàn thành bước đầu tạo và cấu hình các dịch vụ quan trọng: Amplify, Cognito, S3, EC2, … theo đúng định hướng kiến trúc.
+  * Tạo nền tảng vững chắc để các tuần sau tập trung vào phần **clickstream, ETL và analytics**.

@@ -1,57 +1,38 @@
 ---
-title: "Week 8 Worklog"
+title: "Worklog Week 8"
 date: 2025-01-01
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
+### Week 8 Objectives
+
+* Have the **first offline meeting**, agree on how the team will work together in person.
+* Finalize the **proposal on Git/GitPages**, configure its display so it’s easy to access and read.
+* Start learning **Amazon Cognito, S3, ORM** and begin building the e-commerce website from an existing template.
+* Prepare for the next phase: creating sample data, studying CloudFront, Amplify, LocalStack, and standardizing the working environment.
+
+### Tasks for this week
+
+| Day | Task                                                                                                                                                                                                                                                  | Start Date  | End Date    | References |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------- | ---------- |
+| 2   | - Offline meeting: first in-person meetup with the team <br> - Review the proposal, fix minor content issues <br> - Push the proposal to Git/GitPages <br> - Split the work items for the next phase of the project                                   | 28/10/2025  | 28/10/2025  |            |
+| 3   | - Online meeting: study **Amazon Cognito & S3** together <br> - Start building the e-commerce website using the existing frontend template from Git <br> - Decide not to use a separate backend and focus on the clickstream architecture on AWS       | 29/10/2025  | 30/10/2025  |            |
+| 4   | - Self-study ORM in the frontend template: <br>&emsp; + How to map data and define models <br>&emsp; + How to run migrations <br> - Take notes for later when connecting to a real database (for Data Warehouse / OLTP parts)                         | 30/10/2025  | 31/10/2025  |            |
+| 5   | - Team meeting: confirm that the first version of the web app can run locally <br> - Discuss next steps: creating mock data, researching **CloudFront, Amplify, LocalStack** <br> - Agree on standardizing the **Python environment & libraries for ETL/analytics** | 05/11/2025  | 05/11/2025  |            |
+| 6   | - Individual work: the first build of the web still has many issues <br> - Collect feedback from the team about UI problems and fix the web UI accordingly                                                    | 06/11/2025  | 07/11/2025  |            |
 
 
-### Week 8 Objectives:
+### Week 8 Outcomes
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
-
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
-
-### Week 8 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* The team had the **first offline meeting**, which made teamwork more comfortable and helped discussions become quicker and more effective.
+* The project proposal has been:
+  * Reviewed and refined with some minor content fixes.
+  * Uploaded to **Git/GitPages**, making it easier for everyone to access and refer to while working.
+* E-commerce website:
+  * The **first local build** of the site was completed using the existing template, although there are still UI issues.
+  * The team started to understand the **code structure and how the ORM works** in the frontend project.
+* The whole team has begun to get familiar with and discuss more about:
+  * **Cognito, S3, CloudFront, Amplify, LocalStack** and how they will be used in the next parts of the architecture.
+* This week lays the foundation so that in the following weeks the team can focus on **integrating AWS services into the web app** and building a complete clickstream pipeline.
