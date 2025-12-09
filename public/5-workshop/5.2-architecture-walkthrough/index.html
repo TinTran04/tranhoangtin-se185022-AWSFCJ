@@ -15,21 +15,21 @@
     <title>Architecture Walkthrough :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -817,11 +817,40 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#521-user--frontend-domain">5.2.1 User &amp; Frontend Domain</a>
       <ul>
-        <li><a href="#user-facing-domain">User-facing Domain</a></li>
-        <li><a href="#ingestion--data-lake-domain">Ingestion &amp; Data Lake Domain</a></li>
-        <li><a href="#analytics--data-warehouse-domain">Analytics &amp; Data Warehouse Domain</a></li>
+        <li><a href="#1-user-browser--end-user">(1) User Browser – End User</a></li>
+        <li><a href="#2-amazon-cloudfront-cdn--edge">(2) Amazon CloudFront (CDN / Edge)</a></li>
+        <li><a href="#3-amazon-s3--media-assets">(3) Amazon S3 – Media Assets</a></li>
+        <li><a href="#4-amazon-amplify--front-end-hosting">(4) Amazon Amplify – Front-end Hosting</a></li>
+        <li><a href="#5-amazon-cognito--authentication--authorization">(5) Amazon Cognito – Authentication / Authorization</a></li>
+      </ul>
+    </li>
+    <li><a href="#522-ingestion--data-lake-domain">5.2.2 Ingestion &amp; Data Lake Domain</a>
+      <ul>
+        <li><a href="#6-amazon-api-gateway--clickstream-http-api">(6) Amazon API Gateway – Clickstream HTTP API</a></li>
+        <li><a href="#7-aws-lambda--clickstream-ingest">(7) AWS Lambda – Clickstream Ingest</a></li>
+        <li><a href="#8-amazon-s3--clickstream-raw-data">(8) Amazon S3 – Clickstream Raw Data</a></li>
+        <li><a href="#9-amazon-eventbridge--etl-trigger--cron-job">(9) Amazon EventBridge – ETL Trigger / Cron Job</a></li>
+      </ul>
+    </li>
+    <li><a href="#523-vpc--private-analytics-domain">5.2.3 VPC &amp; Private Analytics Domain</a>
+      <ul>
+        <li><a href="#19-vpc--subnets--internet-gateway">(19) VPC + Subnets + Internet Gateway</a></li>
+        <li><a href="#10-gateway-endpoint--s3-gateway-endpoint">(10) Gateway Endpoint – S3 Gateway Endpoint</a></li>
+        <li><a href="#11-aws-lambda--etl">(11) AWS Lambda – ETL</a></li>
+        <li><a href="#12-amazon-ec2--private-shiny--dwh">(12) Amazon EC2 – Private (Shiny + DWH)</a></li>
+        <li><a href="#13-r-shiny-server-on-private-ec2">(13) R Shiny Server (on Private EC2)</a></li>
+        <li><a href="#14-aws-systems-manager--session-manager">(14) AWS Systems Manager – Session Manager</a></li>
+        <li><a href="#15-interface-endpoint--ssm-vpc-endpoints">(15) Interface Endpoint – SSM VPC Endpoints</a></li>
+      </ul>
+    </li>
+    <li><a href="#524-cross-cutting-services">5.2.4 Cross-cutting Services</a>
+      <ul>
+        <li><a href="#16-amazon-iam">(16) Amazon IAM</a></li>
+        <li><a href="#17-amazon-cloudwatch">(17) Amazon CloudWatch</a></li>
+        <li><a href="#18-amazon-sns">(18) Amazon SNS</a></li>
+        <li><a href="#20-amazon-ec2--public-oltp">(20) Amazon EC2 – Public (OLTP)</a></li>
       </ul>
     </li>
   </ul>
@@ -849,88 +878,444 @@
 
 
 
-	<p>This section provides a high-level walkthrough of the overall architecture before diving into the hands-on steps.</p>
-<h3 id="user-facing-domain">User-facing Domain</h3>
+	<p><img src="../../images/5-Workshop/architecture.png" alt="Architecture"></p>
+<p align="center"><em>Figure: Architecture Batch-base Clickstream Analytics Platform.</em></p>
+<hr>
+<h2 id="521-user--frontend-domain">5.2.1 User &amp; Frontend Domain</h2>
+<h3 id="1-user-browser--end-user">(1) User Browser – End User</h3>
+<p><strong>Responsibilities</strong></p>
 <ul>
-<li>Frontend: <strong>Next.js</strong> hosted on <strong>AWS Amplify</strong>, fronted by <strong>Amazon CloudFront</strong>.</li>
-<li>Authentication: end users sign in via an <strong>Amazon Cognito User Pool</strong>.</li>
-<li>Operational database: <strong>PostgreSQL OLTP</strong> running on an <strong>EC2 instance</strong> in the <strong>public subnet</strong>.</li>
-<li>Connectivity: Amplify connects to the OLTP EC2 instance via the Internet Gateway using Prisma, with <code>DATABASE_URL</code> pointing to the public endpoint of the EC2 instance.</li>
-</ul>
-<blockquote>
-<p>In this design, the OLTP database is intentionally left in a public subnet to keep the connection from Amplify simple. In a production-grade system, OLTP would typically reside in private subnets behind an internal API layer.</p></blockquote>
-<h3 id="ingestion--data-lake-domain">Ingestion &amp; Data Lake Domain</h3>
+<li>Access the website: browse the catalogue, view product detail pages, cart, checkout, etc.</li>
+<li>Log in / register an account.</li>
+<li>Generate <strong>clickstream events</strong> such as:
 <ul>
-<li>
-<p>The frontend sends HTTP events to <strong>Amazon API Gateway (HTTP API)</strong>, route <code>POST /clickstream</code>.</p>
-</li>
-<li>
-<p>A <strong>Lambda Ingest</strong> function:</p>
-<ul>
-<li>Validates the incoming payload.</li>
-<li>Enriches metadata such as timestamps, user/session information, and product context.</li>
-<li>Writes <strong>raw JSON</strong> into an <strong>S3 Raw Clickstream bucket</strong> using a partitioned directory structure:</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>s3://&lt;raw-bucket&gt;/events/YYYY/MM/DD/HH/events-&lt;uuid&gt;.json
-</span></span></code></pre></div></li>
-</ul>
-<p>This pattern keeps raw data immutable and time-partitioned, which is convenient for batch ETL jobs.</p>
-<h3 id="analytics--data-warehouse-domain">Analytics &amp; Data Warehouse Domain</h3>
-<ul>
-<li>
-<p>A <strong>VPC-enabled ETL Lambda</strong> runs inside a <strong>private subnet</strong> dedicated to analytics/ETL.</p>
-</li>
-<li>
-<p>The ETL Lambda reads data from S3 via an <strong>S3 Gateway VPC Endpoint</strong>, then:</p>
-<ul>
-<li>Cleans and normalizes events.</li>
-<li>Converts JSON logs into SQL-friendly analytical tables (facts and dimensions).</li>
-<li>Writes data into a <strong>PostgreSQL Data Warehouse</strong> hosted on an EC2 instance in a <strong>separate private subnet</strong>.</li>
+<li><code>page_view</code>, <code>product_view</code>, <code>add_to_cart</code>, <code>purchase</code>, …</li>
 </ul>
 </li>
+</ul>
+<p><strong>Role in the pipeline</strong></p>
+<ul>
+<li>Is the <strong>source of all behaviors</strong> that the analytics system analyzes.</li>
+<li>JavaScript on the frontend will collect these events and send them to the backend through the API (6).</li>
+</ul>
+<hr>
+<h3 id="2-amazon-cloudfront-cdn--edge">(2) Amazon CloudFront (CDN / Edge)</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Acts as the <strong>CDN layer</strong> that delivers website content:
+<ul>
+<li>Caches HTML/CSS/JS/images to reduce latency.</li>
+<li>Offloads traffic from the origin (Amplify, S3 assets).</li>
+</ul>
+</li>
+<li>Can serve as a <strong>single entry point</strong> for web traffic:
+<ul>
+<li>Route/forward requests:
+<ul>
+<li>Dynamic web content → Amplify.</li>
+<li>Static images/media → S3 (3).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Why it is important</strong></p>
+<ul>
+<li>An e-commerce website needs <strong>good page load speed</strong>.</li>
+<li>CloudFront helps improve user experience across different geographic regions.</li>
+</ul>
+<hr>
+<h3 id="3-amazon-s3--media-assets">(3) Amazon S3 – Media Assets</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Store <strong>product images</strong> and other <strong>static assets</strong> for the website.</li>
+<li>Act as the <strong>origin</strong> when CloudFront (2) serves images/assets.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul>
+<li>This bucket (for example, <code>clickstream-s3-sbw</code>) is <strong>separate</strong> from the RAW clickstream bucket (8) in order to:
+<ul>
+<li>Clearly separate permissions.</li>
+<li>Make management and cleanup easier.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-amazon-amplify--front-end-hosting">(4) Amazon Amplify – Front-end Hosting</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Build &amp; deploy the <strong>Next.js</strong> application (for example, <code>ClickSteam.NextJS</code>).</li>
+<li>Host the frontend (SSR/ISR, API routes).</li>
+<li>Manage the deployment pipeline: build, artifact, domain mapping.</li>
+</ul>
+<p><strong>Integration with other services</strong></p>
+<ul>
+<li>Connects to <strong>Cognito (5)</strong> for handling authentication.</li>
+<li>Sends <strong>clickstream events</strong> from the frontend to <strong>API Gateway (6)</strong>.</li>
+<li>Connects to <strong>EC2 OLTP (20)</strong> via Prisma to read/write transactional data.</li>
+</ul>
+<hr>
+<h3 id="5-amazon-cognito--authentication--authorization">(5) Amazon Cognito – Authentication / Authorization</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Manage <strong>user identity</strong>:
+<ul>
+<li>Sign up / sign in / reset password.</li>
+<li>Store the user pool and issue JWT tokens (ID token, access token).</li>
+</ul>
+</li>
+<li>Issue tokens for the frontend so that it can call backend APIs with the correct permissions.</li>
+</ul>
+<p><strong>Role in clickstream</strong></p>
+<ul>
+<li>Allows determining:
+<ul>
+<li><code>user_login_state</code> (logged-in / guest).</li>
+<li><code>identity_source</code> (Cognito, social login, etc.).</li>
+</ul>
+</li>
+<li>This information is attached to events and stored in S3/DWH to analyze user behavior.</li>
+</ul>
+<hr>
+<h2 id="522-ingestion--data-lake-domain">5.2.2 Ingestion &amp; Data Lake Domain</h2>
+<h3 id="6-amazon-api-gateway--clickstream-http-api">(6) Amazon API Gateway – Clickstream HTTP API</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Provide a public HTTP endpoint for the frontend:
+<ul>
+<li><code>POST /clickstream</code>.</li>
+</ul>
+</li>
+<li>Perform basic validation:
+<ul>
+<li>Method/path, throttling.</li>
+<li>Optional: integrate a Cognito authorizer.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Processing flow</strong></p>
+<ul>
+<li>Receive JSON requests from the browser.</li>
+<li>Forward the payload to <strong>Lambda Clickstream Ingest (7)</strong>.</li>
+</ul>
+<hr>
+<h3 id="7-aws-lambda--clickstream-ingest">(7) AWS Lambda – Clickstream Ingest</h3>
+<p><strong>Main responsibilities</strong></p>
+<ul>
 <li>
-<p>An <strong>R Shiny Server</strong> runs on the same EC2 instance as the Data Warehouse and connects through localhost/private IP. It renders interactive dashboards on top of the DW schema.</p>
+<p>Receive events from API Gateway (6).</p>
+</li>
+<li>
+<p>Act as the <strong>ingestion layer</strong>:</p>
+<ul>
+<li>Validate schema / event type.</li>
+<li>Perform minimal enrichment:
+<ul>
+<li>Generate <code>event_id</code>.</li>
+<li>Normalize <code>event_timestamp</code>.</li>
+<li>Attach <code>client_id</code>, <code>session_id</code>, <code>user_login_state</code>, <code>identity_source</code> if needed.</li>
+</ul>
 </li>
 </ul>
-<p><strong>Figure 5-2: EC2 instances and basic CloudWatch metrics</strong></p>
-<p>The screenshot shows the two EC2 instances used in the workshop:</p>
-<ul>
-<li><code>SBW_EC2_Web_OLTP</code> – the public instance that hosts the OLTP PostgreSQL database.</li>
-<li><code>SBW_EC2_Shiny_DW</code> – the private instance that hosts the PostgreSQL Data Warehouse and the Shiny Server.</li>
+</li>
+<li>
+<p>Write raw events (<code>raw JSON</code>) to the <strong>S3 Clickstream Raw bucket (8)</strong> using time-based prefixes/partitions.</p>
+</li>
+<li>
+<p>Write logs to <strong>CloudWatch (17)</strong> for debugging.</p>
+</li>
 </ul>
-<p>Below the instance list, the EC2 console displays basic CloudWatch metrics such as CPU utilization and network traffic, which can be used to verify that the instances are healthy while the workshop labs are running.</p>
-<p><img src="../../images/5-b-ec2-instances-metrics.png" alt="Figure 5-2: EC2 instances and basic CloudWatch metrics"></p>
-<p><strong>Figure 5-3: Overall Clickstream Analytics Architecture</strong></p>
-<p>The diagram illustrates:</p>
+<hr>
+<h3 id="8-amazon-s3--clickstream-raw-data">(8) Amazon S3 – Clickstream Raw Data</h3>
+<p><strong>Responsibilities</strong></p>
 <ul>
-<li>Outside the VPC: Amazon Cognito, Amazon CloudFront, AWS Amplify, Amazon API Gateway, Lambda Ingest, and Amazon EventBridge.</li>
-<li>Inside the VPC:
+<li>
+<p>Store all <strong>raw clickstream data</strong> written by Lambda Ingest (7).</p>
+</li>
+<li>
+<p>Act as a <strong>“mini data lake”</strong> for batch ETL:</p>
 <ul>
-<li><strong>Public Subnet – OLTP</strong>: EC2 PostgreSQL OLTP instance and the Internet Gateway.</li>
-<li><strong>Private Subnet – Analytics</strong>: EC2 PostgreSQL Data Warehouse and R Shiny Server (no public IP).</li>
-<li><strong>Private Subnet – ETL</strong>: VPC-enabled ETL Lambda function and the S3 Gateway VPC Endpoint.</li>
+<li>Data is organized by <strong>time-based folders/prefixes</strong>:
+<ul>
+<li><code>events/YYYY/MM/DD/</code>.</li>
 </ul>
 </li>
-<li>Numbered arrows (1)–(13) show the main flows: user login, browsing, clickstream ingestion, batch ETL, loading data into the DW, and Shiny visualization.</li>
+<li>ETL (11) reads the data in batches (hourly, daily, etc.).</li>
 </ul>
-<p><img src="../../images/5-1-clickstream-architecture.png" alt="Figure 5-3: Overall Clickstream Analytics Architecture for the e-commerce platform"></p>
-<p><strong>Figure 5-4: VPC Network Layout (OLTP &amp; Analytics)</strong></p>
-<p>The diagram illustrates a single VPC with two subnets:</p>
+</li>
+</ul>
+<p><strong>Architectural role</strong></p>
 <ul>
-<li><strong>Public Subnet – OLTP (10.0.1.0/24)</strong>, highlighted in yellow, hosting the EC2 PostgreSQL OLTP instance and connected to the Internet Gateway.</li>
-<li><strong>Private Subnet – Analytics (10.0.2.0/24)</strong>, in green, hosting the EC2 PostgreSQL Data Warehouse, the R Shiny Server, the VPC-enabled ETL Lambda function, and the S3 Gateway VPC Endpoint (all with no public IP).</li>
-</ul>
-<p>The public subnet route table includes a default route:</p>
+<li>Serves as the <strong>source of truth</strong> for clickstream data:
 <ul>
-<li><code>0.0.0.0/0 → Internet Gateway (IGW)</code></li>
+<li>You can reprocess or rebuild the Data Warehouse if needed.</li>
 </ul>
-<p>The private subnet route table:</p>
+</li>
+</ul>
+<hr>
+<h3 id="9-amazon-eventbridge--etl-trigger--cron-job">(9) Amazon EventBridge – ETL Trigger / Cron Job</h3>
+<p><strong>Responsibilities</strong></p>
 <ul>
-<li>Has <code>10.0.0.0/16 → local</code> for internal VPC traffic.</li>
-<li>Includes a route to the S3 prefix list via the <strong>S3 Gateway VPC Endpoint</strong>.</li>
-<li>Does <strong>not</strong> have any <code>0.0.0.0/0</code> route and does <strong>not</strong> use a NAT Gateway.</li>
+<li>Run batch schedules, for example: <code>rate(1 hour)</code>.</li>
+<li>On each schedule:
+<ul>
+<li>Trigger <strong>Lambda ETL (11)</strong>.</li>
 </ul>
-<p><img src="../../images/5-2-vpc-network.png" alt="Figure 5-4: VPC network layout for OLTP and Analytics"></p>
+</li>
+</ul>
+<p><strong>Why separating it out</strong></p>
+<ul>
+<li>The ETL “clock” lives in EventBridge:
+<ul>
+<li>Easy to adjust frequency (1h, 30’, 5’, etc.).</li>
+<li>Easy to disable/enable.</li>
+<li>Separates “when to run” from the ETL logic itself.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="523-vpc--private-analytics-domain">5.2.3 VPC &amp; Private Analytics Domain</h2>
+<h3 id="19-vpc--subnets--internet-gateway">(19) VPC + Subnets + Internet Gateway</h3>
+<p><strong>Amazon VPC</strong></p>
+<ul>
+<li>Isolate the network and control routing / security for the entire platform.</li>
+</ul>
+<p><strong>Public subnet – OLTP</strong></p>
+<ul>
+<li>Contains <strong>EC2 OLTP (20)</strong>.</li>
+<li>Has a route <code>0.0.0.0/0 → Internet Gateway</code>.</li>
+<li>Allows:
+<ul>
+<li>Amplify/Internet to access PostgreSQL OLTP based on security groups.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Private subnet – Analytics</strong></p>
+<ul>
+<li>Contains:
+<ul>
+<li><strong>EC2 Shiny + DWH (12)</strong>.</li>
+<li><strong>Lambda ETL (11)</strong>.</li>
+</ul>
+</li>
+<li>Has no public IP.</li>
+<li>Can only go out through <strong>VPC Endpoints (10, 15)</strong>.</li>
+</ul>
+<p><strong>Internet Gateway</strong></p>
+<ul>
+<li>Provides Internet access for resources in the public subnet.</li>
+<li>The private subnet does not route to the IGW (unless you configure it differently).</li>
+</ul>
+<hr>
+<h3 id="10-gateway-endpoint--s3-gateway-endpoint">(10) Gateway Endpoint – S3 Gateway Endpoint</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Allow resources inside the VPC (Lambda ETL, private EC2) to access S3 (8) <strong>without needing NAT/Internet</strong>.</li>
+<li>Traffic to S3 goes over the <strong>AWS private network</strong>, which is more secure and cheaper than a NAT Gateway.</li>
+</ul>
+<p><strong>Role</strong></p>
+<ul>
+<li>A key piece to:
+<ul>
+<li>Keep the decision of “<strong>no NAT Gateway</strong>”.</li>
+<li>Still allow ETL / DW to read and write S3.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="11-aws-lambda--etl">(11) AWS Lambda – ETL</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Triggered by <strong>EventBridge (9)</strong> on a schedule.</p>
+</li>
+<li>
+<p>Runs inside the <strong>private subnet</strong> of the VPC.</p>
+</li>
+<li>
+<p>Performs batch ETL:</p>
+<ul>
+<li>Read raw events from <strong>S3 (8)</strong> via the Gateway Endpoint (10).</li>
+<li>Transform / clean / flatten data according to the Data Warehouse schema (for example, the 15 fields you finalized).</li>
+<li>Load into <strong>PostgreSQL DWH on private EC2 (12)</strong>:
+<ul>
+<li>Insert / upsert, possibly partitioned by day/hour.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Write logs and metrics to <strong>CloudWatch (17)</strong>; on errors it can send notifications via <strong>SNS (18)</strong>.</p>
+</li>
+</ul>
+<hr>
+<h3 id="12-amazon-ec2--private-shiny--dwh">(12) Amazon EC2 – Private (Shiny + DWH)</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>Server for <strong>Data Warehouse (PostgreSQL)</strong> + <strong>Shiny Server</strong>.</li>
+<li>Receive cleaned data from Lambda ETL (11) and store it in DWH tables.</li>
+<li>Provide data to Shiny dashboards:
+<ul>
+<li>Shiny queries the local/private Postgres instance.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Characteristics</strong></p>
+<ul>
+<li>Runs in a <strong>private subnet</strong>.</li>
+<li>Has no public IP.</li>
+<li>Administration access is via <strong>SSM Session Manager (14 + 15)</strong>.</li>
+</ul>
+<hr>
+<h3 id="13-r-shiny-server-on-private-ec2">(13) R Shiny Server (on Private EC2)</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Host analytics dashboards:</p>
+<ul>
+<li>Overall KPIs.</li>
+<li>Conversion funnel.</li>
+<li>Top products.</li>
+<li>User behavior, session analysis, etc.</li>
+</ul>
+</li>
+<li>
+<p>Connect directly to <strong>PostgreSQL DWH</strong> on the same EC2 instance.</p>
+</li>
+</ul>
+<p><strong>Access</strong></p>
+<ul>
+<li>
+<p>Listens on port <code>3838</code>.</p>
+</li>
+<li>
+<p>Typically accessed via:</p>
+<ul>
+<li>Internal VPN, or</li>
+<li><strong>SSM port forwarding</strong> (14).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="14-aws-systems-manager--session-manager">(14) AWS Systems Manager – Session Manager</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Allow admins to access private EC2 instances <strong>without SSH, without public IPs</strong>.</p>
+</li>
+<li>
+<p>Support:</p>
+<ul>
+<li>Opening a terminal into EC2 (run command).</li>
+<li><strong>Port forwarding</strong> (for example, forward <code>localhost:3838</code> → Shiny on EC2).</li>
+<li>Better auditing of access sessions.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>You can access Shiny from your local machine at:<br>
+<code>http://localhost:3838/sbw_dashboard</code><br>
+after successfully configuring the session port forwarding.</li>
+</ul>
+<hr>
+<h3 id="15-interface-endpoint--ssm-vpc-endpoints">(15) Interface Endpoint – SSM VPC Endpoints</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Create <strong>private</strong> connections from EC2/Lambda in the VPC to SSM/Session Manager services:</p>
+<ul>
+<li><code>ssm</code>, <code>ssmmessages</code>, <code>ec2messages</code>, …</li>
+</ul>
+</li>
+<li>
+<p>Ensure that:</p>
+<ul>
+<li>Private EC2 instances can still use SSM.</li>
+<li>Traffic does not have to go through the Internet/NAT.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="524-cross-cutting-services">5.2.4 Cross-cutting Services</h2>
+<h3 id="16-amazon-iam">(16) Amazon IAM</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Manage <strong>roles/policies</strong> for the whole system:</p>
+<ul>
+<li>Permissions for API Gateway, Lambda.</li>
+<li>Lambda Ingest writes to S3 (8).</li>
+<li>Lambda ETL reads S3 (8) + connects to DB (12).</li>
+<li>EC2 role for SSM + CloudWatch agent (if any).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Principles</strong></p>
+<ul>
+<li><strong>Least privilege</strong>.</li>
+<li>Clearly separate permissions by function and by service.</li>
+</ul>
+<hr>
+<h3 id="17-amazon-cloudwatch">(17) Amazon CloudWatch</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Collect <strong>logs &amp; metrics</strong> from:</p>
+<ul>
+<li>Lambda Ingest (7).</li>
+<li>Lambda ETL (11).</li>
+<li>EventBridge rule (9).</li>
+<li>EC2 if the agent is installed.</li>
+</ul>
+</li>
+<li>
+<p>Define <strong>alarms</strong>: ETL failures, ingest failures, number of retries, duration, etc.</p>
+</li>
+</ul>
+<p><strong>Role</strong></p>
+<ul>
+<li>The <strong>main place for debugging</strong> when the pipeline has problems.</li>
+</ul>
+<hr>
+<h3 id="18-amazon-sns">(18) Amazon SNS</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Acts as the <strong>notification channel</strong> when there are incidents:</p>
+<ul>
+<li>ETL failure.</li>
+<li>Ingest failure.</li>
+<li>CloudWatch alarm triggered.</li>
+</ul>
+</li>
+<li>
+<p>Send email / SMS / webhook depending on configuration.</p>
+</li>
+</ul>
+<hr>
+<h3 id="20-amazon-ec2--public-oltp">(20) Amazon EC2 – Public (OLTP)</h3>
+<p><strong>Responsibilities</strong></p>
+<ul>
+<li>
+<p>Run <strong>PostgreSQL OLTP</strong> for the e-commerce web system:</p>
+<ul>
+<li>Order transactions.</li>
+<li>Product information, inventory.</li>
+<li>User information.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Relation to DWH</strong></p>
+<ul>
+<li>
+<p><strong>Separated</strong> from the Data Warehouse (12):</p>
+<ul>
+<li>OLTP is optimized for <strong>transactions</strong>.</li>
+<li>DWH is optimized for <strong>analytics and batch loads</strong>.</li>
+</ul>
+</li>
+</ul>
 
 
 
@@ -1487,19 +1872,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

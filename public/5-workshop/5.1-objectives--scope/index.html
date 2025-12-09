@@ -15,21 +15,21 @@
     <title>Objectives &amp; Scope :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -821,9 +821,8 @@
       <ul>
         <li><a href="#business-context">Business Context</a></li>
         <li><a href="#learning-objectives">Learning Objectives</a></li>
-        <li><a href="#scope-of-the-workshop">Scope of the Workshop</a></li>
-        <li><a href="#out-of-scope-topics">Out-of-Scope Topics</a></li>
-        <li><a href="#target-audience">Target Audience</a></li>
+        <li><a href="#workshop-scope">Workshop Scope</a></li>
+        <li><a href="#out-of-scope">Out of Scope</a></li>
       </ul>
     </li>
   </ul>
@@ -851,130 +850,135 @@
 
 
 
-	<p>This section defines the <strong>purpose</strong>, <strong>learning objectives</strong>, and <strong>scope</strong> of the workshop that is built around a Batch-based Clickstream Analytics Platform for an e-commerce website selling computer products.</p>
-<p>The platform is implemented on AWS and uses:</p>
+	<h3 id="business-context">Business Context</h3>
+<p>The target system is an e-commerce website selling laptops, monitors, and accessories.<br>
+The business wants to:</p>
 <ul>
-<li>Next.js on <strong>AWS Amplify Hosting</strong> (front-end, Server-Side Rendering).</li>
-<li><strong>Amazon CloudFront</strong> (global content delivery).</li>
-<li><strong>Amazon Cognito</strong> (user authentication).</li>
-<li><strong>Amazon API Gateway</strong> and <strong>AWS Lambda</strong> (clickstream ingestion and ETL).</li>
-<li><strong>Amazon S3</strong> (raw clickstream data storage).</li>
-<li><strong>Amazon VPC</strong> with public and private subnets (network isolation).</li>
-<li><strong>PostgreSQL</strong> on <strong>Amazon EC2</strong> (OLTP and Data Warehouse).</li>
-<li><strong>R Shiny Server</strong> (analytics dashboards).</li>
-</ul>
-<hr>
-<h3 id="business-context">Business Context</h3>
-<p>The target system is an e-commerce website that sells computer-related products (laptops, monitors, accessories, etc.).</p>
-<p>The business would like to:</p>
+<li>Understand <strong>how users interact</strong> with the website:
 <ul>
-<li>Understand <strong>how users interact with the website</strong> (pages visited, products viewed, add-to-cart events, checkout attempts).</li>
-<li>Measure <strong>conversion funnels</strong> (from product view to purchase).</li>
-<li>Identify <strong>top-performing products</strong> and periods of high activity.</li>
-<li>Do this <strong>without impacting</strong> the operational database and <strong>without exposing</strong> internal analytics components to the public Internet.</li>
+<li>Which pages they visit</li>
+<li>Which products they view</li>
+<li>Add-to-cart and checkout events</li>
 </ul>
-<p>The platform therefore separates <strong>online transaction processing (OLTP)</strong> from <strong>analytics</strong>, and gathers clickstream data in a dedicated analytics environment.</p>
+</li>
+<li>Measure the <strong>conversion funnel</strong> from product view → add to cart → checkout</li>
+<li>Identify:
+<ul>
+<li>Top products (best-selling / most viewed)</li>
+<li>Peak activity windows (by hour, by day)</li>
+</ul>
+</li>
+<li>Use these insights to design the most effective marketing strategies to:
+<ul>
+<li>Increase revenue</li>
+<li>Optimize and reduce costs</li>
+</ul>
+</li>
+</ul>
+<p>To achieve this, the platform:</p>
+<ul>
+<li>Collects a dataset of user behavior via clickstream events, then produces statistics and analytics.</li>
+</ul>
 <hr>
 <h3 id="learning-objectives">Learning Objectives</h3>
-<p>After completing all sections (5.1–5.6), the reader should be able to:</p>
-<h4 id="architectural-understanding">Architectural understanding</h4>
+<h4 id="understand-the-architecture">Understand the Architecture</h4>
 <ul>
-<li>Describe the overall architecture of a <strong>batch-based clickstream analytics platform</strong> on AWS.</li>
-<li>Explain the differences between:
+<li>Be able to explain the overall architecture of a <strong>batch-based clickstream analytics platform</strong> using:
 <ul>
-<li>The <strong>user-facing domain</strong> (Amplify, CloudFront, Cognito, OLTP EC2).</li>
-<li>The <strong>ingestion &amp; data lake domain</strong> (API Gateway, Lambda Ingest, S3 Raw bucket).</li>
-<li>The <strong>analytics &amp; data warehouse domain</strong> (ETL Lambda, PostgreSQL DW, Shiny).</li>
+<li>Amplify, CloudFront, Cognito, EC2 OLTP in the <strong>user-facing domain</strong></li>
+<li>API Gateway, Lambda Ingest, S3 Raw bucket in the <strong>ingestion &amp; data lake domain</strong></li>
+<li>ETL Lambda, PostgreSQL DW on EC2, R Shiny in the <strong>analytics &amp; DW domain</strong></li>
 </ul>
 </li>
-<li>Justify why OLTP and Analytics are <strong>logically and physically separated</strong>, and how this reduces risk for the operational workload.</li>
-</ul>
-<h4 id="practical-skills">Practical skills</h4>
+<li>Be able to explain why OLTP and Analytics are separated:
 <ul>
-<li>Trigger and inspect clickstream ingestion from the frontend to <strong>API Gateway → Lambda Ingest → S3</strong>.</li>
-<li>Configure a <strong>Gateway VPC Endpoint for S3</strong> and update route tables so that analytics components inside private subnets can reach S3 <strong>without using a NAT Gateway</strong>.</li>
-<li>Configure and test a <strong>VPC-enabled ETL Lambda</strong> that:
-<ul>
-<li>Reads raw JSON files from the S3 Raw Clickstream bucket.</li>
-<li>Transforms events into SQL-ready analytical tables.</li>
-<li>Loads data into a PostgreSQL Data Warehouse hosted on EC2 in a private subnet.</li>
+<li><strong>Logical</strong>: different schemas, different types of workloads</li>
+<li><strong>Physical</strong>: public subnet vs private subnet, two different EC2 instances</li>
 </ul>
 </li>
-<li>Connect to the Data Warehouse and run sample <strong>SQL queries</strong> to validate the pipeline (event counts, top products, etc.).</li>
-<li>Access <strong>R Shiny dashboards</strong> running on the same EC2 instance as the Data Warehouse, and interpret the main charts (funnels, top products, time series).</li>
 </ul>
-<h4 id="security-and-cost-awareness">Security and cost-awareness</h4>
+<h4 id="hands-on-skills">Hands-on Skills</h4>
 <ul>
-<li>Explain how <strong>Gateway VPC Endpoints</strong> keep S3 traffic on the <strong>AWS private network</strong>.</li>
-<li>Compare using a Gateway VPC Endpoint versus a <strong>NAT Gateway</strong> in terms of <strong>security</strong>, <strong>cost</strong>, and <strong>operational complexity</strong>.</li>
-<li>List the main security controls used in the architecture:
+<li>Send clickstream events from the frontend to API Gateway → Lambda Ingest → S3 Raw (<code>clickstream-s3-ingest</code>).</li>
+<li>Configure a <strong>Gateway VPC Endpoint for S3</strong> and adjust the private route table so private components can access S3.</li>
+<li>Configure and test an <strong>ETL Lambda</strong> (<code>SBW_Lamda_ETL</code>) that can:
 <ul>
-<li>Public vs. private subnets.</li>
-<li>Security groups between OLTP, ETL Lambda, and Data Warehouse.</li>
-<li>Limited IAM permissions for Lambda Ingest and ETL Lambda.</li>
+<li>Read raw JSON files from <code>s3://clickstream-s3-ingest/events/YYYY/MM/DD/</code></li>
+<li>Transform events into rows for the table <code>clickstream_dw.public.clickstream_events</code></li>
+</ul>
+</li>
+<li>Connect to the DW (<code>SBW_EC2_ShinyDWH</code>) and run sample SQL queries:
+<ul>
+<li>Count the number of events</li>
+<li>Top products</li>
+<li>Basic funnel</li>
+</ul>
+</li>
+<li>Access <strong>R Shiny dashboards</strong> via SSM port forwarding and interpret:
+<ul>
+<li>Funnel charts</li>
+<li>Product engagement charts</li>
+<li>Time-series charts of activity over time</li>
+</ul>
+</li>
+</ul>
+<h4 id="security--cost-awareness">Security &amp; Cost Awareness</h4>
+<ul>
+<li>Understand the importance of protecting user behavior data by placing <code>EC2_ShinyDWH</code> and <code>Lambda_ETL</code> in <strong>private subnets</strong>:
+<ul>
+<li>Only allow <code>Lambda_ETL</code> to access S3 through a <strong>Gateway VPC Endpoint</strong></li>
+<li>Only allow admins to access <code>EC2_ShinyDWH</code> through SSM using <strong>Interface VPC Endpoints</strong></li>
+</ul>
+</li>
+<li>Recognize the main security controls:
+<ul>
+<li>Separation of public and private subnets</li>
+<li>Security groups between <code>sg_oltp_webDB</code>, <code>sg_Lambda_ETL</code>, <code>sg_analytics_ShinyDWH</code></li>
+<li>Least-privilege IAM permissions for each Lambda</li>
+<li>Zero-SSH administration using AWS Systems Manager Session Manager (no bastion host, no open SSH port).</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="scope-of-the-workshop">Scope of the Workshop</h3>
-<p>The workshop focuses on <strong>three core capabilities</strong> of the platform:</p>
+<h3 id="workshop-scope">Workshop Scope</h3>
+<p>The workshop focuses on three main capability areas:</p>
 <ol>
 <li>
-<p><strong>Implementing clickstream ingestion</strong></p>
+<p><strong>Implementing the clickstream ingestion layer</strong></p>
 <ul>
-<li>Capturing user interactions in the browser.</li>
-<li>Sending events as JSON to API Gateway.</li>
-<li>Persisting raw events as time-partitioned files in an S3 Raw Clickstream bucket.</li>
+<li>Capture browser interactions in the Next.js frontend</li>
+<li>Send JSON events to API Gateway (<code>clickstream-http-api</code>)</li>
+<li>Store raw events over time in <code>clickstream-s3-ingest</code></li>
 </ul>
 </li>
 <li>
 <p><strong>Building the private analytics layer</strong></p>
 <ul>
-<li>Configuring the VPC, private subnets, and S3 Gateway VPC Endpoint.</li>
-<li>Running ETL Lambda inside the VPC so that it can:
-<ul>
-<li>Read from S3 using private connectivity.</li>
-<li>Write data into the PostgreSQL Data Warehouse on a private EC2 instance.</li>
-</ul>
-</li>
+<li>Create the VPC, subnets, route tables, and VPC endpoints</li>
+<li>Run <code>SBW_Lamda_ETL</code> inside the VPC</li>
+<li>Connect the ETL Lambda to the private EC2 Data Warehouse (<code>SBW_EC2_ShinyDWH</code>)</li>
 </ul>
 </li>
 <li>
 <p><strong>Visualizing analytics with Shiny dashboards</strong></p>
 <ul>
-<li>Querying analytical tables from R Shiny Server running on the same EC2 instance as the Data Warehouse.</li>
-<li>Providing interactive dashboards for funnel analysis, product performance, and time-based trends.</li>
+<li>Query <code>clickstream_dw</code> from R Shiny</li>
+<li>Display funnels, product performance, and time trends</li>
+<li>Access Shiny through <strong>SSM Session Manager port forwarding</strong></li>
 </ul>
 </li>
 </ol>
-<p>The workshop assumes that:</p>
-<ul>
-<li>The base infrastructure (VPC, subnets, EC2 instances, IAM roles, basic Lambda skeletons, and S3 buckets) has already been provisioned, for example via <strong>Terraform</strong> or <strong>CloudFormation</strong>.</li>
-<li>The focus is on <strong>understanding and validating</strong> the data flow and private connectivity, rather than on writing production-grade ETL code or frontend code from scratch.</li>
-</ul>
 <hr>
-<h3 id="out-of-scope-topics">Out-of-Scope Topics</h3>
-<p>To keep the content focused and achievable within a limited time, the workshop <strong>does not</strong> cover:</p>
+<h3 id="out-of-scope">Out of Scope</h3>
+<p>To keep the workshop focused and manageable, we <strong>do not</strong> go deep into:</p>
 <ul>
-<li>Real-time streaming pipelines (for example, Amazon Kinesis, Kafka, or managed streaming services).</li>
-<li>Advanced data warehousing technologies such as <strong>Amazon Redshift</strong>, <strong>Redshift Serverless</strong>, or <strong>Lakehouse</strong> architectures.</li>
-<li>Complex machine learning or user segmentation models built on top of the clickstream data.</li>
-<li>Production-grade CI/CD pipelines, blue/green deployments, or multi-account AWS setups.</li>
-<li>Deep optimization of SQL queries and index design beyond simple examples.</li>
+<li>Real-time streaming (Kinesis, Kafka, MSK, …)</li>
+<li>Advanced DW services (Amazon Redshift / Redshift Serverless)</li>
+<li>Recommendation, segmentation, or anomaly detection using ML</li>
+<li>Production-grade CI/CD, blue/green deployments, multi-account setups</li>
+<li>Advanced SQL tuning or detailed index design</li>
 </ul>
-<p>These topics are considered <strong>future extensions</strong> of the platform and may be explored in subsequent work.</p>
-<hr>
-<h3 id="target-audience">Target Audience</h3>
-<p>The workshop is primarily intended for:</p>
-<ul>
-<li>Students or engineers with a basic understanding of AWS who want to see how multiple services fit together into a real analytics solution.</li>
-<li>Developers who are comfortable with <strong>JavaScript/TypeScript</strong>, <strong>SQL</strong>, and <strong>Linux-based environments</strong>.</li>
-<li>Anyone interested in learning how to design a <strong>secure, cost-conscious analytics architecture</strong> using mostly serverless components and a small EC2 footprint.</li>
-</ul>
-<p>Readers are not expected to be experts in networking or data engineering; the workshop provides concrete, guided steps in later sections (5.2–5.5) to make the architecture tangible and reproducible.</p>
-<p><strong>Figure 5-1: Amplify hosting for the e-commerce frontend</strong></p>
-<p>The screenshot shows the Amplify application that hosts the Next.js e-commerce frontend, including the main branch, last deployment status, and the CloudFront URL used in this workshop.</p>
-<p><img src="../../images/5-a-amplify-overview.png" alt="Figure 5-1: Amplify hosting for the e-commerce frontend"></p>
+<p>These are natural follow-up directions once the batch-based clickstream foundation in this workshop is in place.</p>
 
 
 
@@ -1528,19 +1532,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

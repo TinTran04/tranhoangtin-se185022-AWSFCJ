@@ -15,21 +15,21 @@
     <title>Building the Private Analytics Layer :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -817,17 +817,17 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#541-vpc-subnets-and-route-tables-configuration">5.4.1 VPC, Subnets, and Route Tables Configuration</a></li>
+    <li><a href="#542-vpc-endpoints-s3--ssm">5.4.2 VPC Endpoints (S3 &amp; SSM)</a>
       <ul>
-        <li><a href="#networking-design-for-the-analytics-layer">Networking design for the analytics layer</a></li>
-        <li><a href="#creating-and-configuring-the-s3-gateway-vpc-endpoint">Creating and configuring the S3 Gateway VPC Endpoint</a></li>
-        <li><a href="#configuring-the-etl-lambda-inside-the-vpc">Configuring the ETL Lambda inside the VPC</a></li>
-        <li><a href="#implementing-the-etl-logic">Implementing the ETL logic</a></li>
-        <li><a href="#security-groups-and-connectivity">Security groups and connectivity</a></li>
-        <li><a href="#testing-the-etl-pipeline-from-end-to-end">Testing the ETL pipeline from end to end</a></li>
-        <li><a href="#summary">Summary</a></li>
+        <li><a href="#s3-gateway-vpc-endpoint">S3 Gateway VPC Endpoint</a></li>
+        <li><a href="#ssm-interface-endpoints">SSM Interface Endpoints</a></li>
       </ul>
     </li>
+    <li><a href="#543-data-warehouse-on-ec2--sbw_ec2_shinydwh">5.4.3 Data Warehouse on EC2 – <code>SBW_EC2_ShinyDWH</code></a></li>
+    <li><a href="#544-etl-lambda--sbw_lamda_etl-running-in-the-private-subnet">5.4.4 ETL Lambda – <code>SBW_Lamda_ETL</code> (running in the Private subnet)</a></li>
+    <li><a href="#545-scheduling-with-eventbridge--sbw_etl_hourly_rule">5.4.5 Scheduling with EventBridge – <code>SBW_ETL_HOURLY_RULE</code></a></li>
+    <li><a href="#546-summary-of-security-groups--connectivity">5.4.6 Summary of Security Groups &amp; Connectivity</a></li>
   </ul>
 </nav></div>
 </div>
@@ -853,397 +853,140 @@
 
 
 
-	<p>This section explains in detail how the <strong>private analytics layer</strong> is implemented so that batch ETL can run <strong>entirely inside private subnets</strong>, without exposing internal components to the public Internet.</p>
-<p>The private analytics layer consists of:</p>
+	<h2 id="541-vpc-subnets-and-route-tables-configuration">5.4.1 VPC, Subnets, and Route Tables Configuration</h2>
 <ul>
-<li>A <strong>VPC-enabled ETL Lambda function</strong> running in a <strong>private subnet</strong>.</li>
-<li>An <strong>S3 Gateway VPC Endpoint</strong> that allows the ETL Lambda to access S3 over the <strong>AWS private network</strong>.</li>
-<li>A <strong>PostgreSQL Data Warehouse</strong> running on an <strong>EC2 instance</strong> in a separate private subnet.</li>
-</ul>
-<p>Together, these components form the backbone of the batch-processing pipeline:</p>
-<blockquote>
-<p>S3 Raw Clickstream bucket → ETL Lambda (in VPC) → PostgreSQL Data Warehouse (EC2, private subnet)</p></blockquote>
-<hr>
-<h3 id="networking-design-for-the-analytics-layer">Networking design for the analytics layer</h3>
-<p>The VPC is logically divided into subnets with distinct roles:</p>
+<li><strong>VPC CIDR</strong>: <code>10.0.0.0/16</code></li>
+<li><strong>Public subnet</strong>: <code>10.0.0.0/20</code> → <code>SBW_Project-subnet-public1-ap-southeast-1a</code>
 <ul>
-<li>
-<p><strong>Public Subnet – OLTP (10.0.1.0/24)</strong></p>
-<ul>
-<li>Hosts the OLTP PostgreSQL EC2 instance.</li>
-<li>Has a route <code>0.0.0.0/0 → Internet Gateway (IGW)</code> for inbound/outbound Internet access.</li>
+<li>Hosts <code>SBW_EC2_WebDB</code> (EC2 OLTP).</li>
 </ul>
 </li>
-<li>
-<p><strong>Private Subnet – Analytics (10.0.2.0/24)</strong></p>
+<li><strong>Private subnet</strong>: <code>10.0.128.0/20</code> → <code>SBW_Project-subnet-private1-ap-southeast-1a</code>
 <ul>
-<li>Hosts the <strong>Data Warehouse EC2</strong> instance and the <strong>R Shiny Server</strong>.</li>
-<li>Has <strong>no route to the Internet Gateway</strong> and <strong>no NAT Gateway</strong>.</li>
-<li>Only local VPC routes plus internal connectivity to other private subnets.</li>
-</ul>
-</li>
-<li>
-<p><strong>Private Subnet – ETL (10.0.3.0/24)</strong></p>
-<ul>
-<li>Hosts the <strong>VPC-enabled ETL Lambda</strong> and the <strong>S3 Gateway VPC Endpoint</strong>.</li>
-<li>Also has <strong>no 0.0.0.0/0 route</strong>, and no NAT Gateway.</li>
-<li>Can reach S3 privately through the Gateway Endpoint.</li>
+<li>Hosts <code>SBW_EC2_ShinyDWH</code> and <code>SBW_Lamda_ETL</code>.</li>
 </ul>
 </li>
 </ul>
-<p>This design ensures that:</p>
+<p><strong>Public Route Table</strong></p>
 <ul>
-<li>The Data Warehouse and R Shiny are <strong>not directly reachable from the public Internet</strong>.</li>
-<li>The ETL Lambda can access S3 and the Data Warehouse <strong>only over private AWS networking</strong>.</li>
-<li>There is <strong>no NAT Gateway</strong>, which reduces cost and simplifies the network footprint.</li>
+<li><code>10.0.0.0/16 → local</code></li>
+<li><code>0.0.0.0/0 → Internet Gateway</code></li>
+</ul>
+<p><strong>Private Route Table</strong></p>
+<ul>
+<li><code>10.0.0.0/16 → local</code></li>
+<li>S3 prefix list → Gateway VPC Endpoint for S3</li>
+<li>No <code>0.0.0.0/0</code> route to the IGW or a NAT Gateway</li>
 </ul>
 <hr>
-<h3 id="creating-and-configuring-the-s3-gateway-vpc-endpoint">Creating and configuring the S3 Gateway VPC Endpoint</h3>
-<p>The S3 Gateway VPC Endpoint allows resources in private subnets to reach S3 <strong>without using public IPs</strong>.</p>
-<p><strong>Figure 5-9: S3 Gateway VPC Endpoint attached to private route tables</strong></p>
-<p>The screenshot shows the Gateway VPC Endpoint for the Amazon S3 service (<code>com.amazonaws.ap-southeast-1.s3</code>) in the workshop VPC.<br>
-The endpoint is in the <code>Available</code> state and is associated with the two private route tables, which are in turn attached to the Analytics and ETL subnets.<br>
-This configuration ensures that traffic from the ETL Lambda and the Data Warehouse instance to S3 stays inside the AWS network and does not require a NAT Gateway.</p>
-<p><img src="../../images/5-4-s3-gateway-vpce.png" alt="Figure 5-9: Gateway VPC Endpoint attached to private route tables"></p>
-<h4 id="step-1--create-the-gateway-endpoint">Step 1 – Create the Gateway Endpoint</h4>
-<ol>
-<li>
-<p>Open the <strong>VPC Console</strong> in the AWS Management Console.</p>
-</li>
-<li>
-<p>Navigate to <strong>Endpoints</strong> → click <strong>Create endpoint</strong>.</p>
-</li>
-<li>
-<p>Under <strong>Service category</strong>, select <strong>AWS services</strong>.</p>
-</li>
-<li>
-<p>In the search box, type <code>s3</code> and select the entry:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>com.amazonaws.&lt;region&gt;.s3
-</span></span></code></pre></div></li>
-<li>
-<p>For <strong>Endpoint type</strong>, select <strong>Gateway</strong>.</p>
-</li>
-<li>
-<p>For <strong>VPC</strong>, choose the project VPC that contains your analytics and ETL subnets.</p>
-</li>
-<li>
-<p>Under <strong>Route tables</strong>, select the route table associated with the <strong>ETL private subnet (10.0.3.0/24)</strong> and, optionally, the <strong>Analytics private subnet (10.0.2.0/24)</strong> if you also want the DW EC2 instance to access S3 privately.</p>
-</li>
-<li>
-<p>In the <strong>Policy</strong> section, you can start with <strong>Full access</strong> for the workshop:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Later, this can be restricted to a specific bucket or prefix.</p>
-</li>
-<li>
-<p>Click <strong>Create endpoint</strong>.</p>
-</li>
-</ol>
-<h4 id="step-2--verify-route-table-entries">Step 2 – Verify route table entries</h4>
-<p>After the endpoint is created, AWS automatically adds routes to the selected route tables.</p>
-<ol>
-<li>
-<p>In the <strong>VPC Console</strong>, open <strong>Route tables</strong>.</p>
-</li>
-<li>
-<p>Select the route table used by the <strong>ETL private subnet</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Routes</strong> tab, verify that:</p>
+<h2 id="542-vpc-endpoints-s3--ssm">5.4.2 VPC Endpoints (S3 &amp; SSM)</h2>
+<p><img src="../../images/aws-vpc-endpoints-s3-ssm.png" alt="VPC Endpoints for S3 &amp; SSM"></p>
+<h3 id="s3-gateway-vpc-endpoint">S3 Gateway VPC Endpoint</h3>
 <ul>
-<li>
-<p>There is a local route:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>10.0.0.0/16 → local
-</span></span></code></pre></div></li>
-<li>
-<p>There is a prefix-list route to S3​, pointing to the new endpoint:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>pl-xxxxxxxx → vpce-xxxxxxxx  (Gateway Endpoint to S3)
-</span></span></code></pre></div></li>
-<li>
-<p>There is <strong>no</strong> route:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>0.0.0.0/0 → igw-xxxxxxx
-</span></span></code></pre></div></li>
-<li>
-<p>There is <strong>no</strong> NAT Gateway target.</p>
+<li>Enables <strong>private network access to S3</strong> for:
+<ul>
+<li><code>SBW_Lamda_ETL</code></li>
+</ul>
 </li>
+<li>No NAT Gateway is required.</li>
+</ul>
+<h3 id="ssm-interface-endpoints">SSM Interface Endpoints</h3>
+<ul>
+<li><code>com.amazonaws.ap-southeast-1.ssm</code></li>
+<li><code>com.amazonaws.ap-southeast-1.ssmmessages</code></li>
+<li><code>com.amazonaws.ap-southeast-1.ec2messages</code></li>
+</ul>
+<p>These endpoints allow <strong>Session Manager</strong> to manage and port-forward to <code>SBW_EC2_ShinyDWH</code> without needing a public IP address or SSH port.</p>
+<hr>
+<h2 id="543-data-warehouse-on-ec2--sbw_ec2_shinydwh">5.4.3 Data Warehouse on EC2 – <code>SBW_EC2_ShinyDWH</code></h2>
+<p>On this private EC2 instance:</p>
+<ul>
+<li>PostgreSQL database: <code>clickstream_dw</code></li>
+<li>Main table: <code>clickstream_events</code> with the following fields:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>event_id
+</span></span><span style="display:flex;"><span>event_timestamp
+</span></span><span style="display:flex;"><span>event_name
+</span></span><span style="display:flex;"><span>user_id
+</span></span><span style="display:flex;"><span>user_login_state
+</span></span><span style="display:flex;"><span>identity_source
+</span></span><span style="display:flex;"><span>client_id
+</span></span><span style="display:flex;"><span>session_id
+</span></span><span style="display:flex;"><span>is_first_visit
+</span></span><span style="display:flex;"><span>context_product_id
+</span></span><span style="display:flex;"><span>context_product_name
+</span></span><span style="display:flex;"><span>context_product_category
+</span></span><span style="display:flex;"><span>context_product_brand
+</span></span><span style="display:flex;"><span>context_product_price
+</span></span><span style="display:flex;"><span>context_product_discount_price
+</span></span><span style="display:flex;"><span>context_product_url_path
+</span></span></code></pre></div><p>The instance allows:</p>
+<ul>
+<li><code>SBW_Lamda_ETL</code> to connect to the PostgreSQL DB <code>clickstream_dw</code>.</li>
+<li>Local web access to Shiny via SSM.</li>
+</ul>
+<hr>
+<h2 id="544-etl-lambda--sbw_lamda_etl-running-in-the-private-subnet">5.4.4 ETL Lambda – <code>SBW_Lamda_ETL</code> (running in the Private subnet)</h2>
+<p>The ETL Lambda is where the main batch processing happens.</p>
+<p><strong>VPC configuration:</strong></p>
+<ul>
+<li>Subnet: <code>SBW_Project-subnet-private1-ap-southeast-1a</code></li>
+<li>Security group: <code>sg_Lambda_ETL</code></li>
+</ul>
+<p><strong>Environment variables:</strong></p>
+<ul>
+<li><code>DWH_HOST</code>, <code>DWH_PORT=5432</code>, <code>DWH_USER</code>, <code>DWH_PASSWORD</code>, <code>DWH_DATABASE=clickstream_dw</code></li>
+<li><code>RAW_BUCKET=clickstream-s3-ingest</code></li>
+<li><code>AWS_REGION=ap-southeast-1</code></li>
+</ul>
+<p><strong>Responsibilities:</strong></p>
+<ol>
+<li>Determine the list of files in <code>s3://clickstream-s3-ingest/events/YYYY/MM/DD/</code> for the batch to be processed.</li>
+<li>For each JSON file:
+<ul>
+<li>Extract</li>
+<li>Transform</li>
+<li>Load</li>
 </ul>
 </li>
 </ol>
-<p>This confirms that the private subnets do <strong>not</strong> send traffic directly to the Internet, but <strong>can reach S3</strong> through the Gateway Endpoint.</p>
-<hr>
-<h3 id="configuring-the-etl-lambda-inside-the-vpc">Configuring the ETL Lambda inside the VPC</h3>
-<p>The ETL Lambda function must be placed inside the VPC so it can:</p>
+<p><strong>IAM role:</strong></p>
 <ul>
-<li>Reach S3 via the <strong>Gateway Endpoint</strong>.</li>
-<li>Connect to the <strong>PostgreSQL Data Warehouse</strong> in the Analytics private subnet.</li>
+<li>Grants permissions for the Lambda to access the EC2_ShinyDWH (for example, via the database endpoint in the private subnet).</li>
 </ul>
-<h4 id="step-1--attach-the-lambda-to-the-vpc">Step 1 – Attach the Lambda to the VPC</h4>
+<hr>
+<h2 id="545-scheduling-with-eventbridge--sbw_etl_hourly_rule">5.4.5 Scheduling with EventBridge – <code>SBW_ETL_HOURLY_RULE</code></h2>
+<p><img src="../../images/aws-eventbridge-sbw-etl-hourly-rule.png" alt="EventBridge rule"></p>
+<p>EventBridge helps the platform operate in a <strong>batch</strong> style:</p>
+<ul>
+<li><strong>Rule name</strong>: <code>SBW_ETL_HOURLY_RULE</code></li>
+<li><strong>Schedule</strong>: <code>rate(1 hour)</code></li>
+<li><strong>Target</strong>: <code>SBW_Lamda_ETL</code></li>
+</ul>
+<p>Each time the rule runs:</p>
 <ol>
-<li>
-<p>Open the <strong>Lambda Console</strong> and choose the ETL function, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>clickstream-etl-lambda
-</span></span></code></pre></div></li>
-<li>
-<p>Go to the <strong>Configuration</strong> tab → <strong>Network</strong> (or <strong>Environment → VPC</strong> depending on the UI).</p>
-</li>
-<li>
-<p>Click <strong>Edit</strong> and set:</p>
-<ul>
-<li><strong>VPC</strong>: your project VPC.</li>
-<li><strong>Subnets</strong>: select the <strong>ETL private subnet (10.0.3.0/24)</strong> (you can select multiple subnets in the same AZ or different AZs for resilience).</li>
-<li><strong>Security groups</strong>: choose a security group that:
-<ul>
-<li>Allows outbound traffic to S3 (via the Gateway Endpoint).</li>
-<li>Allows outbound traffic to the Data Warehouse EC2 instance (port 5432).</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Save the configuration. Lambda will now create ENIs (elastic network interfaces) in the selected subnet(s) the next time it runs.</p>
-</li>
+<li>The ETL Lambda runs inside the private subnet.</li>
+<li>It reads new events from S3 via the Gateway Endpoint.</li>
+<li>It loads the processed data into <code>clickstream_dw</code>.</li>
 </ol>
-<h4 id="step-2--iam-role-permissions-for-etl-lambda">Step 2 – IAM role permissions for ETL Lambda</h4>
-<p>The ETL Lambda <strong>execution role</strong> must include:</p>
-<ul>
-<li>
-<p>Permission to <strong>read from</strong> the Raw Clickstream S3 bucket, e.g.:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Action&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;s3:ListBucket&#34;</span>
-</span></span><span style="display:flex;"><span>  ],
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Resource&#34;</span>: [
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;arn:aws:s3:::clickstream-raw-&lt;account&gt;-&lt;region&gt;&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;arn:aws:s3:::clickstream-raw-&lt;account&gt;-&lt;region&gt;/events/*&#34;</span>
-</span></span><span style="display:flex;"><span>  ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-<li>
-<p>Permission to <strong>write logs</strong> to CloudWatch Logs (usually added by default).</p>
-</li>
-<li>
-<p>No direct permission to manage infrastructure (keep the role minimal).</p>
-</li>
-</ul>
-<h4 id="step-3--database-connectivity-configuration">Step 3 – Database connectivity configuration</h4>
-<p>In the ETL Lambda environment variables, store:</p>
-<ul>
-<li><code>DW_HOST</code> – the private IP or hostname of the Data Warehouse EC2 instance.</li>
-<li><code>DW_PORT</code> – typically <code>5432</code>.</li>
-<li><code>DW_USER</code> / <code>DW_PASSWORD</code> – credentials with sufficient privileges to insert into DW tables.</li>
-<li><code>DW_DATABASE</code> – the name of the analytics database.</li>
-</ul>
-<p>The Lambda code will use these environment variables to establish a connection (for example, using a PostgreSQL client library).</p>
+<p>You can also <strong>trigger the ETL Lambda manually</strong> (from the Lambda console) for backfill or testing purposes.</p>
 <hr>
-<h3 id="implementing-the-etl-logic">Implementing the ETL logic</h3>
-<p>The ETL Lambda performs the following high-level steps each time it runs (either on a schedule via EventBridge or triggered manually):</p>
-<ol>
-<li>
-<p><strong>Determine the time window / S3 prefix to process</strong></p>
+<h2 id="546-summary-of-security-groups--connectivity">5.4.6 Summary of Security Groups &amp; Connectivity</h2>
 <ul>
-<li>For example, all objects under <code>events/YYYY/MM/DD/HH/</code> for the last hour.</li>
-</ul>
-</li>
 <li>
-<p><strong>List relevant S3 objects</strong></p>
+<p><code>sg_Lambda_ETL</code>:</p>
 <ul>
-<li>Use <code>ListObjectsV2</code> on the Raw Clickstream bucket with the chosen prefix.</li>
+<li>Outbound access to the S3 endpoint and to <code>sg_analytics_ShinyDWH:5432</code>.</li>
 </ul>
 </li>
 <li>
-<p><strong>Read and parse events</strong></p>
+<p><code>sg_analytics_ShinyDWH</code>:</p>
 <ul>
-<li>For each object, call <code>GetObject</code> and parse the JSON content.</li>
-<li>Validate important fields (event name, timestamp, user/session IDs, product IDs).</li>
-</ul>
-</li>
-<li>
-<p><strong>Transform to analytical schema</strong></p>
-<ul>
-<li>
-<p>Map raw JSON to relational tables, for example:</p>
-<ul>
-<li><code>dim_users</code> – user-level attributes.</li>
-<li><code>dim_products</code> – product attributes.</li>
-<li><code>fact_events</code> – individual events with foreign keys to users and products.</li>
-<li><code>fact_sessions</code> – aggregated session-level metrics.</li>
-</ul>
-</li>
-<li>
-<p>Apply simple business rules, such as:</p>
-<ul>
-<li>Derive a <strong>date</strong> and <strong>hour</strong> dimension from timestamps.</li>
-<li>Normalize event names.</li>
-<li>Filter out test or malformed events.</li>
+<li>Inbound <code>5432/tcp</code> from <code>sg_Lambda_ETL</code>.</li>
+<li>Inbound <code>3838/tcp</code> for Shiny (used only via SSM port forwarding).</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p><strong>Insert into the Data Warehouse</strong></p>
-<ul>
-<li>Open a transaction against the PostgreSQL Data Warehouse.</li>
-<li>Use batched <code>INSERT</code> statements or <code>COPY</code>-like bulk inserts (depending on the implementation).</li>
-<li>Commit if everything is successful; roll back on errors.</li>
-</ul>
-</li>
-<li>
-<p><strong>Mark progress (optional)</strong></p>
-<ul>
-<li>Store a processing marker (e.g., last processed hour) in a control table or a metadata S3 prefix to avoid re-processing.</li>
-</ul>
-</li>
-</ol>
-<p>Example of a simple target fact table for events:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> fact_events (
-</span></span><span style="display:flex;"><span>    event_id          UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
-</span></span><span style="display:flex;"><span>    event_timestamp   TIMESTAMPTZ <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    event_name        TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    user_id           TEXT,
-</span></span><span style="display:flex;"><span>    session_id        TEXT,
-</span></span><span style="display:flex;"><span>    client_id         TEXT,
-</span></span><span style="display:flex;"><span>    product_id        TEXT,
-</span></span><span style="display:flex;"><span>    page_url          TEXT,
-</span></span><span style="display:flex;"><span>    traffic_source    TEXT,
-</span></span><span style="display:flex;"><span>    created_at        TIMESTAMPTZ <span style="color:#66d9ef">DEFAULT</span> NOW()
-</span></span><span style="display:flex;"><span>);
-</span></span></code></pre></div><p>The ETL Lambda will insert data into <code>fact_events</code> based on the parsed S3 JSON files.</p>
-<p><strong>Figure 5-10: VPC configuration of the ETL Lambda function</strong></p>
-<p>The screenshot shows the <code>SBW_Lamda_ETL</code> function attached to the <code>SBW_Project-vpc</code>.<br>
-The Lambda uses two private subnets (one in each Availability Zone) and a dedicated security group (<code>sg_Lamda_ETL</code>) that controls all network access.<br>
-This configuration allows the function to reach the S3 Gateway VPC Endpoint and the Data Warehouse instance without exposing the Lambda to the public internet.</p>
-<p><img src="../../images/5-4-lambda-etl-vpc.png" alt="Figure 5-10: VPC configuration of the ETL Lambda function"></p>
-<hr>
-<h3 id="security-groups-and-connectivity">Security groups and connectivity</h3>
-<p>To ensure that only the necessary traffic is allowed:</p>
-<ul>
-<li>
-<p><strong>Security Group for the Data Warehouse EC2 (SG-DW)</strong></p>
-<ul>
-<li>Inbound rules:
-<ul>
-<li>Allow <code>5432/tcp</code> <strong>from the ETL Lambda security group</strong> (not from <code>0.0.0.0/0</code>).</li>
-</ul>
-</li>
-<li>Outbound rules:
-<ul>
-<li>Allow all outbound traffic (or restrict as needed for updates/monitoring).</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Security Group for the ETL Lambda (SG-ETL)</strong></p>
-<ul>
-<li>Inbound rules:
-<ul>
-<li>Not needed (Lambda does not accept inbound connections).</li>
-</ul>
-</li>
-<li>Outbound rules:
-<ul>
-<li>Allow traffic to:
-<ul>
-<li>The Data Warehouse EC2 private IP on port <code>5432</code>.</li>
-<li>The S3 Gateway VPC Endpoint (this is usually covered by allowing all outbound traffic within the VPC).</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>This setup ensures that:</p>
-<ul>
-<li>Only the ETL Lambda can talk to the Data Warehouse (no direct access from the public Internet).</li>
-<li>The Data Warehouse EC2 does not accept arbitrary incoming connections.</li>
-</ul>
-<hr>
-<h3 id="testing-the-etl-pipeline-from-end-to-end">Testing the ETL pipeline from end to end</h3>
-<p>To validate that the private analytics layer is working correctly:</p>
-<ol>
-<li>
-<p><strong>Generate fresh events</strong></p>
-<ul>
-<li>Follow Section 5.3 to generate new clickstream events (page views, product views, add-to-cart, checkout).</li>
-</ul>
-</li>
-<li>
-<p><strong>Trigger the ETL Lambda</strong></p>
-<ul>
-<li>Option A: Wait for the scheduled <strong>EventBridge rule</strong> (e.g., every 30 minutes).</li>
-<li>Option B: In the EventBridge console, select the ETL rule (for example <code>clickstream-etl-schedule</code>) and choose <strong>Run now</strong>.</li>
-<li>Option C: In the Lambda console, use the <strong>Test</strong> button with a minimal test event to manually invoke the ETL.</li>
-</ul>
-</li>
-<li>
-<p><strong>Check CloudWatch Logs</strong></p>
-<ul>
-<li>Open the ETL Lambda log group in <strong>CloudWatch Logs</strong>.</li>
-<li>Verify that:
-<ul>
-<li>The Lambda successfully listed and read S3 objects.</li>
-<li>It processed the expected number of events.</li>
-<li>It connected to the Data Warehouse and executed inserts without errors.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Verify data in the Data Warehouse</strong></p>
-<ul>
-<li>
-<p>Connect to the Data Warehouse EC2 instance using <strong>Session Manager</strong> or SSH.</p>
-</li>
-<li>
-<p>From there, use <code>psql</code> or a SQL client to run queries such as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> event_name, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> total_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> event_name
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> total_events <span style="color:#66d9ef">DESC</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> product_id, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> view_count
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> event_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;product_view&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> product_id
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> view_count <span style="color:#66d9ef">DESC</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div></li>
-<li>
-<p>Confirm that the counts and top products roughly match the behaviour you generated on the website.</p>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="summary">Summary</h3>
-<p>By the end of this section, you will have:</p>
-<ul>
-<li>Configured an <strong>S3 Gateway VPC Endpoint</strong> so that private subnets can access S3 without a NAT Gateway.</li>
-<li>Attached the <strong>ETL Lambda</strong> to the VPC and ensured it can reach both S3 and the Data Warehouse over private networking.</li>
-<li>Implemented ETL logic that reads raw JSON clickstream files, transforms them, and loads them into a <strong>PostgreSQL Data Warehouse</strong> in a private subnet.</li>
-<li>Verified end-to-end connectivity and data flow by inspecting logs and running SQL queries.</li>
-</ul>
-<p>In the next section (5.5), you will use <strong>R Shiny dashboards</strong> running on the Data Warehouse EC2 instance to visualize the processed data and build interactive analytics views.</p>
-<hr>
-<p><strong>Figure 5-11: Private analytics layer with ETL Lambda, Data Warehouse, and S3 Gateway Endpoint</strong></p>
-<p>The diagram shows how the batch ETL pipeline runs entirely inside the Analytics private subnet:</p>
-<ul>
-<li><strong>EventBridge</strong> (bottom right) triggers the <strong>ETL Lambda</strong> on a schedule.</li>
-<li>The ETL Lambda reads raw clickstream files from the <strong>S3 Raw Clickstream bucket</strong> and reaches S3 through the <strong>S3 Gateway VPC Endpoint</strong> (no Internet/NAT required).</li>
-<li>The ETL Lambda writes transformed data into the <strong>PostgreSQL Data Warehouse EC2 instance</strong>, and the <strong>R Shiny Server</strong> running on the same instance reads from the Data Warehouse to power analytics dashboards.</li>
-</ul>
-<p><img src="../../images/5-4-etl-s3-endpoint.png" alt="Figure 5-11: Private analytics layer with ETL Lambda, Data Warehouse, and S3 Gateway Endpoint"></p>
 
 
 
@@ -1800,19 +1543,19 @@ This configuration allows the function to reach the S3 Gateway VPC Endpoint and 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

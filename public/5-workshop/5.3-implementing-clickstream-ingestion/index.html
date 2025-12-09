@@ -15,21 +15,21 @@
     <title>Implementing Clickstream Ingestion :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -817,15 +817,28 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#531-ingestion-flow-overview">5.3.1 Ingestion Flow Overview</a></li>
+    <li><a href="#532-s3-bucket-design">5.3.2 S3 Bucket Design</a></li>
+    <li><a href="#533-lambda-ingest-design--clickstream-lambda-ingest">5.3.3 Lambda Ingest Design — <code>clickstream-lambda-ingest</code></a>
       <ul>
-        <li><a href="#frontend-event-generation">Frontend event generation</a></li>
-        <li><a href="#api-gateway-and-lambda-ingest-flow">API Gateway and Lambda Ingest flow</a></li>
-        <li><a href="#manual-testing-from-the-frontend-and-postman">Manual testing from the frontend and Postman</a></li>
-        <li><a href="#inspecting-data-in-the-s3-raw-clickstream-bucket">Inspecting data in the S3 Raw Clickstream bucket</a></li>
-        <li><a href="#summary-and-relation-to-downstream-components">Summary and relation to downstream components</a></li>
+        <li><a href="#responsibilities">Responsibilities</a></li>
+        <li><a href="#iam-permissions">IAM Permissions</a></li>
       </ul>
     </li>
+    <li><a href="#534-api-gateway-http-api--clickstream-http-api">5.3.4 API Gateway HTTP API — <code>clickstream-http-api</code></a></li>
+    <li><a href="#535-frontend-clickstream-publisher-logic">5.3.5 Frontend Clickstream Publisher (Logic)</a>
+      <ul>
+        <li><a href="#identity--idempotency">Identity &amp; idempotency</a></li>
+        <li><a href="#user-page-and-click-metadata">User, page, and click metadata</a></li>
+        <li><a href="#product-context">Product context</a></li>
+        <li><a href="#event-coverage">Event coverage</a></li>
+        <li><a href="#domain-event-wiring">Domain event wiring</a></li>
+        <li><a href="#components--wiring">Components &amp; wiring</a></li>
+        <li><a href="#runtime-behavior">Runtime behavior</a></li>
+      </ul>
+    </li>
+    <li><a href="#536-field-projection-frontend---s3---dw">5.3.6 Field projection (frontend -&gt; S3 -&gt; DW)</a></li>
+    <li><a href="#536-testing--validation">5.3.6 Testing &amp; Validation</a></li>
   </ul>
 </nav></div>
 </div>
@@ -851,242 +864,313 @@
 
 
 
-	<p>This section describes in detail how clickstream events are generated in the browser, sent to <strong>Amazon API Gateway</strong>, processed by the <strong>Lambda Ingest</strong> function, and finally stored as raw JSON files in the <strong>S3 Raw Clickstream bucket</strong>.</p>
-<p>The ingestion path is the <strong>entry point of the entire analytics platform</strong>: if events are not captured or stored correctly at this stage, the downstream ETL and dashboards will not be reliable.</p>
-<hr>
-<h3 id="frontend-event-generation">Frontend event generation</h3>
-<p>The e-commerce frontend is implemented using <strong>Next.js</strong> and hosted on <strong>AWS Amplify</strong>. A client-side tracking module is responsible for collecting user actions and sending them as clickstream events.</p>
-<p>Typical actions that should be captured include:</p>
-<ul>
-<li><strong>Page views</strong>: landing page, category pages, search results, product detail pages.</li>
-<li><strong>Product interactions</strong>: clicking on a product card, viewing product details, adding or removing items from the cart.</li>
-<li><strong>Checkout steps</strong>: starting the checkout, filling in shipping information, placing an order.</li>
-<li><strong>Session and identity information</strong>: user ID (if logged in), session ID, login state, client ID.</li>
-</ul>
-<p>The frontend tracking code usually performs the following steps:</p>
+	<h2 id="531-ingestion-flow-overview">5.3.1 Ingestion Flow Overview</h2>
+<p>High-level data flow:</p>
 <ol>
-<li>
-<p>Listens for events in the UI (e.g., page load, button click).</p>
-</li>
-<li>
-<p>Builds a JSON payload with at least:</p>
+<li>User interacts with the Next.js frontend (<code>ClickSteam.NextJS</code>) hosted on Amplify.</li>
+<li>Frontend JavaScript bundles clickstream metadata (page/user/session/product) into a JSON payload.</li>
+<li>Browser sends <code>POST</code> requests to <code>clickstream-http-api</code> at <code>POST /clickstream</code>.</li>
+<li>API Gateway forwards the request to <code>clickstream-lambda-ingest</code>.</li>
+<li>Lambda Ingest enriches <code>_ingest</code> metadata and writes one JSON file per event to:
 <ul>
-<li><code>event_id</code> – unique identifier for the event.</li>
-<li><code>event_name</code> – e.g., <code>&quot;page_view&quot;</code>, <code>&quot;product_view&quot;</code>, <code>&quot;add_to_cart&quot;</code>.</li>
-<li><code>event_timestamp</code> – client-side timestamp (ISO 8601 or epoch).</li>
-<li><code>user_id</code> / <code>identity_source</code> – if the user is logged in (e.g., Cognito user sub).</li>
-<li><code>session_id</code> / <code>client_id</code> – session or browser identifier.</li>
-<li><code>product_id</code>, <code>product_name</code>, <code>product_category</code>, etc., for product-related events.</li>
-<li><code>page_url</code>, <code>referrer</code>, <code>utm_*</code> fields for traffic attribution (optional).</li>
-</ul>
-</li>
-<li>
-<p>Sends the JSON payload via HTTPS to the API Gateway endpoint (see Section 5.3.2).</p>
-</li>
-</ol>
-<p>Example of a minimal JSON payload sent from the browser:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;event_name&#34;</span>: <span style="color:#e6db74">&#34;product_view&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;event_timestamp&#34;</span>: <span style="color:#e6db74">&#34;2025-12-04T15:23:45.123Z&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;user_123&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;login_state&#34;</span>: <span style="color:#e6db74">&#34;logged_in&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;session_abc&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;client_id&#34;</span>: <span style="color:#e6db74">&#34;browser_xyz&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;product_id&#34;</span>: <span style="color:#e6db74">&#34;SKU-12345&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;product_name&#34;</span>: <span style="color:#e6db74">&#34;Gaming Laptop 15 inch&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;product_category&#34;</span>: <span style="color:#e6db74">&#34;Laptops&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;product_price&#34;</span>: <span style="color:#ae81ff">1299.0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;page_url&#34;</span>: <span style="color:#e6db74">&#34;/products/sku-12345&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The payload can be extended later as the analytics requirements evolve.</p>
-<hr>
-<h3 id="api-gateway-and-lambda-ingest-flow">API Gateway and Lambda Ingest flow</h3>
-<h4 id="api-gateway-http-api">API Gateway HTTP API</h4>
-<p>The ingestion endpoint is exposed using <strong>Amazon API Gateway (HTTP API)</strong> with a route such as:</p>
-<ul>
-<li>Method: <code>POST</code></li>
-<li>Path: <code>/clickstream</code></li>
-</ul>
-<p>Key characteristics:</p>
-<ul>
-<li>The endpoint accepts JSON payloads from the browser.</li>
-<li>CORS is configured to allow the frontend domain (CloudFront / Amplify) to call it.</li>
-<li>The route is integrated with a <strong>Lambda function</strong> (Lambda proxy integration).</li>
-</ul>
-<p><strong>Figure 5-5: API Gateway route for POST /clickstream</strong></p>
-<p>The screenshot shows the HTTP API configuration for the clickstream ingestion endpoint.<br>
-The <code>/clickstream</code> resource exposes a single <code>POST</code> route, which is integrated with the <code>clickstream-ingest</code> Lambda function.<br>
-No authorizer is attached in this lab to keep the workshop focused on data ingestion rather than authentication.</p>
-<p><img src="../../images/5-3-apigw-clickstream-route.png" alt="Figure 5-5: API Gateway route for POST /clickstream"></p>
-<h4 id="lambda-ingest-function">Lambda Ingest function</h4>
-<p>The <strong>Lambda Ingest</strong> function is responsible for the following:</p>
-<ol>
-<li>
-<p><strong>Parsing the request</strong></p>
-<ul>
-<li>Reads the request body from the API Gateway event.</li>
-<li>Validates that the body contains a valid JSON object or array of objects.</li>
-</ul>
-</li>
-<li>
-<p><strong>Basic validation &amp; enrichment</strong></p>
-<ul>
-<li>Ensures mandatory fields (e.g., <code>event_name</code>, <code>event_timestamp</code>) are present.</li>
-<li>If the client timestamp is missing, attaches a server-side timestamp.</li>
-<li>Adds metadata such as:
-<ul>
-<li>The API Gateway request ID.</li>
-<li>The source IP or user agent (if needed).</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Batching and writing to S3</strong></p>
-<ul>
-<li>
-<p>Constructs a key in the Raw Clickstream bucket using a time-based partition pattern, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>s3://&lt;raw-bucket&gt;/events/YYYY/MM/DD/HH/events-&lt;uuid&gt;.json
-</span></span></code></pre></div></li>
-<li>
-<p>Writes the incoming events as a JSON array or NDJSON (newline-delimited JSON), depending on the chosen format.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Logging and error handling</strong></p>
-<ul>
-<li>Logs validation errors or malformed events to <strong>CloudWatch Logs</strong>.</li>
-<li>Returns an appropriate HTTP status code back to API Gateway (e.g., <code>200</code> on success, <code>400</code> for invalid payload).</li>
+<li><code>s3://clickstream-s3-ingest/events/YYYY/MM/DD/HH/event-&lt;uuid&gt;.json</code> (UTC hour partition)</li>
 </ul>
 </li>
 </ol>
-<p>Example S3 object key for an event batch captured on 4 December 2025 at 15:00:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events/2025/12/04/15/events-a1b2c3d4.json
-</span></span></code></pre></div><p><strong>Figure 5-6: Lambda Ingest function overview</strong></p>
-<p>The screenshot shows the <code>clickstream-lambda-ingest</code> function in the AWS Lambda console.<br>
-The diagram highlights that the function is triggered by the HTTP API Gateway and uses a lightweight configuration (128 MB memory, short timeout) that is sufficient for validating JSON payloads, enriching metadata, and writing batched events to the S3 Raw Clickstream bucket.</p>
-<p><img src="../../images/5-3-lambda-ingest-config.png" alt="Figure 5-6: Lambda Ingest function overview"></p>
+<p>Design stays <strong>stateless</strong> and <strong>append-only</strong>, suitable for downstream batch ETL and idempotent inserts.</p>
 <hr>
-<h3 id="manual-testing-from-the-frontend-and-postman">Manual testing from the frontend and Postman</h3>
-<p>To confirm that ingestion is working as expected, two complementary tests are performed.</p>
-<h4 id="end-to-end-test-from-the-real-frontend">End-to-end test from the real frontend</h4>
+<h2 id="532-s3-bucket-design">5.3.2 S3 Bucket Design</h2>
+<p>Two buckets are relevant:</p>
 <ol>
 <li>
-<p>Open the CloudFront domain of the e-commerce application, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>https://dxxxxxxxx.cloudfront.net
-</span></span></code></pre></div></li>
-<li>
-<p>Sign in using <strong>Amazon Cognito</strong> with a test user account.</p>
-</li>
-<li>
-<p>Perform a sequence of actions, such as:</p>
+<p><strong>Asset Bucket</strong> — <code>clickstream-s3-sbw</code></p>
 <ul>
-<li>Open the home page and a category page.</li>
-<li>View the details of two or three products.</li>
-<li>Add at least one product to the cart and then remove it.</li>
-<li>Start the checkout flow and proceed to the final confirmation step (placing a real order is optional).</li>
+<li>Stores website assets: product images, static files.</li>
+<li>Not used for clickstream events.</li>
 </ul>
 </li>
 <li>
-<p>Using the browser’s developer tools (Network tab), verify that:</p>
+<p><strong>RAW Clickstream Bucket</strong> — <code>clickstream-s3-ingest</code></p>
 <ul>
-<li>Requests are being sent to <code>POST /clickstream</code>.</li>
-<li>The request body contains the expected JSON fields such as <code>event_name</code>, <code>product_id</code>, <code>session_id</code>, etc.</li>
-<li>The response status code from API Gateway is <code>200</code>.</li>
+<li>Stores only raw clickstream JSON events.</li>
+<li>Partitioned by UTC hour: <code>events/YYYY/MM/DD/HH/</code></li>
+<li>File naming: <code>event-&lt;uuid&gt;.json</code></li>
 </ul>
 </li>
 </ol>
-<h4 id="direct-test-using-postman-or-thunder-client">Direct test using Postman or Thunder Client</h4>
-<p>For controlled testing, you can also send synthetic events using an API client:</p>
-<ul>
-<li>
-<p>Method: <code>POST</code></p>
-</li>
-<li>
-<p>URL:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>https://&lt;api-id&gt;.execute-api.&lt;region&gt;.amazonaws.com/clickstream
-</span></span></code></pre></div></li>
-<li>
-<p>Header:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Content-Type: application/json
-</span></span></code></pre></div></li>
-<li>
-<p>Body:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;event_name&#34;</span>: <span style="color:#e6db74">&#34;page_view&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;event_timestamp&#34;</span>: <span style="color:#e6db74">&#34;2025-12-04T16:00:00.000Z&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;test_user_manual&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;login_state&#34;</span>: <span style="color:#e6db74">&#34;anonymous&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;session_manual_001&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;client_id&#34;</span>: <span style="color:#e6db74">&#34;postman_client&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;page_url&#34;</span>: <span style="color:#e6db74">&#34;/manual-test&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-<p>This approach is helpful to test error handling, validation rules, or edge cases without depending on the frontend code.</p>
+<p>Hour partitions make batch ETL easier (e.g., process previous hour or a specific day/hour prefix).</p>
+<p><img src="../../images/aws-s3-clickstream-ingest-events.png" alt="S3 RAW bucket events"></p>
 <hr>
-<h3 id="inspecting-data-in-the-s3-raw-clickstream-bucket">Inspecting data in the S3 Raw Clickstream bucket</h3>
-<p>Once events have been sent, the next step is to verify that they were successfully stored in S3.</p>
-<ol>
-<li>
-<p>Open the <strong>Amazon S3 Console</strong> and select the Raw Clickstream bucket, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>clickstream-raw-&lt;account&gt;-&lt;region&gt;
-</span></span></code></pre></div></li>
-<li>
-<p>Navigate through the prefix structure:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events/YYYY/MM/DD/HH/
-</span></span></code></pre></div><p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events/2025/12/04/15/
-</span></span></code></pre></div></li>
-<li>
-<p>Confirm that one or more objects with names similar to:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events-a1b2c3d4.json
-</span></span><span style="display:flex;"><span>events-f9e8d7c6.json
-</span></span></code></pre></div><p>have been created.</p>
-</li>
-<li>
-<p>Download one of these files and open it with a text editor (VS Code, Notepad++, etc.):</p>
+<h2 id="533-lambda-ingest-design--clickstream-lambda-ingest">5.3.3 Lambda Ingest Design — <code>clickstream-lambda-ingest</code></h2>
+<p><img src="../../images/aws-lambda-clickstream-ingest-config.png" alt="Lambda Ingest"></p>
+<h3 id="responsibilities">Responsibilities</h3>
+<p>The <code>clickstream-lambda-ingest</code> function:</p>
 <ul>
-<li>Verify that the JSON structure is valid.</li>
-<li>Check that fields such as <code>event_name</code>, <code>event_timestamp</code>, <code>user_id</code>, <code>session_id</code>, <code>product_id</code>, etc., match the actions you performed on the website.</li>
-<li>Ensure that multiple events are grouped logically (for example, as an array of JSON objects).</li>
+<li>Parses incoming JSON payloads from API Gateway.</li>
+<li>Adds <code>_ingest</code> metadata only: <code>receivedAt</code>, <code>sourceIp</code>, <code>userAgent</code>, <code>method</code>, <code>path</code>, <code>requestId</code>, <code>apiId</code>, <code>stage</code>, <code>traceId</code>.</li>
+<li>Writes the event body <strong>as provided by the client</strong> (no server-side filling of user/session/product fields) to S3.</li>
+</ul>
+<h3 id="iam-permissions">IAM Permissions</h3>
+<p>The execution role should allow:</p>
+<ul>
+<li><code>s3:PutObject</code> on: <code>arn:aws:s3:::clickstream-s3-ingest/events/*</code></li>
+<li>CloudWatch Logs APIs to write logs.</li>
+</ul>
+<p>No read permissions are needed for this function.</p>
+<hr>
+<h2 id="534-api-gateway-http-api--clickstream-http-api">5.3.4 API Gateway HTTP API — <code>clickstream-http-api</code></h2>
+<p>The HTTP API provides a public HTTPS endpoint for ingestion:</p>
+<ul>
+<li>Route:
+<ul>
+<li><code>POST /clickstream</code> → Lambda <code>clickstream-lambda-ingest</code></li>
 </ul>
 </li>
-<li>
-<p>Take note of:</p>
+</ul>
+<p><img src="../../images/aws-apigw-clickstream-routes.png" alt="Route POST /clickstream"></p>
+<p>Recommended options:</p>
 <ul>
-<li>The approximate file size (KB/MB).</li>
-<li>The number of events per file.</li>
-<li>How frequently new files appear (depending on how the Ingest Lambda batches writes).</li>
+<li>Enable <strong>CORS</strong> so the Amplify frontend can call it from its own domain.</li>
+<li>Enable <strong>access logs</strong> to a CloudWatch log group for debugging.</li>
+<li>(Optional) Attach an <strong>API key</strong> or <strong>Cognito authorizer</strong> if you want to restrict ingestion.</li>
+</ul>
+<hr>
+<h2 id="535-frontend-clickstream-publisher-logic">5.3.5 Frontend Clickstream Publisher (Logic)</h2>
+<h3 id="identity--idempotency">Identity &amp; idempotency</h3>
+<ul>
+<li>Generates <code>eventId</code> per event (UUID) for idempotent inserts.</li>
+<li>Maintains <code>clientId</code> in <code>localStorage</code> (sticky per browser).</li>
+<li>Maintains <code>sessionId</code> in <code>sessionStorage</code> (30m idle timeout) and <code>isFirstVisit</code>.</li>
+</ul>
+<h3 id="user-page-and-click-metadata">User, page, and click metadata</h3>
+<ul>
+<li>User/auth (if available): <code>userId</code>, <code>userLoginState</code>, optional <code>identity_source</code>.</li>
+<li>Page/click: <code>pageUrl</code>, <code>referrer</code>, element metadata for clicks (tag/id/role/text/dataset).</li>
+</ul>
+<h3 id="product-context">Product context</h3>
+<ul>
+<li>Sent as <code>product.{id,name,category,brand,price,discountPrice,urlPath}</code>; ETL maps to DW <code>context_product_*</code> columns.</li>
+</ul>
+<h3 id="event-coverage">Event coverage</h3>
+<ul>
+<li>Auto: <code>page_view</code>, global <code>click</code>.</li>
+<li>Custom/product: <code>home_view</code>, <code>category_view</code>, <code>product_view</code>, <code>add_to_cart_click</code>, <code>remove_from_cart_click</code>, <code>wishlist_toggle</code>, <code>share_click</code>, <code>login_open</code>, <code>login_success</code>, <code>logout</code>, <code>checkout_start</code>, <code>checkout_complete</code>.</li>
+</ul>
+<h3 id="domain-event-wiring">Domain event wiring</h3>
+<ul>
+<li><code>home_view</code>: home page load (tracker component).</li>
+<li><code>category_view</code>: category listing render (slug/params).</li>
+<li><code>product_view</code>: product detail render (has product context).</li>
+<li><code>add_to_cart_click</code> / <code>remove_from_cart_click</code>: cart add/remove handlers.</li>
+<li><code>wishlist_toggle</code>: wishlist button handler.</li>
+<li><code>share_click</code>: share button handler.</li>
+<li><code>login_open</code> / <code>login_success</code> / <code>logout</code>: auth flows.</li>
+<li><code>checkout_start</code> / <code>checkout_complete</code>: checkout entry and success flows.</li>
+</ul>
+<h3 id="components--wiring">Components &amp; wiring</h3>
+<ul>
+<li><code>lib/clickstreamClient.ts</code>: identity/session handling, base builders, console logging, fire-and-forget <code>fetch</code> to <code>NEXT_PUBLIC_CLICKSTREAM_ENDPOINT</code> (required env).</li>
+<li><code>lib/clickstreamEvents.ts</code>: domain helpers that wrap <code>trackCustom</code> and build product/cart/order context.</li>
+<li><code>contexts/ClickstreamProvider.tsx</code> + <code>app/layout.tsx</code>: wire global provider, auto <code>page_view</code>, global click listener.</li>
+<li>Tracker components: <code>HomeTracker.tsx</code>, <code>CategoryTracker.tsx</code>, <code>ProductViewTracker.tsx</code> skip the auto page_view and emit domain events.</li>
+<li>Instrumented UI: <code>AddToCartButton.tsx</code>, <code>FavoriteButton.tsx</code>, <code>app/(client)/cart/page.tsx</code> emit add/remove cart, wishlist, checkout events and mark buttons with <code>global-clickstream-ignore-click</code> to avoid duplicate global clicks.</li>
+</ul>
+<h3 id="runtime-behavior">Runtime behavior</h3>
+<ul>
+<li>Client-side only (no SSR effects).</li>
+<li>Logs every event to console; if endpoint missing, runs in dry-run and warns once.</li>
+<li>Network errors are non-blocking to the UI.</li>
+</ul>
+<h2 id="536-field-projection-frontend---s3---dw">5.3.6 Field projection (frontend -&gt; S3 -&gt; DW)</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Field / Block</th>
+          <th>Frontend payload</th>
+          <th>Raw S3 (after Ingest)</th>
+          <th>DW (PostgreSQL)</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>event_id</td>
+          <td><code>eventId</code> generated on client</td>
+          <td>same as payload</td>
+          <td><code>event_id</code> (maps from eventId; ETL fallback UUID)</td>
+          <td>Primary key, ON CONFLICT DO NOTHING</td>
+      </tr>
+      <tr>
+          <td>event_timestamp</td>
+          <td>-</td>
+          <td>- (S3 LastModified exists)</td>
+          <td><code>_ingest.receivedAt</code> &gt; payload &gt; LastModified</td>
+          <td>Derived by ETL</td>
+      </tr>
+      <tr>
+          <td>event_name</td>
+          <td><code>eventName</code></td>
+          <td><code>eventName</code></td>
+          <td><code>event_name</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>page_url</td>
+          <td><code>pageUrl</code></td>
+          <td><code>pageUrl</code></td>
+          <td>-</td>
+          <td>Not stored in DW</td>
+      </tr>
+      <tr>
+          <td>referrer</td>
+          <td><code>referrer</code></td>
+          <td><code>referrer</code></td>
+          <td>-</td>
+          <td>Not stored in DW</td>
+      </tr>
+      <tr>
+          <td>user_id</td>
+          <td><code>userId</code></td>
+          <td><code>userId</code></td>
+          <td><code>user_id</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>user_login_state</td>
+          <td><code>userLoginState</code></td>
+          <td><code>userLoginState</code></td>
+          <td><code>user_login_state</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>identity_source</td>
+          <td>optional</td>
+          <td>optional</td>
+          <td><code>identity_source</code></td>
+          <td>Needs frontend/auth to populate</td>
+      </tr>
+      <tr>
+          <td>client_id</td>
+          <td><code>clientId</code></td>
+          <td><code>clientId</code></td>
+          <td><code>client_id</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>session_id</td>
+          <td><code>sessionId</code></td>
+          <td><code>sessionId</code></td>
+          <td><code>session_id</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>is_first_visit</td>
+          <td><code>isFirstVisit</code></td>
+          <td><code>isFirstVisit</code></td>
+          <td><code>is_first_visit</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>product id</td>
+          <td><code>product.id</code></td>
+          <td><code>product.id</code></td>
+          <td><code>context_product_id</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>product name</td>
+          <td><code>product.name</code></td>
+          <td><code>product.name</code></td>
+          <td><code>context_product_name</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>product category</td>
+          <td><code>product.category</code></td>
+          <td><code>product.category</code></td>
+          <td><code>context_product_category</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>product brand</td>
+          <td><code>product.brandName</code> / <code>brand?.name</code> / <code>brand?.title</code> / <code>brand</code></td>
+          <td><code>product.brand</code> or <code>product.brandName</code></td>
+          <td><code>context_product_brand</code></td>
+          <td>Frontend maps brand from DB fields</td>
+      </tr>
+      <tr>
+          <td>product price</td>
+          <td><code>product.price</code></td>
+          <td><code>product.price</code></td>
+          <td><code>context_product_price</code></td>
+          <td>BIGINT</td>
+      </tr>
+      <tr>
+          <td>product discount price</td>
+          <td><code>product.discountPrice</code></td>
+          <td><code>product.discountPrice</code></td>
+          <td><code>context_product_discount_price</code></td>
+          <td>BIGINT</td>
+      </tr>
+      <tr>
+          <td>product url path</td>
+          <td><code>product.urlPath</code></td>
+          <td><code>product.urlPath</code></td>
+          <td><code>context_product_url_path</code></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>element metadata</td>
+          <td><code>element.{tag,id,role,text,dataset}</code></td>
+          <td><code>element...</code></td>
+          <td>-</td>
+          <td>Not stored (needs schema change)</td>
+      </tr>
+      <tr>
+          <td>ingest metadata</td>
+          <td>-</td>
+          <td><code>_ingest.{receivedAt,sourceIp,userAgent,method,path,requestId,apiId,stage,traceId}</code></td>
+          <td>-</td>
+          <td>Not stored; available during ETL</td>
+      </tr>
+  </tbody>
+</table>
+<p>Call pattern (one event per request):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://&lt;api-id&gt;.execute-api.ap-southeast-1.amazonaws.com/clickstream&#34;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span> },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">body</span>: <span style="color:#66d9ef">JSON.stringify</span>(<span style="color:#a6e22e">eventPayload</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">keepalive</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>ETL maps <code>eventId -&gt; event_id</code> (PK with ON CONFLICT DO NOTHING), derives <code>event_timestamp</code> from <code>_ingest.receivedAt</code> &gt; payload &gt; S3 LastModified, and inserts into <code>clickstream_dw.public.clickstream_events</code>.</p>
+<hr>
+<h2 id="536-testing--validation">5.3.6 Testing &amp; Validation</h2>
+<p>To validate ingestion:</p>
+<ol>
+<li>Use the Amplify app UI:
+<ul>
+<li>Browse a few product pages</li>
+<li>Add items to cart</li>
+</ul>
+</li>
+<li>Check S3 bucket <code>clickstream-s3-ingest</code>:
+<ul>
+<li>Navigate to <code>events/YYYY/MM/DD/HH/</code></li>
+<li>Confirm new <code>event-&lt;uuid&gt;.json</code> files appear.</li>
+</ul>
+</li>
+<li>Inspect one JSON file:
+<ul>
+<li>Verify that <code>_ingest</code> metadata and product context are present.</li>
+</ul>
+</li>
+<li>Review logs:
+<ul>
+<li>API Gateway access logs</li>
+<li>Lambda function logs</li>
 </ul>
 </li>
 </ol>
-<p>These observations will help when tuning ETL batch sizes and scheduling in later sections.</p>
-<p><strong>Figure 5-7: Raw clickstream JSON objects in the S3 bucket</strong></p>
-<p>The screenshot shows the S3 Raw Clickstream bucket at the deepest hour-level prefix.<br>
-Multiple JSON objects have been created by the Lambda Ingest function, each representing a batch of clickstream events captured during that hour.<br>
-The file names follow a UUID-based pattern (for example, <code>event-a8bdf0c0-...json</code>), and the <code>Size</code> column gives a quick indication of how many events are grouped in each file.</p>
-<p><img src="../../images/5-3-s3-raw-objects.png" alt="Figure 5-7: Raw clickstream JSON objects in the S3 bucket"></p>
-<hr>
-<h3 id="summary-and-relation-to-downstream-components">Summary and relation to downstream components</h3>
-<p>At the end of this section, you should have:</p>
-<ul>
-<li>A working ingestion path from <strong>browser → API Gateway → Lambda Ingest → S3 Raw bucket</strong>.</li>
-<li>Verified that events are correctly structured and contain the necessary metadata.</li>
-<li>Confirmed that the Raw Clickstream bucket uses a <strong>time-partitioned layout</strong> that is suitable for batch processing.</li>
-</ul>
-<p>In the next section (5.4), the focus will shift to the <strong>private analytics layer</strong>, where a VPC-enabled <strong>ETL Lambda</strong> reads these raw JSON files via an <strong>S3 Gateway VPC Endpoint</strong>, transforms them, and loads them into the <strong>PostgreSQL Data Warehouse</strong>.</p>
-<hr>
-<p><strong>Figure 5-8: Ingestion flow from Browser to S3 Raw bucket</strong></p>
-<p>The diagram illustrates the sequence:</p>
-<ul>
-<li>Browser (user actions) → <strong>CloudFront</strong> → <strong>Amplify</strong> (Next.js app).</li>
-<li>Frontend tracking sends HTTP requests to <strong>Amazon API Gateway (HTTP API)</strong> on the <code>POST /clickstream</code> route.</li>
-<li>API Gateway invokes <strong>Lambda Ingest</strong>, which validates and enriches events.</li>
-<li>Lambda Ingest writes <strong>batched JSON objects</strong> into the <strong>S3 Raw Clickstream bucket</strong> under a time-partitioned key such as <code>events/YYYY/MM/DD/HH/events-&lt;uuid&gt;.json</code>.</li>
-</ul>
-<p><img src="../../images/5-3-ingestion-flow.png" alt="Figure 5-8: Ingestion flow from frontend to S3 Raw bucket"></p>
 
 
 
@@ -1643,19 +1727,19 @@ The file names follow a UUID-based pattern (for example, <code>event-a8bdf0c0-..
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

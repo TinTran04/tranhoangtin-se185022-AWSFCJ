@@ -15,21 +15,21 @@
     <title>Workshop :: Internship Report</title>
 
     
-    <link href="../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -841,41 +841,116 @@
 
 
 
-	<h1 id="clickstream-analytics-platform-for-e-commerce">Clickstream Analytics Platform for E-Commerce</h1>
+	<h1 id="batch-based-clickstream-analytics-platform">Batch-Based Clickstream Analytics Platform</h1>
+<p><img src="../images/5-Workshop/architecture.png" alt="Architecture"></p>
+<p align="center"><em>Figure: Architecture Batch-base Clickstream Analytics Platform.</em></p>
 <h4 id="overview">Overview</h4>
-<p>This workshop walks through a <strong>Batch-based Clickstream Analytics Platform</strong> for an e-commerce website that sells computer products.</p>
-<p>You will see how clickstream events:</p>
+<p>This workshop implements a <strong>Batch-Based Clickstream Analytics Platform</strong> for an e-commerce website selling computer products.</p>
+<p>The system collects clickstream events from the frontend, stores raw JSON data in <strong>Amazon S3</strong>, processes events via scheduled ETL (<strong>AWS Lambda + EventBridge</strong>), and loads analytical data into a dedicated <strong>PostgreSQL Data Warehouse on EC2</strong> inside a private subnet.</p>
+<p>Analytics dashboards are built using <strong>R Shiny</strong>, running on the same EC2 instance as the Data Warehouse, and accessed via <strong>AWS Systems Manager Session Manager</strong>.</p>
+<p>The platform is engineered with:</p>
 <ul>
-<li>Are captured by a <strong>Next.js</strong> frontend hosted on <strong>AWS Amplify</strong> and delivered through <strong>Amazon CloudFront</strong>.</li>
-<li>Are ingested via <strong>Amazon API Gateway</strong> and a <strong>Lambda Ingest</strong> function into a <strong>Raw Clickstream bucket on Amazon S3</strong>.</li>
-<li>Are processed in batch by a <strong>VPC-enabled ETL Lambda</strong> that reads from S3 through an <strong>S3 Gateway VPC Endpoint</strong> and loads curated data into a <strong>PostgreSQL Data Warehouse</strong> on <strong>EC2</strong> in a private subnet.</li>
-<li>Are visualized via <strong>R Shiny dashboards</strong> running on the same EC2 instance as the Data Warehouse.</li>
+<li>Clear separation between <strong>OLTP vs Analytics</strong> workloads</li>
+<li>Private-only analytical backend (<strong>no public DW access</strong>)</li>
+<li>Cost-efficient, scalable AWS serverless components</li>
+<li>Zero-SSH admin access via <strong>SSM Session Manager</strong> into the private DW / Shiny EC2</li>
+<li>You can run the Shiny app locally at <strong>localhost:3838</strong></li>
 </ul>
-<p>The workshop emphasises:</p>
+<h4 id="key-architecture-components">Key Architecture Components</h4>
+<p><strong>Frontend &amp; OLTP Domain</strong></p>
 <ul>
-<li><strong>Separation of OLTP and Analytics</strong> workloads.</li>
-<li>A fully <strong>private analytics backend</strong> (ETL Lambda, Data Warehouse, Shiny) with no public IPs.</li>
-<li><strong>Cost‑efficient private access to S3</strong> using a Gateway VPC Endpoint instead of a NAT Gateway.</li>
-</ul>
-<h4 id="prerequisites">Prerequisites</h4>
-<p>Before starting the detailed sections (5.1–5.6), the reader is expected to have:</p>
+<li>Next.js app: <strong><code>ClickSteam.NextJS</code></strong> hosted on <strong>AWS Amplify Hosting</strong></li>
+<li><strong>Amazon CloudFront</strong> as global CDN</li>
+<li><strong>Amazon Cognito</strong> User Pool for authentication</li>
+<li>OLTP PostgreSQL on EC2: <strong><code>SBW_EC2_WebDB</code></strong> (public subnet)
 <ul>
-<li>Basic familiarity with <strong>AWS services</strong> such as EC2, S3, Lambda, API Gateway, VPC, and IAM.</li>
-<li>Working knowledge of <strong>SQL</strong> and <strong>PostgreSQL</strong>.</li>
-<li>A general understanding of <strong>web applications</strong> (HTTP, JSON, REST APIs).</li>
-<li>An AWS account with sufficient permissions to create VPC endpoints, Lambda functions, EC2 instances, S3 buckets, and EventBridge rules.</li>
+<li>DB: <code>clickstream_web</code> (schema <code>public</code>)</li>
+<li>Port: <code>5432</code></li>
 </ul>
-<blockquote>
-<p>This workshop assumes that the core infrastructure (VPC, subnets, EC2 instances, Lambda functions, API Gateway, and S3 buckets) is already provisioned, for example via Infrastructure‑as‑Code such as Terraform or CloudFormation.</p></blockquote>
+</li>
+</ul>
+<p><strong>Ingestion &amp; Data Lake Domain</strong></p>
+<ul>
+<li><strong>Amazon API Gateway (HTTP API)</strong>: <code>clickstream-http-api</code>
+<ul>
+<li>Route: <code>POST /clickstream</code></li>
+</ul>
+</li>
+<li><strong>Lambda Ingest</strong>: <code>clickstream-lambda-ingest</code>
+<ul>
+<li>Validates payload, enriches metadata, writes JSON files to S3</li>
+</ul>
+</li>
+<li><strong>S3 Raw Clickstream Bucket</strong>: <code>clickstream-s3-ingest</code>
+<ul>
+<li>Prefix: <code>events/YYYY/MM/DD/</code></li>
+<li>File pattern: <code>event-&lt;uuid&gt;.json</code></li>
+<li><code>RAW_BUCKET = clickstream-s3-ingest</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Analytics &amp; Data Warehouse Domain</strong></p>
+<ul>
+<li>
+<p><strong>Private EC2 for DWH + Shiny</strong>: <code>SBW_EC2_ShinyDWH</code> (private subnet <code>10.0.128.0/20</code>)</p>
+<ul>
+<li>DWH DB: <code>clickstream_dw</code></li>
+<li>Main table: <code>clickstream_events</code> with fields:
+<ul>
+<li><code>event_id, event_timestamp, event_name</code></li>
+<li><code>user_id, user_login_state, identity_source, client_id, session_id, is_first_visit</code></li>
+<li><code>context_product_id, context_product_name, context_product_category, context_product_brand</code></li>
+<li><code>context_product_price, context_product_discount_price, context_product_url_path</code></li>
+</ul>
+</li>
+<li>R Shiny Server on port <code>3838</code>, web path <code>/sbw_dashboard</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Lambda ETL</strong>: <code>SBW_Lamda_ETL</code> (VPC-enabled)</p>
+<ul>
+<li>Reads raw JSON from <code>clickstream-s3-ingest</code></li>
+<li>Transforms into SQL-ready rows</li>
+<li>Inserts into <code>clickstream_dw.public.clickstream_events</code></li>
+</ul>
+</li>
+<li>
+<p><strong>EventBridge Rule</strong>: <code>SBW_ETL_HOURLY_RULE</code></p>
+<ul>
+<li>Schedule: <code>rate(1 hour)</code></li>
+</ul>
+</li>
+<li>
+<p><strong>VPC &amp; Networking</strong></p>
+<ul>
+<li>VPC CIDR: <code>10.0.0.0/16</code></li>
+<li>Public subnet: <code>10.0.0.0/20</code> → <code>SBW_Project-subnet-public1-ap-southeast-1a</code> (OLTP EC2)</li>
+<li>Private subnet: <code>10.0.128.0/20</code> → <code>SBW_Project-subnet-private1-ap-southeast-1a</code> (DW, Shiny, ETL Lambda)</li>
+<li><strong>S3 Gateway VPC Endpoint</strong> for private S3 access</li>
+<li><strong>SSM Interface Endpoints</strong> (SSM, SSMMessages, EC2Messages) for Session Manager</li>
+</ul>
+</li>
+<li>
+<p><strong>Admin Access (SSM)</strong></p>
+<ul>
+<li>Port forwarding:
+<ul>
+<li><code>localPort = 3838</code></li>
+<li><code>portNumber = 3838</code></li>
+</ul>
+</li>
+<li>Shiny URL from local: <code>http://localhost:3838/sbw_dashboard</code></li>
+</ul>
+</li>
+</ul>
 <h4 id="content-map">Content Map</h4>
-<p>The workshop content is split into six sections:</p>
 <ol>
-<li><a href="../5-workshop/5.1-objectives--scope/">Objectives &amp; Scope</a></li>
-<li><a href="../5-workshop/5.2-architecture-walkthrough/">Architecture Walkthrough</a></li>
-<li><a href="../5-workshop/5.3-implementing-clickstream-ingestion/">Implementing Clickstream Ingestion</a></li>
-<li><a href="../5-workshop/5.4-building-the-private-analytics-layer/">Building the Private Analytics Layer</a></li>
-<li><a href="../5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/">Visualizing Analytics with Shiny Dashboards</a></li>
-<li><a href="../5-workshop/5.6-summary--clean-up/">Summary &amp; Clean up</a></li>
+<li><strong><a href="5.1-objectives--scope/">5.1. Objectives &amp; Scope</a></strong></li>
+<li><strong><a href="../5-workshop/5.2-architecture-walkthrough/">5.2. Architecture Walkthrough</a></strong></li>
+<li><strong><a href="../5-workshop/5.3-implementing-clickstream-ingestion/">5.3. Implementing Clickstream Ingestion</a></strong></li>
+<li><strong><a href="5.4-building-private-analytics-layer/">5.4. Building the Private Analytics Layer</a></strong></li>
+<li><strong><a href="../5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/">5.5. Visualizing Analytics with Shiny Dashboards</a></strong></li>
+<li><strong><a href="5.6-summary-cleanup/">5.6. Summary &amp; Clean up</a></strong></li>
 </ol>
 
 
@@ -1429,19 +1504,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1765225037"></script>
-    <script src="../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../js/jquery.sticky.js?1765225037"></script>
-    <script src="../js/featherlight.min.js?1765225037"></script>
-    <script src="../js/highlight.pack.js?1765225037"></script>
+    <script src="../js/clipboard.min.js?1765266249"></script>
+    <script src="../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../js/jquery.sticky.js?1765266249"></script>
+    <script src="../js/featherlight.min.js?1765266249"></script>
+    <script src="../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../js/learn.js?1765225037"></script>
-    <script src="../js/hugo-learn.js?1765225037"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../js/learn.js?1765266249"></script>
+    <script src="../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1765225037"></script>
+    <link href="../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

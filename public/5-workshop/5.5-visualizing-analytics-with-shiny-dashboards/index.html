@@ -15,21 +15,21 @@
     <title>Visualizing Analytics with Shiny Dashboards :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -817,15 +817,19 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#551-environment-information">5.5.1 Environment information</a></li>
+    <li><a href="#552-install-system-packages-system-libs">5.5.2 Install system packages (system libs)</a></li>
+    <li><a href="#553-configure-r-library-folder-for-user-shiny">5.5.3 Configure R library folder for user <code>shiny</code></a></li>
+    <li><a href="#554-install-required-r-packages">5.5.4 Install required R packages</a></li>
+    <li><a href="#555-deploying-the-shiny-app">5.5.5 Deploying the Shiny app</a>
       <ul>
-        <li><a href="#triggering-batch-etl-and-verifying-data-in-the-data-warehouse">Triggering batch ETL and verifying data in the Data Warehouse</a></li>
-        <li><a href="#accessing-the-shiny-dashboards-from-a-private-ec2-instance">Accessing the Shiny dashboards (from a private EC2 instance)</a></li>
-        <li><a href="#exploring-the-dashboards">Exploring the dashboards</a></li>
-        <li><a href="#relating-dashboards-back-to-the-data-warehouse-schema">Relating dashboards back to the Data Warehouse schema</a></li>
-        <li><a href="#summary">Summary</a></li>
+        <li><a href="#5551-create-the-app-folder-and-copy-code">5.5.5.1 Create the app folder and copy code</a></li>
+        <li><a href="#5552-restart-shiny-server">5.5.5.2 Restart Shiny Server</a></li>
       </ul>
     </li>
+    <li><a href="#556-check-the-app-from-ec2-local">5.5.6 Check the app from EC2 (local)</a></li>
+    <li><a href="#557-access-the-dashboard-from-your-local-machine">5.5.7 Access the dashboard from your local machine</a></li>
+    <li><a href="#558-quick-summary-of-important-commands">5.5.8 Quick summary of important commands</a></li>
   </ul>
 </nav></div>
 </div>
@@ -851,295 +855,181 @@
 
 
 
-	<p>In the previous sections, you ingested clickstream events into the <strong>S3 Raw Clickstream bucket</strong> and used a <strong>VPC-enabled ETL Lambda</strong> to load curated data into the <strong>PostgreSQL Data Warehouse</strong> in a private subnet.</p>
-<p>This section focuses on the <strong>final mile</strong> of the pipeline:</p>
+	<h2 id="551-environment-information">5.5.1 Environment information</h2>
 <ul>
-<li>Validating that the ETL job has populated the Data Warehouse with meaningful data.</li>
-<li>Using <strong>R Shiny dashboards</strong> running on the same EC2 instance as the Data Warehouse to explore user behaviour, funnels, and product performance.</li>
-</ul>
-<p>The goal is not only to “see some charts”, but to <strong>connect each visualization back to the underlying data model and business questions</strong>.</p>
-<hr>
-<h3 id="triggering-batch-etl-and-verifying-data-in-the-data-warehouse">Triggering batch ETL and verifying data in the Data Warehouse</h3>
-<p>Before looking at dashboards, make sure that the Data Warehouse contains fresh data.</p>
-<h4 id="step-1--generate-new-clickstream-events">Step 1 – Generate new clickstream events</h4>
-<ol>
-<li>
-<p>Open the CloudFront domain of the e-commerce application, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>https://dxxxxxxxx.cloudfront.net
-</span></span></code></pre></div></li>
-<li>
-<p>Sign in with a test user via <strong>Amazon Cognito</strong>.</p>
-</li>
-<li>
-<p>Perform a realistic browsing session, such as:</p>
-<ul>
-<li>Visit the home page and at least one category page.</li>
-<li>Search for a product or filter by brand/category.</li>
-<li>Open three or more product detail pages.</li>
-<li>Add one or two items to the cart.</li>
-<li>Remove an item, change quantity, and proceed to the checkout flow.</li>
-<li>Optionally, complete an order so that purchase events are generated.</li>
-</ul>
-</li>
-<li>
-<p>Wait 1–2 minutes to ensure all events have been sent to <strong>API Gateway → Lambda Ingest → S3 Raw Clickstream bucket</strong>.</p>
-</li>
-</ol>
-<h4 id="step-2--run-the-etl-job">Step 2 – Run the ETL job</h4>
-<p>You have three main options to run the ETL Lambda:</p>
-<ul>
-<li>
-<p><strong>A. Wait for the EventBridge schedule</strong></p>
-<ul>
-<li>If the ETL rule is configured to run every 15 or 30 minutes, you can simply wait for the next trigger.</li>
-</ul>
-</li>
-<li>
-<p><strong>B. Manually trigger via EventBridge</strong></p>
-<ol>
-<li>
-<p>Open <strong>Amazon EventBridge</strong> console.</p>
-</li>
-<li>
-<p>Go to <strong>Rules</strong> and select the ETL rule, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>clickstream-etl-schedule
-</span></span></code></pre></div></li>
-<li>
-<p>Choose <strong>Actions → Run now</strong> to execute the rule immediately.</p>
-</li>
-</ol>
-</li>
-<li>
-<p><strong>C. Manually trigger via Lambda console</strong></p>
-<ol>
-<li>
-<p>Open the <strong>Lambda Console</strong> and select the ETL function:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>clickstream-etl-lambda
-</span></span></code></pre></div></li>
-<li>
-<p>On the <strong>Test</strong> tab, create or reuse a test event (payload <code>{}</code> is sufficient if your code ignores the input).</p>
-</li>
-<li>
-<p>Click <strong>Test</strong> to invoke the ETL Lambda.</p>
-</li>
-</ol>
-</li>
-</ul>
-<h4 id="step-3--check-etl-execution-in-cloudwatch-logs">Step 3 – Check ETL execution in CloudWatch Logs</h4>
-<ol>
-<li>
-<p>Open <strong>CloudWatch Logs</strong> in the AWS console.</p>
-</li>
-<li>
-<p>Navigate to the log group for the ETL Lambda function.</p>
-</li>
-<li>
-<p>Open the most recent log stream and check for entries such as:</p>
-<ul>
-<li>“Listing S3 objects under prefix <code>events/YYYY/MM/DD/HH/</code> …”</li>
-<li>“Read N files, parsed M events.”</li>
-<li>“Inserted K rows into <code>fact_events</code>, L rows into <code>dim_products</code>, etc.”</li>
-<li>Any error messages or stack traces (if present).</li>
-</ul>
-</li>
-</ol>
-<p>If there are errors, review:</p>
-<ul>
-<li>IAM permissions for S3 and the database.</li>
-<li>VPC configuration (subnets, route tables, Gateway Endpoint).</li>
-<li>Database connectivity (host, port, credentials).</li>
-</ul>
-<p><strong>Figure 5-12: CloudWatch logs for the latest ETL run</strong></p>
-<p>The screenshot shows the CloudWatch log stream for a recent execution of the ETL Lambda function.<br>
-The <code>INIT_START</code>, <code>START</code>, <code>END</code>, and <code>REPORT</code> entries confirm that the function executed successfully, and the reported duration and memory usage are within the expected range.<br>
-Checking these logs helps ensure that the Data Warehouse contains fresh data before exploring the Shiny dashboards.</p>
-<p><img src="../../images/5-5-etl-cloudwatch-logs.png" alt="Figure 5-12: CloudWatch logs for the latest ETL run"></p>
-<h4 id="step-4--validate-data-with-sql-queries">Step 4 – Validate data with SQL queries</h4>
-<p>Once the ETL reports success, verify that the Data Warehouse has been updated.</p>
-<ol>
-<li>Connect to the <strong>Data Warehouse EC2 instance</strong> using <strong>Session Manager</strong> or SSH (via a bastion host or VPN).</li>
-<li>From within the instance, connect to PostgreSQL DW using <code>psql</code> or a graphical client.</li>
-</ol>
-<p>Run basic checks like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 1. How many events are in the fact table?
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> total_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 2. Events by type (page views, product views, add-to-cart, etc.)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> event_name, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> total_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> event_name
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> total_events <span style="color:#66d9ef">DESC</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 3. Top 10 most viewed products
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>
-</span></span><span style="display:flex;"><span>    product_id,
-</span></span><span style="display:flex;"><span>    product_name,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> view_count
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> event_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;product_view&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> product_id, product_name
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> view_count <span style="color:#66d9ef">DESC</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><p>Optional deeper checks:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 4. Funnel-like view: from product view to add-to-cart
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>
-</span></span><span style="display:flex;"><span>    product_id,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">SUM</span>(<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> event_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;product_view&#39;</span>  <span style="color:#66d9ef">THEN</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">ELSE</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">END</span>) <span style="color:#66d9ef">AS</span> product_views,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">SUM</span>(<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> event_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;add_to_cart&#39;</span>   <span style="color:#66d9ef">THEN</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">ELSE</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">END</span>) <span style="color:#66d9ef">AS</span> add_to_cart_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> fact_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> product_id
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> product_views <span style="color:#66d9ef">DESC</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><p>Compare these numbers with your test session:</p>
-<ul>
-<li>Did you view at least as many products as the query shows?</li>
-<li>Do the products you interacted with appear near the top of the list?</li>
-<li>If you completed a purchase, can you see related events in the data?</li>
+<li>OS: <strong>Ubuntu 22.04 (Jammy)</strong> – EC2 in a private subnet</li>
+<li>PostgreSQL: <strong>v18</strong> (installed from the <code>apt.postgresql.org</code> repo)</li>
+<li>Shiny Server: <code>.deb</code> binary from RStudio (Posit)</li>
+<li>User running Shiny: <code>shiny</code></li>
+<li>App path: <code>/srv/shiny-server/sbw_dashboard/app.R</code></li>
 </ul>
 <hr>
-<h3 id="accessing-the-shiny-dashboards-from-a-private-ec2-instance">Accessing the Shiny dashboards (from a private EC2 instance)</h3>
-<p>The <strong>R Shiny Server</strong> runs on the same private EC2 instance as the Data Warehouse, without a public IP. To access it securely, you typically use <strong>port forwarding</strong>.</p>
-<h4 id="option-a--port-forwarding-via-ssh">Option A – Port forwarding via SSH</h4>
-<ol>
-<li>
-<p>Ensure you have SSH access to the EC2 instance (either directly from a bastion host or using an SSH client that can reach the VPC).</p>
-</li>
-<li>
-<p>On your local machine, run an SSH command to forward a local port (for example, 3838) to the Shiny Server on the EC2 instance:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -i /path/to/your-key.pem <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    -L 3838:localhost:3838 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    ec2-user@&lt;bastion-or-dw-ec2-host&gt;
-</span></span></code></pre></div></li>
-<li>
-<p>Keep this SSH session open.</p>
-</li>
-<li>
-<p>Open a browser on your local machine and navigate to:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://localhost:3838/
-</span></span></code></pre></div><p>or to the specific app, for example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://localhost:3838/clickstream-analytics
-</span></span></code></pre></div></li>
-</ol>
-<h4 id="option-b--aws-systems-manager-session-manager-port-forwarding">Option B – AWS Systems Manager Session Manager (port forwarding)</h4>
-<p>If you prefer not to open SSH from the public Internet, you can use <strong>Session Manager</strong> with port forwarding:</p>
-<ol>
-<li>
-<p>Install and configure the <strong>Session Manager plugin</strong> for the AWS CLI.</p>
-</li>
-<li>
-<p>Use a command similar to:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws ssm start-session <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --target &lt;instance-id&gt; <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --document-name AWS-StartPortForwardingSession <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --parameters <span style="color:#e6db74">&#39;{&#34;portNumber&#34;:[&#34;3838&#34;],&#34;localPortNumber&#34;:[&#34;3838&#34;]}&#39;</span>
-</span></span></code></pre></div></li>
-<li>
-<p>As with SSH, open your browser and go to:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://localhost:3838/
-</span></span></code></pre></div></li>
-</ol>
-<p>Consult the AWS documentation for exact steps if needed.</p>
+<h2 id="552-install-system-packages-system-libs">5.5.2 Install system packages (system libs)</h2>
+<p>Note: you need to enable the NAT Gateway before downloading system packages.<br>
+Log in to EC2 using <strong>SSM Session Manager</strong> or SSH (temporarily, if available), then run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1) Update package list</span>
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2) Install R (if not installed)</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y r-base
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3) Install Postgres client &amp; dev headers (for RPostgres)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    If your DB is PG 18 then use postgresql-server-dev-18</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    (if your version is different, change 18 -&gt; 14, 15, ...)</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y postgresql-client-18 postgresql-server-dev-18
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4) Install libpq + libssl (required to build RPostgres)</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y libpq-dev libssl-dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5) (If Shiny Server is not installed yet)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    Depending on how you install it, just remember:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    - shiny-server service: /etc/systemd/system/shiny-server.service</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    - app folder: /srv/shiny-server/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    - user: shiny</span>
+</span></span></code></pre></div><p>Check that <code>libpq</code> and dev headers are present:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dpkg -l | grep -E <span style="color:#e6db74">&#39;libpq-dev|postgresql-server-dev&#39;</span> <span style="color:#f92672">||</span> echo <span style="color:#e6db74">&#34;MISSING_LIBS&#34;</span>
+</span></span><span style="display:flex;"><span>ls -l /usr/include/postgresql/libpq-fe.h <span style="color:#f92672">||</span> echo <span style="color:#e6db74">&#34;NO_LIBPQ_HEADER&#34;</span>
+</span></span></code></pre></div><p>If you <strong>do not see any error</strong> → OK.</p>
 <hr>
-<h3 id="exploring-the-dashboards">Exploring the dashboards</h3>
-<p>Once you have access to the Shiny homepage or specific app, you should see one or more dashboards built on top of the Data Warehouse.</p>
-<p>Typical views might include:</p>
-<h4 id="funnel--user-journey-dashboard">Funnel / User Journey Dashboard</h4>
-<p>Shows how users flow through key steps such as:</p>
+<h2 id="553-configure-r-library-folder-for-user-shiny">5.5.3 Configure R library folder for user <code>shiny</code></h2>
+<p>To let Shiny Server load R packages, we install the packages under user <code>shiny</code> and use the folder:</p>
+<ul>
+<li><code>/home/shiny/R/x86_64-pc-linux-gnu-library/4.1</code></li>
+</ul>
+<p>Run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u shiny R --vanilla <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Create library directory for user shiny if it does not exist
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dir.create(Sys.getenv(&#34;R_LIBS_USER&#34;), recursive = TRUE, showWarnings = FALSE)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Put R_LIBS_USER at the top of .libPaths()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">.libPaths(c(Sys.getenv(&#34;R_LIBS_USER&#34;), .libPaths()))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cat(&#34;LIBPATHS:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;); print(.libPaths())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q(&#34;no&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>You should see <code>LIBPATHS</code> where line 1 is <code>/home/shiny/R/x86_64-pc-linux-gnu-library/4.1</code>.</p>
+<hr>
+<h2 id="554-install-required-r-packages">5.5.4 Install required R packages</h2>
+<p>Packages needed for the dashboard:</p>
+<ul>
+<li><code>shiny</code></li>
+<li><code>DBI</code></li>
+<li><code>RPostgres</code></li>
+<li><code>dplyr</code></li>
+<li><code>ggplot2</code></li>
+<li><code>lubridate</code></li>
+<li><code>pool</code></li>
+</ul>
+<p>Install all of them under user <code>shiny</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u shiny R --vanilla <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dir.create(Sys.getenv(&#34;R_LIBS_USER&#34;), recursive = TRUE, showWarnings = FALSE)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">.libPaths(c(Sys.getenv(&#34;R_LIBS_USER&#34;), .libPaths()))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cat(&#34;LIBPATHS:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;); print(.libPaths())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">install.packages(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  c(&#34;shiny&#34;, &#34;DBI&#34;, &#34;RPostgres&#34;, &#34;dplyr&#34;, &#34;ggplot2&#34;, &#34;lubridate&#34;, &#34;pool&#34;),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  repos = &#34;https://cloud.r-project.org&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q(&#34;no&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>💡 <strong>If you hit errors related to <code>libpq-fe.h</code> or <code>libpq</code>:</strong></p>
 <ol>
-<li><code>page_view</code> → 2. <code>product_view</code> → 3. <code>add_to_cart</code> → 4. <code>checkout_start</code> → 5. <code>purchase</code></li>
+<li>Re-check that <code>libpq-dev</code>, <code>postgresql-server-dev-XX</code>, <code>libssl-dev</code> are installed.</li>
+<li>Re-run <code>install.packages(&quot;RPostgres&quot;, ...)</code> after installing all required libs.</li>
 </ol>
-<p>Common visualizations:</p>
+<p>Verify that packages can be loaded:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u shiny R --vanilla <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">.libPaths(c(Sys.getenv(&#34;R_LIBS_USER&#34;), .libPaths()))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cat(&#34;LIBPATHS:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;); print(.libPaths())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(shiny)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(DBI)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(RPostgres)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(dplyr)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(ggplot2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(lubridate)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">library(pool)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cat(&#34;All packages loaded OK
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q(&#34;no&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>If there is <strong>no error</strong> → the R environment is OK.</p>
+<hr>
+<h2 id="555-deploying-the-shiny-app">5.5.5 Deploying the Shiny app</h2>
+<h3 id="5551-create-the-app-folder-and-copy-code">5.5.5.1 Create the app folder and copy code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p /srv/shiny-server/sbw_dashboard
+</span></span><span style="display:flex;"><span>sudo chown -R shiny:shiny /srv/shiny-server/sbw_dashboard
+</span></span></code></pre></div><p>Create (or replace) the app file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /srv/shiny-server/sbw_dashboard/app.R
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PASTE THE FULL app.R CODE (the full version you are using)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ctrl+O, Enter, Ctrl+X to save</span>
+</span></span></code></pre></div><p>Make sure permissions are correct:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown shiny:shiny /srv/shiny-server/sbw_dashboard/app.R
+</span></span><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">644</span> /srv/shiny-server/sbw_dashboard/app.R
+</span></span></code></pre></div><h3 id="5552-restart-shiny-server">5.5.5.2 Restart Shiny Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart shiny-server
+</span></span><span style="display:flex;"><span>sudo systemctl status shiny-server
+</span></span></code></pre></div><hr>
+<h2 id="556-check-the-app-from-ec2-local">5.5.6 Check the app from EC2 (local)</h2>
+<p>From an SSM session on EC2 (terminal):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check Shiny welcome page</span>
+</span></span><span style="display:flex;"><span>curl -m <span style="color:#ae81ff">5</span>  -sS -o /dev/null -w <span style="color:#e6db74">&#34;WELCOME HTTP %{http_code}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>   http://127.0.0.1:3838/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check SBW dashboard app</span>
+</span></span><span style="display:flex;"><span>curl -m <span style="color:#ae81ff">10</span> -sS -o /dev/null -w <span style="color:#e6db74">&#34;DASHBOARD HTTP %{http_code}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>   http://127.0.0.1:3838/sbw_dashboard/
+</span></span></code></pre></div><p>If it returns <code>DASHBOARD HTTP 200</code> → the app is running OK.</p>
+<p>If it returns <code>500</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>LATEST<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls -1t /var/log/shiny-server/sbw_dashboard-shiny-*.log | head -n 1<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;LATEST=</span>$LATEST<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>sudo tail -n <span style="color:#ae81ff">100</span> <span style="color:#e6db74">&#34;</span>$LATEST<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>Check the error log for debugging.</p>
+<hr>
+<h2 id="557-access-the-dashboard-from-your-local-machine">5.5.7 Access the dashboard from your local machine</h2>
+<p>Because the EC2 instance is in a <strong>private subnet</strong>, you use <strong>SSM port forwarding</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Example using AWS CLI v2 on your local machine:</span>
+</span></span><span style="display:flex;"><span>aws ssm start-session   --target &lt;INSTANCE_ID_PRIVATE&gt;   --document-name AWS-StartPortForwardingSessionToRemoteHost   --parameters <span style="color:#e6db74">&#39;{&#34;host&#34;:[&#34;127.0.0.1&#34;],&#34;portNumber&#34;:[&#34;3838&#34;],&#34;localPortNumber&#34;:[&#34;3838&#34;]}&#39;</span>
+</span></span></code></pre></div><p>After that, open your browser on your local machine at:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>http://127.0.0.1:3838/sbw_dashboard/
+</span></span></code></pre></div><p>The dashboard will show, for example:</p>
 <ul>
-<li>A funnel chart with counts at each step.</li>
-<li>Drop-off percentages between one step and the next.</li>
-<li>Filters for date ranges, device type, or traffic source.</li>
-</ul>
-<p>Questions you can answer:</p>
-<ul>
-<li>How many users start at a product view and reach the checkout step?</li>
-<li>Where do most users abandon the journey (e.g., before add-to-cart, or during checkout)?</li>
-<li>Does the funnel performance change over time or by traffic source?</li>
-</ul>
-<h4 id="product-performance-dashboard">Product Performance Dashboard</h4>
-<p>Focuses on product-level metrics:</p>
-<ul>
-<li>Most viewed products (<code>product_view</code> events).</li>
-<li>Products with the highest add-to-cart or purchase events.</li>
-<li>Conversion rate per product (add-to-cart / product views, purchases / product views).</li>
-</ul>
-<p>Possible visualizations:</p>
-<ul>
-<li>Bar charts ranking products by views or purchases.</li>
-<li>Tables showing product name, category, and key engagement metrics.</li>
-<li>Filters by category, brand, or price range.</li>
-</ul>
-<p>Questions you can answer:</p>
-<ul>
-<li>Which products attract the most attention but have low conversion?</li>
-<li>Which categories or brands perform best overall?</li>
-<li>Are there products that rarely get views and might need promotion?</li>
-</ul>
-<h4 id="time-series--activity-over-time">Time Series / Activity Over Time</h4>
-<p>Shows how user activity changes over time:</p>
-<ul>
-<li>Number of events per hour or per day.</li>
-<li>Separate lines for page views, product views, add-to-cart, purchases.</li>
-<li>Optional breakdown by device type or traffic source.</li>
-</ul>
-<p>Questions you can answer:</p>
-<ul>
-<li>What times of day see the highest browsing activity?</li>
-<li>Are there specific days of the week with better conversion?</li>
-<li>Do special campaigns or promotions (if recorded) align with spikes in activity?</li>
+<li><strong>KPI cards</strong> (total events, users, sessions, …)</li>
+<li>Charts for <strong>events over time</strong>, <strong>event mix</strong>, <strong>events by login state</strong></li>
+<li><strong>Products &amp; Raw sample</strong> tab (pagination, newest first, auto refresh every 10s – depending on your app code)</li>
 </ul>
 <hr>
-<h3 id="relating-dashboards-back-to-the-data-warehouse-schema">Relating dashboards back to the Data Warehouse schema</h3>
-<p>Each dashboard is powered by SQL queries against the Data Warehouse tables, such as:</p>
-<ul>
-<li><code>fact_events</code> – granular event-level data.</li>
-<li><code>dim_products</code> – product attributes (name, category, brand, etc.).</li>
-<li><code>dim_users</code> – user attributes (registered vs. guest, segment, etc.).</li>
-<li><code>fact_sessions</code> or <code>fact_funnels</code> – pre-aggregated session or funnel metrics (if modeled).</li>
-</ul>
-<p>When you interact with filters in Shiny (e.g., selecting a date range, category, or event type), the Shiny app typically:</p>
-<ol>
-<li>Builds a SQL query using the selected parameters.</li>
-<li>Sends the query to PostgreSQL.</li>
-<li>Receives the aggregated results.</li>
-<li>Renders them as charts or tables in the browser.</li>
-</ol>
-<p>As an exercise, you can:</p>
-<ul>
-<li>Open the Shiny app source code (R scripts) on the EC2 instance.</li>
-<li>Locate the SQL queries used for each widget.</li>
-<li>Compare those queries with the <strong>manual SQL</strong> you ran earlier in this section.</li>
-</ul>
-<p>This helps build confidence that:</p>
-<ul>
-<li>The dashboards are consistent with the underlying data.</li>
-<li>You can reproduce key numbers directly using SQL if needed.</li>
-</ul>
-<hr>
-<h3 id="summary">Summary</h3>
-<p>By completing this section, you have:</p>
-<ul>
-<li>Ensured that the <strong>ETL batch job</strong> has successfully populated the PostgreSQL Data Warehouse with fresh clickstream data.</li>
-<li>Validated the data using direct <strong>SQL queries</strong> (event counts, product views, basic funnel metrics).</li>
-<li>Accessed <strong>R Shiny dashboards</strong> running on the private EC2 instance via secure port forwarding.</li>
-<li>Explored key dashboards for user journeys, product performance, and activity over time.</li>
-<li>Connected Shiny visualizations back to the underlying Data Warehouse schema and queries.</li>
-</ul>
-<p>In the next section (<strong>5.6 Summary &amp; Clean up</strong>), you will briefly recap the main learnings from the workshop and review which AWS resources should be stopped or deleted to avoid unnecessary costs.</p>
-<hr>
-<p><strong>Figure 5-13: Shiny dashboard for clickstream analytics</strong></p>
-<p>The screenshot shows a Shiny dashboard built on top of the PostgreSQL Data Warehouse:</p>
-<ul>
-<li>A user journey funnel from product views to purchases.</li>
-<li>A time-series chart of events per day (page views, product views, add-to-cart, purchases).</li>
-<li>A top products table listing the items with the highest engagement and conversion.</li>
-<li>Filters at the top (date range, event type, device, traffic source) to slice and dice the analysis.</li>
-</ul>
-<p><img src="../../images/5-5-shiny-dashboard.png" alt="Figure 5-13: Shiny dashboard for clickstream analytics"></p>
-
+<h2 id="558-quick-summary-of-important-commands">5.5.8 Quick summary of important commands</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install system libs</span>
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install -y r-base postgresql-client-18 postgresql-server-dev-18 libpq-dev libssl-dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install R packages for user shiny</span>
+</span></span><span style="display:flex;"><span>sudo -u shiny R --vanilla <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dir.create(Sys.getenv(&#34;R_LIBS_USER&#34;), recursive = TRUE, showWarnings = FALSE)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">.libPaths(c(Sys.getenv(&#34;R_LIBS_USER&#34;), .libPaths()))
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">install.packages(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  c(&#34;shiny&#34;, &#34;DBI&#34;, &#34;RPostgres&#34;, &#34;dplyr&#34;, &#34;ggplot2&#34;, &#34;lubridate&#34;, &#34;pool&#34;),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  repos = &#34;https://cloud.r-project.org&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q(&#34;no&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy app</span>
+</span></span><span style="display:flex;"><span>sudo mkdir -p /srv/shiny-server/sbw_dashboard
+</span></span><span style="display:flex;"><span>sudo nano /srv/shiny-server/sbw_dashboard/app.R   <span style="color:#75715e"># paste code</span>
+</span></span><span style="display:flex;"><span>sudo chown -R shiny:shiny /srv/shiny-server/sbw_dashboard
+</span></span><span style="display:flex;"><span>sudo systemctl restart shiny-server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check dashboard</span>
+</span></span><span style="display:flex;"><span>curl -m <span style="color:#ae81ff">10</span> -sS -o /dev/null -w <span style="color:#e6db74">&#34;DASHBOARD HTTP %{http_code}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>   http://127.0.0.1:3838/sbw_dashboard/
+</span></span></code></pre></div>
 
 
 
@@ -1695,19 +1585,19 @@ Checking these logs helps ensure that the Data Warehouse contains fresh data bef
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

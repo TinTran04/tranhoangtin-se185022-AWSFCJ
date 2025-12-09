@@ -80,18 +80,6 @@
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/4-eventparticipated/4.2-event2/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.1-objectives--scope/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.1-objectives--scope/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.1-objectives--scope/"
-                />
-  </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/3-blogstranslated/3.2-blog2/</loc>
     <lastmod>2025-10-08T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -116,18 +104,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/1-worklog/1.2-week2/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.2-architecture-walkthrough/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.2-architecture-walkthrough/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.2-architecture-walkthrough/"
                 />
   </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/2-proposal/</loc>
@@ -181,18 +157,6 @@
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/3-blogstranslated/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.3-implementing-clickstream-ingestion/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.3-implementing-clickstream-ingestion/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.3-implementing-clickstream-ingestion/"
-                />
-  </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/1-worklog/1.4-week4/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -219,18 +183,6 @@
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/4-eventparticipated/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.4-building-the-private-analytics-layer/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.4-building-the-private-analytics-layer/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.4-building-the-private-analytics-layer/"
-                />
-  </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/1-worklog/1.5-week5/</loc>
     <lastmod>2025-10-11T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -242,18 +194,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/1-worklog/1.5-week5/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/"
                 />
   </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/</loc>
@@ -292,18 +232,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/6-self-evaluation/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.6-summary--clean-up/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.6-summary--clean-up/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.6-summary--clean-up/"
                 />
   </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/7-feedback/</loc>
@@ -395,6 +323,78 @@
                 rel="alternate"
                 hreflang="vi"
                 href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/1-worklog/1.12-week12/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.1-objectives--scope/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.1-objectives--scope/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.1-objectives--scope/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.2-architecture-walkthrough/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.2-architecture-walkthrough/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.2-architecture-walkthrough/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.3-implementing-clickstream-ingestion/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.3-implementing-clickstream-ingestion/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.3-implementing-clickstream-ingestion/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.4-building-the-private-analytics-layer/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.4-building-the-private-analytics-layer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.4-building-the-private-analytics-layer/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.5-visualizing-analytics-with-shiny-dashboards/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.6-summary--clean-up/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/5-workshop/5.6-summary--clean-up/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/5-workshop/5.6-summary--clean-up/"
                 />
   </url><url>
     <loc>http://localhost:1313/tranhoangtin-se185022-AWSFCJ/vi/categories/</loc>

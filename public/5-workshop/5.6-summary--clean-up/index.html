@@ -15,21 +15,21 @@
     <title>Summary &amp; Clean up :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1765225037" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765225037" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765225037" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765225037" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765225037" rel="stylesheet">
-    <link href="../../css/theme.css?1765225037" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765225037" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765266248" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765266248" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765266248" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765266248" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765266248" rel="stylesheet">
+    <link href="../../css/theme.css?1765266248" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765266248" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765225037" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765266248" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765225037"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765266248"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765225037"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765225037"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765266248"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765266248"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/tranhoangtin-se185022-AWSFCJ\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765225037"></script>
+<script type="text/javascript" src="../../js/search.js?1765266248"></script>
  
   </div>
 
@@ -498,7 +498,7 @@
         "
 >
   <a href="../../5-workshop/">
-     <b> 5. </b> Workshop 
+    <b>5. </b>Workshop 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -817,14 +817,9 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#summary-of-key-learnings">Summary of key learnings</a></li>
-        <li><a href="#clean-up-checklist-aws-resources">Clean-up checklist (AWS resources)</a></li>
-        <li><a href="#what-to-keep-for-future-work">What to keep for future work</a></li>
-        <li><a href="#closing-remarks">Closing remarks</a></li>
-      </ul>
-    </li>
+    <li><a href="#561-summary">5.6.1 Summary</a></li>
+    <li><a href="#562-key-takeaways">5.6.2 Key Takeaways</a></li>
+    <li><a href="#563-resource-clean-up">5.6.3 Resource Clean-up</a></li>
   </ul>
 </nav></div>
 </div>
@@ -850,440 +845,129 @@
 
 
 
-	<p>This final section:</p>
+	<h2 id="561-summary">5.6.1 Summary</h2>
+<p>After completing the lab, we have built a fully working <strong>Clickstream Analytics Platform</strong>:</p>
+<ol>
+<li>
+<p><strong>User-Facing Layer</strong></p>
 <ul>
-<li>Recaps the key concepts and components you worked with throughout the workshop.</li>
-<li>Highlights how they fit together into a cohesive <strong>Batch-based Clickstream Analytics Platform</strong>.</li>
-<li>Provides a <strong>clean-up checklist</strong> so you can safely remove or stop AWS resources and avoid unnecessary costs once you finish experimenting.</li>
+<li>Next.js application (<code>ClickSteam.NextJS</code>) on Amplify + CloudFront</li>
+<li>User authentication with Cognito</li>
+<li>PostgreSQL OLTP database (<code>clickstream_web</code>) on <code>SBW_EC2_WebDB</code> (public subnet)</li>
 </ul>
+</li>
+<li>
+<p><strong>Ingestion &amp; Raw Data Layer</strong></p>
+<ul>
+<li>API Gateway HTTP API: <code>clickstream-http-api</code> (route <code>POST /clickstream</code>)</li>
+<li>Lambda Ingest: <code>clickstream-lambda-ingest</code></li>
+<li>S3 Raw bucket: <code>clickstream-s3-ingest/events/YYYY/MM/DD/event-&lt;uuid&gt;.json</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Private Analytics Layer</strong></p>
+<ul>
+<li>VPC with public &amp; private subnets (<code>SBW_Project_VPC</code>)</li>
+<li>S3 Gateway Endpoint, SSM Interface Endpoints</li>
+<li>Data Warehouse on EC2: <code>SBW_EC2_ShinyDWH</code>, database <code>clickstream_dw</code></li>
+<li>ETL Lambda inside the VPC: <code>SBW_Lamda_ETL</code>, triggered by <code>SBW_ETL_HOURLY_RULE</code></li>
+<li>R Shiny dashboards (<code>sbw_dashboard</code>) accessible only via SSM port forwarding</li>
+</ul>
+</li>
+</ol>
+<p>Overall, this architecture demonstrates how to design a <strong>batch-based analytics platform</strong> that is secure, cost-optimized, and primarily built on serverless components plus two EC2 instances.</p>
 <hr>
-<h3 id="summary-of-key-learnings">Summary of key learnings</h3>
-<p>Across Sections <strong>5.1–5.5</strong>, you have built and validated a complete end-to-end analytics pipeline for an e-commerce website selling computer products.</p>
-<h4 id="architecture-and-design">Architecture and design</h4>
-<p>From <strong>5.1 Objectives &amp; Scope</strong> and <strong>5.2 Architecture Walkthrough</strong>, you learned to:</p>
+<h2 id="562-key-takeaways">5.6.2 Key Takeaways</h2>
 <ul>
 <li>
-<p>Describe the core building blocks of the platform:</p>
+<p><strong>Separation of concerns</strong>:</p>
 <ul>
-<li>
-<p><strong>Frontend &amp; user-facing domain</strong>:</p>
-<ul>
-<li>Next.js application on <strong>AWS Amplify Hosting</strong>.</li>
-<li>Delivered via <strong>Amazon CloudFront</strong>.</li>
-<li>User authentication through <strong>Amazon Cognito</strong>.</li>
+<li>OLTP and Analytics are separated on 2 different EC2 instances, belonging to different logical domains.</li>
 </ul>
 </li>
 <li>
-<p><strong>Ingestion &amp; data lake domain</strong>:</p>
+<p><strong>Security</strong>:</p>
 <ul>
-<li><strong>Amazon API Gateway (HTTP API)</strong> as the clickstream ingestion endpoint.</li>
-<li><strong>Lambda Ingest</strong> function validating and enriching events.</li>
-<li><strong>S3 Raw Clickstream bucket</strong> storing time-partitioned JSON logs.</li>
+<li>The DW and Shiny run in a private subnet with no public IP.</li>
+<li>SSM Session Manager replaces traditional SSH.</li>
+<li>The S3 Gateway Endpoint keeps S3 traffic inside the AWS private network.</li>
 </ul>
 </li>
 <li>
-<p><strong>Analytics &amp; Data Warehouse domain</strong>:</p>
+<p><strong>Cost optimization</strong>:</p>
 <ul>
-<li><strong>VPC</strong> with a <strong>public OLTP subnet</strong>, and <strong>private Analytics + ETL subnets</strong>.</li>
-<li><strong>PostgreSQL Data Warehouse on EC2</strong> in the Analytics private subnet.</li>
-<li><strong>R Shiny Server</strong> co-located on the same EC2 instance for analytics dashboards.</li>
-<li><strong>VPC-enabled ETL Lambda</strong> in the ETL private subnet.</li>
-</ul>
-</li>
+<li>No NAT Gateway is used.</li>
+<li>ETL relies on serverless (Lambda + EventBridge).</li>
+<li>S3 is used as low-cost storage for raw data.</li>
 </ul>
 </li>
 <li>
-<p>Explain why the platform separates:</p>
+<p><strong>Easy to extend</strong>:</p>
 <ul>
-<li><strong>OLTP (Operational)</strong> workloads (live orders, inventory, users) and</li>
-<li><strong>Analytics (Read-heavy)</strong> workloads (funnel analysis, product performance, time series).</li>
-</ul>
-</li>
-</ul>
-<p>This separation improves performance, resilience, and security.</p>
-<h5 id="ingestion-path-frontend--api-gateway--s3">Ingestion path: Frontend → API Gateway → S3</h5>
-<p>From <strong>5.3 Implementing Clickstream Ingestion</strong>, you:</p>
-<ul>
-<li>
-<p>Implemented and/or understood a <strong>tracking flow</strong> where:</p>
-<ul>
-<li>The browser captures page views, product views, add-to-cart, and checkout events.</li>
-<li>Events are serialized into JSON payloads containing user, session, and product metadata.</li>
-<li>The frontend calls <code>POST /clickstream</code> on <strong>API Gateway</strong>.</li>
-</ul>
-</li>
-<li>
-<p>Saw how <strong>Lambda Ingest</strong>:</p>
-<ul>
-<li>
-<p>Parses incoming events.</p>
-</li>
-<li>
-<p>Enforces minimal validation and adds server-side metadata.</p>
-</li>
-<li>
-<p>Writes batched JSON objects into the <strong>S3 Raw Clickstream bucket</strong> using a partitioned prefix such as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>events/YYYY/MM/DD/HH/events-&lt;uuid&gt;.json
-</span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p>Practiced <strong>manual testing</strong> using both:</p>
-<ul>
-<li>The real frontend (via the browser developer tools), and</li>
-<li>API clients such as Postman or Thunder Client.</li>
-</ul>
-</li>
-</ul>
-<h4 id="private-analytics-layer-gateway-endpoint-etl-lambda-data-warehouse">Private analytics layer: Gateway Endpoint, ETL Lambda, Data Warehouse</h4>
-<p>From <strong>5.4 Building the Private Analytics Layer</strong>, you:</p>
-<ul>
-<li>
-<p>Configured a <strong>Gateway VPC Endpoint for S3</strong>, ensuring that:</p>
-<ul>
-<li>Private subnets <strong>do not</strong> require public IPs or a NAT Gateway to reach S3.</li>
-<li>Traffic between ETL Lambda and S3 stays on the <strong>AWS private network</strong>.</li>
-</ul>
-</li>
-<li>
-<p>Attached the <strong>ETL Lambda</strong> to the VPC by:</p>
-<ul>
-<li>Selecting the ETL private subnet and appropriate security groups.</li>
-<li>Giving the Lambda execution role minimal IAM permissions to read from the Raw bucket and write to CloudWatch Logs.</li>
-</ul>
-</li>
-<li>
-<p>Implemented ETL logic that:</p>
-<ul>
-<li>Lists relevant S3 objects for a given time window.</li>
-<li>Parses raw JSON clickstream events.</li>
-<li>Transforms them into relational structures (e.g., <code>fact_events</code>, <code>dim_products</code>).</li>
-<li>Loads them into a <strong>PostgreSQL Data Warehouse</strong> on an EC2 instance in the Analytics private subnet.</li>
-</ul>
-</li>
-<li>
-<p>Verified connectivity and security through:</p>
-<ul>
-<li>Security groups allowing <strong>only the ETL Lambda</strong> to connect to the DW on port <code>5432</code>.</li>
-<li>Route tables with local + prefix-list routes, and <strong>no 0.0.0.0/0</strong> in private subnets.</li>
-</ul>
-</li>
-</ul>
-<h4 id="analytics-and-visualization-with-shiny">Analytics and visualization with Shiny</h4>
-<p>From <strong>5.5 Visualizing Analytics with Shiny Dashboards</strong>, you:</p>
-<ul>
-<li>
-<p>Triggered the ETL job (via EventBridge or manually) and validated data freshness using SQL queries:</p>
-<ul>
-<li>Event counts.</li>
-<li>Distribution of event types.</li>
-<li>Top viewed products.</li>
-<li>Simple funnel-like metrics.</li>
-</ul>
-</li>
-<li>
-<p>Accessed <strong>R Shiny dashboards</strong> running on the same private EC2 instance as the Data Warehouse using secure port forwarding:</p>
-<ul>
-<li>SSH tunnels, or</li>
-<li>AWS Systems Manager Session Manager.</li>
-</ul>
-</li>
-<li>
-<p>Explored dashboards that represent:</p>
-<ul>
-<li><strong>Funnels and user journeys</strong> (page view → product view → add-to-cart → checkout → purchase).</li>
-<li><strong>Product performance</strong> (top products by views and purchases).</li>
-<li><strong>Time-series trends</strong> (events per hour/day).</li>
-</ul>
-</li>
-<li>
-<p>Connected Shiny visualizations back to underlying <strong>SQL queries and DW tables</strong>, confirming that:</p>
-<ul>
-<li>The dashboards are consistent with the data.</li>
-<li>Key business metrics can be verified manually when needed.</li>
+<li>The current design is batch-based, but can be extended to real-time, more complex analytics, or migrated to other DW technologies.</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="clean-up-checklist-aws-resources">Clean-up checklist (AWS resources)</h3>
-<p>After completing the workshop, it is recommended to <strong>clean up resources</strong> to avoid charges. The exact actions depend on whether this environment is:</p>
-<ul>
-<li>A short-lived lab or demo environment, or</li>
-<li>A persistent development/staging environment.</li>
-</ul>
-<blockquote>
-<p><strong>Important:</strong> Before deleting anything, confirm that <strong>no one else</strong> is using the same AWS account or resources for ongoing work.</p></blockquote>
-<h4 id="ec2-instances">EC2 instances</h4>
+<h2 id="563-resource-clean-up">5.6.3 Resource Clean-up</h2>
 <ol>
 <li>
-<p><strong>OLTP EC2 instance (Public Subnet)</strong></p>
+<p><strong>Amplify &amp; CloudFront</strong></p>
 <ul>
-<li>If you no longer need the operational database:
-<ul>
-<li>Stop the instance to pause compute charges, or</li>
-<li>Terminate it to permanently delete it.</li>
+<li>Delete the Amplify app (<code>ClickSteam.NextJS</code>).</li>
+<li>This action also deletes the associated CloudFront distribution.</li>
 </ul>
 </li>
-<li>Before termination, consider:
+<li>
+<p><strong>API Gateway &amp; Lambda</strong></p>
 <ul>
-<li>Taking a final backup or snapshot of the volume.</li>
-<li>Exporting a logical dump (e.g., <code>pg_dump</code>) of important data.</li>
+<li>Delete <code>clickstream-http-api</code>.</li>
+<li>Delete the Lambda functions:
+<ul>
+<li><code>clickstream-lambda-ingest</code></li>
+<li><code>SBW_Lamda_ETL</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Data Warehouse + Shiny EC2 instance (Private Subnet)</strong></p>
+<p><strong>EventBridge</strong></p>
 <ul>
-<li>If you only needed this instance for the workshop:
-<ul>
-<li>Stop or terminate it after confirming that you have exported any necessary analytical results or schema definitions.</li>
+<li>Delete the rule <code>SBW_ETL_HOURLY_RULE</code>.</li>
 </ul>
 </li>
-<li>If you plan to extend the analytics layer later:
+<li>
+<p><strong>S3 Buckets</strong></p>
 <ul>
-<li>You may keep the instance, but ensure that:
+<li>Empty and then delete:
 <ul>
-<li>Unused services (e.g., experimental Shiny apps) are removed.</li>
-<li>Security groups remain restrictive (no broad inbound rules).</li>
+<li><code>clickstream-s3-ingest</code> (RAW clickstream)</li>
+<li><code>clickstream-s3-sbw</code> (assets), if it is not used for other projects</li>
 </ul>
 </li>
 </ul>
 </li>
+<li>
+<p><strong>EC2 Instances</strong></p>
+<ul>
+<li>Stop or terminate:
+<ul>
+<li><code>SBW_EC2_WebDB</code></li>
+<li><code>SBW_EC2_ShinyDWH</code></li>
+</ul>
+</li>
+<li>Release any associated Elastic IP (if attached).</li>
+</ul>
+</li>
+<li>
+<p><strong>VPC &amp; Networking</strong></p>
+<ul>
+<li>Delete VPC endpoints (S3 Gateway, SSM Interface Endpoints).</li>
+<li>Delete route tables, subnets, and the Internet Gateway.</li>
+<li>Finally, delete <code>SBW_Project_VPC</code> if it is no longer needed.</li>
 </ul>
 </li>
 </ol>
-<h4 id="lambda-functions-and-eventbridge-rules">Lambda functions and EventBridge rules</h4>
-<ol>
-<li>
-<p><strong>Lambda Ingest function</strong></p>
-<ul>
-<li>If you will not send more clickstream events:
-<ul>
-<li>Consider deleting the function to avoid confusion in the console.</li>
-</ul>
-</li>
-<li>Otherwise, you can keep it for future experimentation.</li>
-</ul>
-</li>
-<li>
-<p><strong>ETL Lambda function</strong></p>
-<ul>
-<li>If the Data Warehouse EC2 instance is stopped or terminated:
-<ul>
-<li>Disable or delete the ETL Lambda (and its EventBridge rule) to avoid failing invocations.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>EventBridge ETL schedule</strong></p>
-<ul>
-<li>Navigate to <strong>Amazon EventBridge → Rules</strong>.</li>
-<li>Disable or delete the scheduling rule (for example <code>clickstream-etl-schedule</code>) so it no longer triggers ETL runs.</li>
-</ul>
-</li>
-</ol>
-<h4 id="s3-buckets-and-data">S3 buckets and data</h4>
-<ol>
-<li>
-<p><strong>Raw Clickstream S3 bucket</strong></p>
-<ul>
-<li>
-<p>Decide whether the raw clickstream data should be retained:</p>
-<ul>
-<li>For <strong>short-lived labs</strong>, you can safely delete the <code>events/YYYY/MM/DD/HH/</code> prefixes created during testing.</li>
-<li>For <strong>ongoing projects</strong>, keep the bucket but:
-<ul>
-<li>Enable S3 <strong>lifecycle policies</strong> if needed (e.g., transition older data to cheaper storage classes, or delete after N days).</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Other project-specific buckets</strong></p>
-<ul>
-<li>If you created additional buckets specifically for this workshop (for logs, artifacts, or screenshots), review and delete them if they are no longer required.</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p><strong>Note:</strong> S3 storage costs can accumulate over time; periodically review bucket contents and lifecycle rules.</p></blockquote>
-<h4 id="vpc-endpoints-and-networking-components">VPC Endpoints and networking components</h4>
-<ol>
-<li>
-<p><strong>S3 Gateway VPC Endpoint</strong></p>
-<ul>
-<li>If the VPC will no longer be used for analytics:
-<ul>
-<li>You may delete the <strong>Gateway Endpoint</strong>.</li>
-</ul>
-</li>
-<li>If the VPC remains active and other workloads may benefit from private S3 access:
-<ul>
-<li>It can be left in place.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Route tables, subnets, and VPC</strong></p>
-<ul>
-<li>For a dedicated lab VPC:
-<ul>
-<li>Consider deleting the entire VPC (which will also remove associated subnets, route tables, and endpoints) <strong>only after</strong> ensuring no active EC2, RDS, or other critical resources depend on it.</li>
-</ul>
-</li>
-<li>For a shared VPC:
-<ul>
-<li>Clean up only the subnets and route tables that were created exclusively for this workshop, taking care not to disrupt other environments.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="cloudwatch-logs-and-monitoring">CloudWatch Logs and monitoring</h4>
-<ol>
-<li>
-<p><strong>CloudWatch Logs for Lambda and API Gateway</strong></p>
-<ul>
-<li>Log groups can grow in size over time.</li>
-<li>Set an appropriate <strong>retention policy</strong> (for example, 7, 30, or 90 days) for:
-<ul>
-<li>Lambda Ingest logs.</li>
-<li>ETL Lambda logs.</li>
-<li>API Gateway access logs.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>CloudWatch Alarms and metrics</strong></p>
-<ul>
-<li>If you created alarms specific to this environment (e.g., error count alarms for ETL or ingestion):
-<ul>
-<li>Disable or delete them if the environment is being decommissioned.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p><strong>Figure 5-14: CloudWatch alarms for the clickstream platform</strong></p>
-<p>The screenshot shows a set of CloudWatch alarms for the ingestion path and the Data Warehouse, including:</p>
-<ul>
-<li>API latency and 4xx/5xx rate alarms.</li>
-<li>Lambda ingest duration and throttling alarms.</li>
-<li>EC2 Data Warehouse status check and CPU utilization alarms.</li>
-</ul>
-<p>Most alarms are in <code>OK</code> or <code>Insufficient data</code> state, indicating that the system is currently healthy and ready to be stopped or scaled down after the workshop.</p>
-<p><img src="../../images/5-6-cloudwatch-alarms.png" alt="Figure 5-14: CloudWatch alarms for the clickstream platform"></p>
-<h4 id="iam-roles-and-policies">IAM roles and policies</h4>
-<ol>
-<li>
-<p><strong>Lambda execution roles</strong></p>
-<ul>
-<li>
-<p>Review IAM roles created for:</p>
-<ul>
-<li>Lambda Ingest.</li>
-<li>ETL Lambda.</li>
-</ul>
-</li>
-<li>
-<p>If they are no longer needed:</p>
-<ul>
-<li>Detach any inline or attached policies.</li>
-<li>Delete the roles to avoid accumulating unused IAM identities.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Test users and permissions</strong></p>
-<ul>
-<li>If you created dedicated IAM users or test roles for the workshop, consider removing them or tightening their permissions.</li>
-</ul>
-</li>
-</ol>
-<h4 id="amplify-cognito-and-api-gateway">Amplify, Cognito, and API Gateway</h4>
-<ol>
-<li>
-<p><strong>Amplify app</strong></p>
-<ul>
-<li>If the Next.js frontend was deployed only for this workshop and will not be used again:
-<ul>
-<li>Remove the <strong>Amplify app</strong> and associated branches/environments.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Cognito User Pool</strong></p>
-<ul>
-<li>Remove test users or delete the entire User Pool if it was dedicated to this environment.</li>
-</ul>
-</li>
-<li>
-<p><strong>API Gateway HTTP API</strong></p>
-<ul>
-<li>Delete the clickstream ingestion API if you no longer need it, especially if it was created only for the lab.</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="what-to-keep-for-future-work">What to keep for future work</h3>
-<p>If you plan to <strong>extend</strong> this project beyond the workshop, consider keeping:</p>
-<ul>
-<li>
-<p><strong>The code repositories</strong>:</p>
-<ul>
-<li>Next.js frontend (including tracking logic).</li>
-<li>Lambda functions (Ingest and ETL).</li>
-<li>Shiny app code.</li>
-<li>Infrastructure-as-Code (Terraform or CloudFormation templates).</li>
-</ul>
-</li>
-<li>
-<p><strong>The Data Warehouse schema and a small sample dataset</strong>:</p>
-<ul>
-<li>A minimal EC2 instance and database with a sample of events can be enough to continue developing dashboards and queries without ingesting large volumes of new data.</li>
-</ul>
-</li>
-<li>
-<p><strong>Architecture diagrams and notes</strong>:</p>
-<ul>
-<li>Diagrams used as Figures 5-1 to 5-6.</li>
-<li>Notes on design decisions (e.g., using Gateway Endpoint instead of NAT Gateway).</li>
-</ul>
-</li>
-</ul>
-<p>These assets make it easier to resume the project later or adapt it into a more advanced solution (for example, migrating to <strong>Amazon Redshift Serverless</strong> or adding <strong>real-time streaming</strong>).</p>
-<hr>
-<h3 id="closing-remarks">Closing remarks</h3>
-<p>This workshop demonstrated how to:</p>
-<ul>
-<li>Design and implement a <strong>secure, cost-conscious, and extensible</strong> analytics architecture on AWS.</li>
-<li>Collect clickstream events from a real e-commerce frontend.</li>
-<li>Build a private ETL process that reads from S3 and loads into a dedicated Data Warehouse.</li>
-<li>Visualize user behaviour and product performance through R Shiny dashboards, without exposing the analytics backend to the public Internet.</li>
-</ul>
-<p>You now have a working reference for building similar analytics platforms and a strong foundation for future enhancements such as:</p>
-<ul>
-<li>Real-time streams (Kinesis / Kafka).</li>
-<li>More advanced attribution and user segmentation models.</li>
-<li>Migrating the Data Warehouse to managed services like Amazon Redshift.</li>
-</ul>
-<hr>
-<p><strong>Figure 5-15: Summary of resources to check after the workshop</strong></p>
-<p>The diagram or table for this figure should list, for each AWS service:</p>
-<ul>
-<li>The resource type (EC2, S3, Lambda, EventBridge, API Gateway, VPC Endpoint, etc.).</li>
-<li>Example resource names.</li>
-<li>Recommended action after the workshop (Keep / Stop / Delete / Set retention).</li>
-</ul>
-<p><img src="../../images/5-7-cleanup.png" alt="Figure 5-15: Key resources to review and clean after the workshop"></p>
 
 
 
@@ -1840,19 +1524,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765225037"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765225037"></script>
-    <script src="../../js/jquery.sticky.js?1765225037"></script>
-    <script src="../../js/featherlight.min.js?1765225037"></script>
-    <script src="../../js/highlight.pack.js?1765225037"></script>
+    <script src="../../js/clipboard.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765266249"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765266249"></script>
+    <script src="../../js/jquery.sticky.js?1765266249"></script>
+    <script src="../../js/featherlight.min.js?1765266249"></script>
+    <script src="../../js/highlight.pack.js?1765266249"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765225037"></script>
-    <script src="../../js/learn.js?1765225037"></script>
-    <script src="../../js/hugo-learn.js?1765225037"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765266249"></script>
+    <script src="../../js/learn.js?1765266249"></script>
+    <script src="../../js/hugo-learn.js?1765266249"></script>
 
-    <link href="../../mermaid/mermaid.css?1765225037" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765225037"></script>
+    <link href="../../mermaid/mermaid.css?1765266249" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765266249"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
